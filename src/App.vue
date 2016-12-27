@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <Header></Header>
-    <sidebar></sidebar>
-    <div id="view">
+    <VHeader></VHeader>
+    <VSidebar></VSidebar>
+    <div id="view-wrap">
       <router-view id="view-cont"></router-view>
     </div>
   </div>
 </template>
 
 <script>
-  import Header from './components/Header'
-  import Sidebar from './components/Sidebar'
+  import VHeader from './components/Header'
+  import VSidebar from './components/Sidebar'
 
   export default {
     name: 'app',
     components: {
-      Header, Sidebar
+      VHeader, VSidebar
     }
   }
 </script>
@@ -37,7 +37,7 @@
     -webkit-font-smoothing: antialiased;
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
   }
-  #view {
+  #view-wrap {
     width: 100%;
     padding:60px 10px 10px 170px;
   }
