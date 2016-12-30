@@ -188,7 +188,7 @@
   -ms-user-select: none;
   padding: 10px 15px;
   font-size: 14px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .el-button + .el-button{
   margin-left: 10px;
@@ -445,17 +445,17 @@
 .el-button--large{
   padding: 11px 19px;
   font-size: 16px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .el-button--small{
   padding: 7px 9px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .el-button--mini{
   padding: 4px 4px;
   font-size: 12px;
-  border-radius: 4px;
+  border-radius: 0;
 }
 .el-button--text{
   border: none;
@@ -878,7 +878,7 @@
   vertical-align: middle;
   background-color: #fff;
   width: 420px;
-  border-radius: 3px;
+  border-radius: 2px;
   font-size: 16px;
   -webkit-user-select: none;
   overflow: hidden;

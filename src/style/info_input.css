@@ -1,0 +1,18 @@
+.aline {
+  border-top: 1px solid #eee;
+}
+
+.x-content {
+  padding: 10px 15px;
+}
+
+.x-title {
+  display: block;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cg-step {
+  float: right;
+}

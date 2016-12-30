@@ -17,6 +17,9 @@
 </script>
 
 <style scoped>
+  *{
+    box-sizing: border-box;
+  }
   .sidebar {
     position: fixed;
     top: 50px;
@@ -24,6 +27,7 @@
     bottom: 0;
     width: 160px;
     background: #373D41;
+    z-index: 100;
   }
 
   .sidebar-header {

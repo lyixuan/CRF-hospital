@@ -1,4 +1,10 @@
-@charset "UTF-8";
+.el-pagination:before, .el-pagination:after{
+    display: table;
+    content: "";
+}
+.el-pagination:after{
+    clear: both;
+}@charset "UTF-8";
 @charset "UTF-8";
 :root{
     /* Transition
@@ -169,7 +175,7 @@
     position: absolute;
     z-index: 1001;
     border: solid 1px #D3DCE6;
-    border-radius: 2px;
+    border-radius: 0;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
     box-sizing: border-box;
@@ -993,7 +999,7 @@
     height: 24px;
     line-height: 24px;
     font-size: 14px;
-    border-radius: 4px;
+    border-radius: 0;
     color: #fff;
     background-color: #20a0ff;
 }
@@ -1105,7 +1111,7 @@
 
 .el-pagination .el-select .el-input input{
     padding-right: 25px;
-    border-radius: 2px;
+    border-radius: 0;
     height: 28px;
 }
 

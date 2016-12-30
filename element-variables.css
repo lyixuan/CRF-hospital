@@ -11,7 +11,7 @@
 
   /* Colors
   -------------------------- */
-  --color-primary: #20a0ff;
+  --color-primary: #41C4DA;
   --color-success: #13ce66;
   --color-warning: #f7ba2a;
   --color-danger: #ff4949;
@@ -35,8 +35,8 @@
   --border-color-base: var(--color-grey);
   --border-color-hover: #8492a6;
   --border-base: var(--border-width-base) var(--border-style-base) var(--border-color-base);
-  --border-radius-base: 4px;
-  --border-radius-small: 2px;
+  --border-radius-base: 0;
+  --border-radius-small: 0;
   --border-radius-circle: 100%;
   --shadow-base: 0 0 2px rgba(var(--color-black), 0.18), 0 0 1px var(--color-blue-light);
 
@@ -186,7 +186,7 @@
   /* Message Box
   -------------------------- */
   --msgbox-width: 420px;
-  --msgbox-border-radius: 3px;
+  --msgbox-border-radius: 2px;
   --msgbox-font-size: 16px;
   --msgbox-content-font-size: 14px;
   --msgbox-content-color: var(--link-color);

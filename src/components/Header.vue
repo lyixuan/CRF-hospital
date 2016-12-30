@@ -23,6 +23,7 @@
     left: 0;
     right: 0;
     height: 50px;
+    z-index: 100;
     background: #373D41;
   }
   .header span{
