@@ -412,9 +412,13 @@
     color: #99A9BF;
     cursor: pointer;
     position: absolute;
+    z-index: 1;
 }
 .el-input-number__increase:hover, .el-input-number__decrease:hover{
     color: #20a0ff;
+}
+.el-input-number__increase:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled), .el-input-number__decrease:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled){
+    border-color: #20a0ff;
 }
 .el-input-number__increase.is-disabled, .el-input-number__decrease.is-disabled{
     color: #D3DCE6;

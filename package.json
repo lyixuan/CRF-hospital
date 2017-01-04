@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "element-theme": "^0.2.0",
-    "element-theme-default": "^1.0.8",
-    "element-ui": "^1.0.8",
+    "element-theme-default": "^1.0.9",
+    "element-ui": "^1.1.2",
     "vue": "^2.1.0",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1"
@@ -35,9 +35,9 @@
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "json-loader": "^0.5.4",
-    "semver": "^5.3.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
+    "semver": "^5.3.0",
     "shelljs": "^0.7.4",
     "url-loader": "^0.5.7",
     "vue-loader": "^10.0.0",

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <VHeader></VHeader>
-    <VSidebar></VSidebar>
+    <v-header></v-header>
+    <v-sidebar></v-sidebar>
     <div id="view-wrap">
       <router-view id="view-cont"></router-view>
     </div>
@@ -23,8 +23,6 @@
 <style>
   * {
     font-size: 12px;
-    box-sizing: border-box;
-    color: #333;
   }
   a{
     text-decoration:none
@@ -39,11 +37,13 @@
   }
   #view-wrap {
     width: 100%;
-    padding:60px 10px 10px 170px;
+    padding:50px 0px 0px 160px;
+    box-sizing: border-box;
   }
   #view-cont{
     background: #fff;
-    min-height: 500px;
+    min-height: 530px;
+    overflow: hidden;
   }
   @media screen and (min-height: 620px) {
     #view-cont {
