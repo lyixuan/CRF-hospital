@@ -1,109 +1,96 @@
 <template>
   <div class="input-step1">
-
-    <steps :activee="1"></steps>
-
-    <div class="aline"></div>
-
-    <div class="x-content">
+    <steps :activee="0"></steps>
+    <div class="guide-area">
       <el-row>
-        <el-col :span="24" class="x-title">基本信息</el-col>
+        <el-col :span="12" class="x-title">基本信息</el-col>
+        <el-col :span="12" class="x-btn">
+          <el-button type="primary" @click="saveAndStepTo(2)" size="mini">下一步</el-button>
+        </el-col>
       </el-row>
-
-      <el-form ref="form" :model="form" label-width="80px">
+    </div>
+    <div style="clear: both;"></div>
+    <div class="x-content">
+      <el-form ref="jbxxForm" :model="jbxxForm" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="7">
-            <el-form-item label="诊疗卡号:">
-              <el-input v-model="form.name"></el-input>
+            <el-form-item label="诊疗卡号:" prop="card_id">
+              <el-input v-model="jbxxForm.card_id"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
-            <el-form-item label="姓名:">
-              <el-input v-model="form.name"></el-input>
+            <el-form-item label="姓名:" prop="name">
+              <el-input v-model="jbxxForm.name"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
-            <el-form-item label="就诊日期:">
-              <el-date-picker v-model="form.name" type="date" placeholder="选择日期"></el-date-picker>
+            <el-form-item label="就诊日期:" prop="visit_date">
+              <el-date-picker v-model="jbxxForm.visit_date" type="date" placeholder="选择日期"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-row>
-
         <el-row>
           <el-col :span="7">
-            <el-form-item label="性别:">
-              <el-select v-model="form.name" placeholder="请选择">
-                <el-option v-for="item in options" :label="item.label" :value="item.value">
+            <el-form-item label="性别:" prop="sex">
+              <el-select v-model="jbxxForm.sex" placeholder="请选择">
+                <el-option v-for="item in sexOptions" :label="item.label" :value="item.value">
                 </el-option>
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
-            <el-form-item label="年龄:">
-              <el-input v-model="form.name"></el-input>
+            <el-form-item label="年龄:" prop="age">
+              <el-input v-model="jbxxForm.age"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
-            <el-form-item label="出生日期:">
-              <el-date-picker v-model="form.name" type="date" placeholder="选择日期"></el-date-picker>
+            <el-form-item label="出生日期:" prop="birthday">
+              <el-date-picker v-model="jbxxForm.birthday" type="date" placeholder="选择日期"></el-date-picker>
             </el-form-item>
           </el-col>
         </el-row>
-
         <el-row>
           <el-col :span="7">
-            <el-form-item label="电话:">
-              <el-input v-model="form.name"></el-input>
+            <el-form-item label="电话:" prop="mobile">
+              <el-input v-model="jbxxForm.mobile"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="15">
-            <el-form-item label="住址:">
-              <el-input v-model="form.name"></el-input>
+            <el-form-item label="住址:" prop="addr">
+              <el-input v-model="jbxxForm.addr"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7">
+            <el-form-item label="疾病分类:" required>
+              <el-radio-group v-model="jbxxForm.sick_type.type">
+                <el-radio label="jm">静脉</el-radio>
+                <el-radio label="dm">动脉</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="23">
+            <el-form-item label="疾病名称:" prop="sick_type.sick">
+              <el-radio-group v-model="jbxxForm.sick_type.sick">
+                <el-radio :label=item.key v-for="item in baseData.jm" v-if="jbxxForm.sick_type.type == 'jm'">
+                  {{item.name}}
+                </el-radio>
+                <el-radio :label=item.key v-for="item in baseData.dm" v-if="jbxxForm.sick_type.type == 'dm'">
+                  {{item.name}}
+                </el-radio>
+              </el-radio-group>
             </el-form-item>
           </el-col>
         </el-row>
 
-        <el-row>
-          <el-col :span="7">
-            <el-form-item label="病史分类:">
-              <el-form-item>
-                <el-radio-group v-model="radio">
-                  <el-radio :label="3">静脉</el-radio>
-                  <el-radio :label="6">动脉</el-radio>
-                </el-radio-group>
-              </el-form-item>
-            </el-form-item>
-          </el-col>
-        </el-row>
-
-        <el-row>
-          <el-col :span="7">
-            <el-form-item>
-              <el-select v-model="form.name" placeholder="动脉">
-                <el-option v-for="item in options" :label="item.label" :value="item.value">
-                </el-option>
-              </el-select>
-              <el-select v-model="form.name" placeholder="静脉" v-if="false">
-                <el-option v-for="item in options" :label="item.label" :value="item.value">
-                </el-option>
-              </el-select>
-            </el-form-item>
-          </el-col>
-        </el-row>
-        <el-row>
-          <el-col :span="16">&nbsp;</el-col>
-          <el-col :span="7">
-            <div class="cg-step low-page">
-              <el-button type="primary" style="width: 120px;">上一步</el-button>
-              <el-button type="primary" style="width: 120px;">下一步</el-button>
-            </div>
-          </el-col>
-        </el-row>
       </el-form>
     </div>
   </div>
@@ -117,16 +104,117 @@
       Steps
     },
     data () {
+      var validateMobile = (rule, value, callback) => {
+        let exp = /^[0-9 ]+$/;
+        if (!exp.test(value)) {
+          callback(new Error('电话号码格式有误'))
+        }
+        callback()
+      };
+      var validateAge = (rule, value, callback) => {
+        let exp = /^[0-9]+$/;
+        if (!exp.test(value)) {
+          callback(new Error('年龄格式应该为正整数'))
+        }
+        callback()
+      };
       return {
-        input: '',
-        form: {
-          name: ''
-        },
-        options: [
+        baseData: '',
+        sexOptions: [
           {value: "male", label: "男"},
           {value: "female", label: "女"}
         ],
-        radio: 3
+        jbxxForm: {
+          card_id: '',
+          name: '',
+          visit_date: '',
+          sex: 'male',
+          age: '',
+          birthday: '',
+          mobile: '',
+          addr: '',
+          sick_type: {
+            type: 'jm',
+            sick: ''
+          }
+        },
+        rules: {
+          card_id: [
+            { required: true, message: '请输入诊疗卡号', trigger: 'blur' }
+          ],
+          name: [
+            { required: true, message: '请输入姓名', trigger: 'blur' }
+          ],
+          visit_date: [
+            { type: 'date', required: true, message: '请选择就诊日期', trigger: 'change' }
+          ],
+          sex: [
+            {required: true, message: '请选择性别', trigger: 'blur' }
+          ],
+          age: [
+            {required: true, message: '请输入年龄', trigger: 'blur' },
+            {validator: validateAge, trigger: 'blur'}
+          ],
+          birthday: [
+            { type: 'date', required: true, message: '请选择出生日期', trigger: 'change' }
+          ],
+          mobile: [
+            {required: true, message: '请输入联系电话', trigger: 'blur'},
+            {validator: validateMobile, trigger: 'blur'}
+          ],
+          addr: [
+            {required: true, message: '请输入地址', trigger: 'blur' }
+          ],
+          'sick_type.sick': [
+            { required: true, message: '请选择疾病', trigger: 'blur' }
+          ]
+        }
+      }
+    },
+    mounted () {
+      this.getJbxx()
+      this.writeBack()
+    },
+    methods: {
+      writeBack () {
+        let info = window.localStorage.getItem('x_step1_info')
+        if (info) {
+          this.jbxxForm = JSON.parse(info)
+        }
+        console.log(this.jbxxForm)
+      },
+      getJbxx () {
+        this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
+          if (response.status == 200) {
+            this.baseData = response.body
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
+      storage() {
+        window.localStorage.setItem('x_step1_info', JSON.stringify(this.jbxxForm))
+      },
+      saveAndStepTo(num) {
+        this.$refs['jbxxForm'].validate((valid) => {
+          if (valid) {
+            this.storage()
+            this.alertMsg("success", '"基本信息"已暂存')
+            this.stepTo(num)
+          } else {
+            this.alertMsg("warning", '信息填写有误')
+            return false;
+          }
+        });
+      }
+    },
+    watch: {
+      'jbxxForm.sick_type.type': {
+        handler: function (newVal, oldVal) {
+          if (oldVal && newVal !== oldVal) {
+            this.jbxxForm.sick_type.sick = ''
+          }
+        }
       }
     }
   }
@@ -134,8 +222,4 @@
 
 <style scoped>
   @import "../../style/info_input.css";
-
-  .low-page{
-    margin-top: 100px;
-  }
 </style>

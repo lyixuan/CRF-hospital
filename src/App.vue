@@ -37,12 +37,13 @@
   }
   #view-wrap {
     width: 100%;
-    padding:56px 6px 6px 166px;
+    padding:50px 0px 0px 160px;
     box-sizing: border-box;
   }
   #view-cont{
     background: #fff;
     min-height: 530px;
+    overflow: hidden;
   }
   @media screen and (min-height: 620px) {
     #view-cont {

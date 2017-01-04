@@ -24,7 +24,7 @@ import InputEditorPage11 from './pages/inputEditor/step11.vue'
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(ElementUI);
-
+require('./config')
 
 const routes = [
   {path: '/', component: InputEditorPage1},
@@ -44,6 +44,28 @@ const routes = [
 const router = new VueRouter({
   routes // （缩写）相当于 routes: routes
 });
+
+
+Vue.prototype.alertMsg = function (type, msg) {
+  //type : success/warning/info/error
+  this.$message({
+    type: type,
+    message: msg
+  })
+};
+
+Vue.prototype.stepTo = function (num) {
+  router.push({path: '/inputEditor/page' + num})
+};
+
+// // 拦截器
+// Vue.http.interceptors.push((request, next) => {
+//   next((response) => {
+//     if (response.status != 200) {
+//       this.alertMsg("error", response.status + " - " + response.url)
+//     }
+//   });
+// });
 
 new Vue({
   el: '#app',
