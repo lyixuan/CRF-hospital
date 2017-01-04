@@ -28,7 +28,7 @@
     text-decoration:none
   }
   body {
-    background: #EAEDF1;
+    background: #fff;
     margin: 0;
     padding: 0;
     text-rendering: optimizeLegibility;
@@ -42,42 +42,6 @@
   }
   #view-cont{
     background: #fff;
-    min-height: 530px;
     overflow: hidden;
-  }
-  @media screen and (min-height: 620px) {
-    #view-cont {
-      min-height: 550px;
-    }
-  }
-  @media screen and (min-height: 650px) {
-    #view-cont {
-      min-height: 580px;
-    }
-  }
-  @media screen and (min-height: 700px) {
-    #view-cont {
-      min-height: 630px;
-    }
-  }
-  @media screen and (min-height: 720px) {
-    #view-cont {
-      min-height: 650px;
-    }
-  }
-  @media screen and (min-height: 750px) {
-    #view-cont {
-      min-height: 680px;
-    }
-  }
-  @media screen and (min-height: 780px) {
-    #view-cont {
-      min-height: 710px;
-    }
-  }
-  @media screen and (min-height: 800px) {
-    #view-cont {
-      min-height: 730px;
-    }
   }
 </style>

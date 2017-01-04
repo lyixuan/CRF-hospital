@@ -1,8 +1,6 @@
 <template>
   <div class="input-step3">
-
     <steps :activee="2"></steps>
-
     <div class="guide-area">
       <el-row>
         <el-col :span="12" class="x-title">既往史</el-col>
@@ -12,8 +10,7 @@
         </el-col>
       </el-row>
     </div>
-    <div style="clear: both"></div>
-
+    <div style="clear: both;"></div>
     <div class="x-content">
       <div class="row-line">
         <div class="row-line-info">

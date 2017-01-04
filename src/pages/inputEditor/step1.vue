@@ -140,35 +140,36 @@
         },
         rules: {
           card_id: [
-            { required: true, message: '请输入诊疗卡号', trigger: 'blur' }
+            {required: true, message: '请输入诊疗卡号', trigger: 'blur'}
           ],
           name: [
-            { required: true, message: '请输入姓名', trigger: 'blur' }
+            {required: true, message: '请输入姓名', trigger: 'blur'}
           ],
           visit_date: [
-            { type: 'date', required: true, message: '请选择就诊日期', trigger: 'change' }
+            {type: 'date', required: true, message: '请选择就诊日期', trigger: 'change'}
           ],
           sex: [
-            {required: true, message: '请选择性别', trigger: 'blur' }
+            {required: true, message: '请选择性别', trigger: 'blur'}
           ],
           age: [
-            {required: true, message: '请输入年龄', trigger: 'blur' },
+            {required: true, message: '请输入年龄', trigger: 'blur'},
             {validator: validateAge, trigger: 'blur'}
           ],
           birthday: [
-            { type: 'date', required: true, message: '请选择出生日期', trigger: 'change' }
+            {type: 'date', required: true, message: '请选择出生日期', trigger: 'change'}
           ],
           mobile: [
             {required: true, message: '请输入联系电话', trigger: 'blur'},
             {validator: validateMobile, trigger: 'blur'}
           ],
           addr: [
-            {required: true, message: '请输入地址', trigger: 'blur' }
+            {required: true, message: '请输入地址', trigger: 'blur'}
           ],
           'sick_type.sick': [
-            { required: true, message: '请选择疾病', trigger: 'blur' }
+            {required: true, message: '请选择疾病', trigger: 'blur'}
           ]
-        }
+        },
+        writeFlag: false
       }
     },
     mounted () {
@@ -177,11 +178,20 @@
     },
     methods: {
       writeBack () {
-        let info = window.localStorage.getItem('x_step1_info')
+        let info = JSON.parse(window.localStorage.getItem('x_step1_info'))
         if (info) {
-          this.jbxxForm = JSON.parse(info)
+          this.jbxxForm.card_id = info.card_id
+          this.jbxxForm.name = info.name
+          this.jbxxForm.visit_date = new Date(info.visit_date)
+          this.jbxxForm.sex = info.sex
+          this.jbxxForm.age = info.age
+          this.jbxxForm.birthday = new Date(info.birthday)
+          this.jbxxForm.mobile = info.mobile
+          this.jbxxForm.addr = info.addr
+          this.writeFlag = true
+          this.jbxxForm.sick_type.type = info.sick_type.type
+          this.jbxxForm.sick_type.sick = info.sick_type.sick
         }
-        console.log(this.jbxxForm)
       },
       getJbxx () {
         this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
@@ -193,16 +203,20 @@
         })
       },
       storage() {
+        let date1 = new Date(this.jbxxForm.visit_date)
+        let date2 = new Date(this.jbxxForm.birthday)
+        this.jbxxForm.visit_date = date1.getFullYear() + '-' + ((date1.getMonth() + 1) < 10 ? '0' + (date1.getMonth() + 1) : (date1.getMonth() + 1)) + '-' + (date1.getDate() < 10 ? '0' + date1.getDate() : date1.getDate())
+        this.jbxxForm.birthday = date2.getFullYear() + '-' + ((date2.getMonth() + 1) < 10 ? '0' + (date2.getMonth() + 1) : (date2.getMonth() + 1)) + '-' + (date2.getDate() < 10 ? '0' + date2.getDate() : date2.getDate())
         window.localStorage.setItem('x_step1_info', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
         this.$refs['jbxxForm'].validate((valid) => {
           if (valid) {
             this.storage()
-            this.alertMsg("success", '"基本信息"已暂存')
+            this.alertMsg("success", '"基本信息" 已暂存')
             this.stepTo(num)
           } else {
-            this.alertMsg("warning", '信息填写有误')
+            this.alertMsg("warning", '信息校验有误')
             return false;
           }
         });
@@ -211,8 +225,10 @@
     watch: {
       'jbxxForm.sick_type.type': {
         handler: function (newVal, oldVal) {
-          if (oldVal && newVal !== oldVal) {
+          if (!this.writeFlag && newVal !== oldVal) {
             this.jbxxForm.sick_type.sick = ''
+          } else if (this.writeFlag) {
+            this.writeFlag = false
           }
         }
       }

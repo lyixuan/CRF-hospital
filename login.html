@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="刘怡瑄 1726801110@qq.com">
+  <title>管理平台</title>
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <style type="text/css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    input {
+      outline: none
+    }
+
+    body {
+      font: 12px/1.5 tahoma, arial, "Hiragino Sans GB", "Microsoft Yahei", "\5b8b\4f53";
+      color: #333;
+      background: #222;
+    }
+
+    body, .content {
+      height: 100%;
+    }
+
+    .login-container {
+      margin: 60px auto 0;
+      width: 370px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .loginText {
+      width: 280px;
+      text-align: center;
+      margin: 0 auto 12px;
+      padding: 20px 0 16px;
+      font: normal bold 18px "Microsoft YaHei";
+      border-bottom: 2px solid #EDEDED;
+      font-weight: 300;
+    }
+
+    .login-item {
+      width: 280px;
+      margin: 0 auto;
+      height: 68px;
+    }
+
+    label, input {
+      height: auto;
+      display: block;
+      width: 100%;
+    }
+
+    label {
+      margin-left: 4px;
+      font: 12px "Microsoft YaHei";
+    }
+
+    input {
+      margin-top: 4px;
+      height: 34px;
+      border: 1px solid #c4c4c4;
+      border-radius: 4px;
+      padding: 0 4px;
+    }
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px white inset;
+    }
+
+    .msg {
+      color: #e83a30;
+      float: right;
+      margin-top: 4px;
+      display: none;
+    }
+
+    #submit {
+      width: 280px;
+      height: 44px;
+      line-height: 44px;
+      font-size: 18px;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 16px;
+      background: #00A2CA;
+    }
+
+    #submit:hover {
+      background: #03AfCf;
+    }
+
+    .forget-pwd {
+      text-align: center;
+      margin: -10px 0 27px;
+    }
+
+    #errorMsg {
+      width: 280px;
+      height: 34px;
+      line-height: 34px;
+      margin: 0 auto 10px;
+      border-radius: 4px;
+      color: #e83a30;
+      padding: 0 4px;
+      overflow: hidden;
+      display: none;
+      border: 1px solid #EAEAEA;
+    }
+    .copyRight {
+      color: #fff;
+      width: 370px;
+      margin: 0 auto;
+      text-align: center;
+      font-weight: normal;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+<body>
+<div class="content">
+  <div class="header">
+  </div>
+  <form id="loginForm">
+    <div class="login-container">
+      <div class="loginText">登 录</div>
+      <p id="errorMsg">
+        用户名或密码错误!
+      </p>
+      <div class="login-item">
+        <label for="userName">用户名</label>
+        <input type="tel" id="userName" name="userName" value=""/>
+        <p id="userNameMsg" class="msg">用户名不能为空!</p>
+      </div>
+      <div class="login-item">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" value=""/>
+      </div>
+      <div class="login-item">
+        <div id="submit">登录</div>
+      </div>
+      <p class="forget-pwd">忘记密码? 请联系管理员重置密码。</p>
+    </div>
+  </form>
+</div>
+<div class="copyRight">
+  Copyright © 2016 liuyixuan.com 版权所有 <br/> 京ICP备15022375
+</div>
+<script type="text/JavaScript">
+  window.onload = function () {
+    if (navigator.userAgent.toLocaleLowerCase().indexOf('msie') !== -1 && !+[1,]) {
+//    ie8检测
+      alert('您的浏览器版本过低,部分功能将无法使用,请升级浏览器或更换他浏览器再试！');
+    }
+
+    for (var i = 0, input = document.getElementsByTagName("input"); i < input.length; i++) {
+      input[i].onclick = function () {
+        for (var j = 0, msgs = document.getElementsByClassName("msg"); j < msgs.length; j++) {
+          msgs[j].style.display = "none";
+        }
+      };
+    }
+
+    var loginErrorFn = function (msg) {
+      var errorMsg=document.getElementById("errorMsg");
+      errorMsg.innerHTML=msg;
+      errorMsg.style.display="none";
+      setTimeout(function(){
+        errorMsg.style.display="block";
+      },100)
+    };
+    var clearLoginErrorFn = function () {
+      var errorMsg=document.getElementById("errorMsg");
+      errorMsg.innerHTML="";
+      errorMsg.style.display="none";
+    };
+    var loginAction = function () {
+      var postData = {
+        userName: document.getElementById("userName").value,
+        password: document.getElementById("password").value,
+      };
+
+      if (!postData.userName) {
+        document.getElementById("userNameMsg").style.display = "block";
+        return false;
+      }
+      postData = JSON.stringify(postData);
+      var xhr = null;
+      if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+      } else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            clearLoginErrorFn();
+            if (window.sessionStorage) {
+              sessionStorage.setItem("userSessions", postData);
+              var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "index.html";
+              window.location.href = url;
+            } else {
+//              ie8以下
+              alert('您的浏览器版本过低,部分功能将无法使用,请升级浏览器或更换他浏览器再试！');
+            }
+          } else {
+            loginErrorFn(JSON.parse(xhr.responseText).msg);
+            return false;
+          }
+        }
+      };
+      xhr.open("POST", "http://rap.taobao.org/mockjsdata/12461/api/login.php", true);
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.send(postData);
+    };
+
+
+//    登录
+    document.getElementById("submit").onclick = loginAction;
+    document.getElementById("password").onkeydown = function (event) {
+      var e = event || window.event || arguments.callee.caller.arguments[0];
+      if (e && e.keyCode == 13) {
+        loginAction();
+      }
+    };
+  };
+
+</script>
+</body>
+</html>
+
