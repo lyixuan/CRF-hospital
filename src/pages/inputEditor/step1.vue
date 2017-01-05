@@ -178,7 +178,7 @@
     },
     methods: {
       writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step1_info'))
+        let info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
         if (info) {
           this.jbxxForm.card_id = info.card_id
           this.jbxxForm.name = info.name
@@ -207,7 +207,7 @@
         let date2 = new Date(this.jbxxForm.birthday)
         this.jbxxForm.visit_date = date1.getFullYear() + '-' + ((date1.getMonth() + 1) < 10 ? '0' + (date1.getMonth() + 1) : (date1.getMonth() + 1)) + '-' + (date1.getDate() < 10 ? '0' + date1.getDate() : date1.getDate())
         this.jbxxForm.birthday = date2.getFullYear() + '-' + ((date2.getMonth() + 1) < 10 ? '0' + (date2.getMonth() + 1) : (date2.getMonth() + 1)) + '-' + (date2.getDate() < 10 ? '0' + date2.getDate() : date2.getDate())
-        window.localStorage.setItem('x_step1_info', JSON.stringify(this.jbxxForm))
+        window.localStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
         this.$refs['jbxxForm'].validate((valid) => {

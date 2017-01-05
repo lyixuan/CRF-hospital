@@ -5,7 +5,7 @@
       <el-row>
         <el-col :span="12" class="x-title">病史</el-col>
         <el-col :span="12" class="x-btn">
-          <el-button type="primary" @click="stepTo(1)" size="mini">上一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo(1)" size="mini">上一步</el-button>
           <el-button type="primary" @click="saveAndStepTo(3)" size="mini">下一步</el-button>
         </el-col>
       </el-row>
@@ -89,7 +89,7 @@
     },
     methods: {
       writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step2_info'))
+        let info = JSON.parse(window.localStorage.getItem('x_step2_bs'))
         if (info) {
           this.bsForm.zs = info.zs
           this.bsForm.xbs = info.xbs
@@ -98,7 +98,7 @@
         }
       },
       storage() {
-        window.localStorage.setItem('x_step2_info', JSON.stringify(this.bsForm))
+        window.localStorage.setItem('x_step2_bs', JSON.stringify(this.bsForm))
       },
       saveAndStepTo(num) {
         this.$refs['bsForm'].validate((valid) => {
