@@ -14,7 +14,7 @@
     <div class="x-content">
       <el-form ref="jwsForm" :model="jwsForm" :rules="rules" label-width="80px">
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="高血压:" required>
               <el-radio-group v-model="jwsForm.gxy.type">
                 <el-radio label="1">是</el-radio>
@@ -23,27 +23,48 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="14" v-if="jwsForm.gxy.type == 1">
+          <el-col :span="17" v-if="jwsForm.gxy.type == 1">
             <el-row>
-              <el-col :span="12">
-                <el-form-item label="年份:">
-                  <el-date-picker v-model="jwsForm.gxy.info.date" align="right" type="year"
+              <el-col :span="5">
+                <el-form-item label="最高:" >
+                  <el-date-picker v-model="jwsForm.gxy.info.zg_date" align="right" type="year"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
-              <el-col :span="2" class="m-label">
-                血压:
+              <el-col :span="1" class="m-label">
+                &nbsp;
               </el-col>
-              <el-col :span="3">
-                <el-input v-model="jwsForm.gxy.info.xy_low_data"></el-input>
+              <el-col :span="2">
+                <el-input v-model="jwsForm.gxy.info.xy_zg_high" placeholder="高值"></el-input>
               </el-col>
               <el-col :span="1" class="m-label">
                 /
               </el-col>
-              <el-col :span="3">
-                <el-input v-model="jwsForm.gxy.info.xy_high_data"></el-input>
+              <el-col :span="2">
+                <el-input v-model="jwsForm.gxy.info.xy_zg_low" placeholder="低值"></el-input>
               </el-col>
-              <el-col :span="2" class="m-label">
+              <el-col :span="1" class="m-label">
+                mmHg
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="现在:">
+                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year"
+                                  placeholder="选择年"></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="1" class="m-label">
+                &nbsp;
+              </el-col>
+              <el-col :span="2">
+                <el-input v-model="jwsForm.gxy.info.xy_now_high" placeholder="高值"></el-input>
+              </el-col>
+              <el-col :span="1" class="m-label">
+                /
+              </el-col>
+              <el-col :span="2">
+                <el-input v-model="jwsForm.gxy.info.xy_now_low" placeholder="低值"></el-input>
+              </el-col>
+              <el-col :span="1" class="m-label">
                 mmHg
               </el-col>
             </el-row>
@@ -51,7 +72,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="糖尿病:" required>
               <el-radio-group v-model="jwsForm.tnb.type">
                 <el-radio label="1">是</el-radio>
@@ -60,7 +81,7 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="14" v-if="jwsForm.tnb.type == 1">
+          <el-col :span="17" v-if="jwsForm.tnb.type == 1">
             <el-row>
               <el-col :span="12">
                 <el-form-item label="年份:">
@@ -82,7 +103,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="冠心病:" required>
               <el-radio-group v-model="jwsForm.gxb.type">
                 <el-radio label="1">是</el-radio>
@@ -91,7 +112,7 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="14" v-if="jwsForm.gxb.type == 1">
+          <el-col :span="17" v-if="jwsForm.gxb.type == 1">
             <el-row>
               <el-col :span="12">
                 <el-form-item label="年份:">
@@ -104,7 +125,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="高脂血症:" required>
               <el-radio-group v-model="jwsForm.gzxz.type">
                 <el-radio label="1">是</el-radio>
@@ -116,7 +137,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="房颤:" required>
               <el-radio-group v-model="jwsForm.fc.type">
                 <el-radio label="1">是</el-radio>
@@ -128,7 +149,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="TIA:" required>
               <el-radio-group v-model="jwsForm.tia.type">
                 <el-radio label="1">是</el-radio>
@@ -140,7 +161,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="脑梗:" required>
               <el-radio-group v-model="jwsForm.ng.type">
                 <el-radio label="1">是</el-radio>
@@ -149,7 +170,7 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="14" v-if="jwsForm.ng.type == 1">
+          <el-col :span="17" v-if="jwsForm.ng.type == 1">
             <el-row>
               <el-col :span="23">
                 <el-form-item label="后遗症:">
@@ -161,7 +182,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="颈椎病:" required>
               <el-radio-group v-model="jwsForm.jzb.type">
                 <el-radio label="1">是</el-radio>
@@ -173,7 +194,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="吸烟:" required>
               <el-radio-group v-model="jwsForm.xy.type">
                 <el-radio label="1">是</el-radio>
@@ -185,7 +206,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="饮酒:" required>
               <el-radio-group v-model="jwsForm.yj.type">
                 <el-radio label="1">是</el-radio>
@@ -197,7 +218,7 @@
         </el-row>
         <div class="row-line"></div>
         <el-row>
-          <el-col :span="10">
+          <el-col :span="7">
             <el-form-item label="肿瘤史:" required>
               <el-radio-group v-model="jwsForm.zls.type">
                 <el-radio label="1">是</el-radio>
@@ -206,7 +227,7 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="14" v-if="jwsForm.zls.type == 1">
+          <el-col :span="17" v-if="jwsForm.zls.type == 1">
             <el-row>
               <el-col :span="23">
                 <el-form-item label="描述:">
@@ -234,9 +255,12 @@
           gxy: {
             type: "2",
             info: {
-              date: "",
-              xy_high_data: "",
-              xy_low_data: ""
+              now_date: "",
+              xy_now_high: "",
+              xy_now_low: "",
+              zg_date: "",
+              xy_zg_high: "",
+              xy_zg_low: ""
             }
           },
           tnb: {
@@ -297,6 +321,17 @@
         }
       },
       storage() {
+        function formatDate(date) {
+          /**
+           * format date to yyyy-MM-dd
+           * @date 毫秒
+           */
+          return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+        }
+        this.jwsForm.gxy.info.zg_date = formatDate(new Date(this.jwsForm.gxy.info.zg_date))
+        this.jwsForm.gxy.info.now_date  = formatDate(new Date(this.jwsForm.gxy.info.now_date))
+        this.jwsForm.tnb.info.date = formatDate(new Date(this.jwsForm.tnb.info.date))
+        this.jwsForm.gxb.info.date = formatDate(new Date(this.jwsForm.gxb.info.date))
         window.localStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {

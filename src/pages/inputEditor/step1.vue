@@ -193,20 +193,16 @@
           this.jbxxForm.sick_type.sick = info.sick_type.sick
         }
       },
-      getJbxx () {
-        this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
-          if (response.status == 200) {
-            this.baseData = response.body
-          } else {
-            this.alertMsg("error", response.status + " - " + response.url)
-          }
-        })
-      },
       storage() {
-        let date1 = new Date(this.jbxxForm.visit_date)
-        let date2 = new Date(this.jbxxForm.birthday)
-        this.jbxxForm.visit_date = date1.getFullYear() + '-' + ((date1.getMonth() + 1) < 10 ? '0' + (date1.getMonth() + 1) : (date1.getMonth() + 1)) + '-' + (date1.getDate() < 10 ? '0' + date1.getDate() : date1.getDate())
-        this.jbxxForm.birthday = date2.getFullYear() + '-' + ((date2.getMonth() + 1) < 10 ? '0' + (date2.getMonth() + 1) : (date2.getMonth() + 1)) + '-' + (date2.getDate() < 10 ? '0' + date2.getDate() : date2.getDate())
+        function formatDate(date) {
+          /**
+           * format date to yyyy-MM-dd
+           * @date 毫秒
+           */
+          return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+        }
+        this.jbxxForm.visit_date = formatDate(new Date(this.jbxxForm.visit_date))
+        this.jbxxForm.birthday = formatDate(new Date(this.jbxxForm.birthday))
         window.localStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
@@ -220,6 +216,15 @@
             return false;
           }
         });
+      },
+      getJbxx () {
+        this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
+          if (response.status == 200) {
+            this.baseData = response.body
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
       }
     },
     watch: {
