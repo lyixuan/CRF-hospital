@@ -13,35 +13,287 @@
     <div style="clear: both;"></div>
     <div class="x-content">
       <div class="tabs">
-        <span class="t-active">血常规</span>
-        <span>血生化</span>
-        <span>凝血四项</span>
-        <span>同型半胱氨酸</span>
-        <span>超敏C反应蛋白</span>
-        <span>血流变</span>
-        <span>糖化血红蛋白</span>
-        <span>血小板聚集试验</span>
-        <span>蛋白C+S</span>
-        <span>抗凝血酶III</span>
+        <span :class="{'t-active':'xcg' == checkedTab ?true:false}" @click="changeTab('xcg')">{{jyForm.xcg.name}}</span>
+        <span :class="{'t-active':'xsh' == checkedTab ?true:false}" @click="changeTab('xsh')">{{jyForm.xsh.name}}</span>
+        <span :class="{'t-active':'nxsx' == checkedTab ?true:false}"
+              @click="changeTab('nxsx')">{{jyForm.nxsx.name}}</span>
+        <span :class="{'t-active':'txbpas' == checkedTab ?true:false}" @click="changeTab('txbpas')">{{jyForm.txbpas.name}}</span>
+        <span :class="{'t-active':'cmCfydb' == checkedTab ?true:false}" @click="changeTab('cmCfydb')">{{jyForm.cmCfydb.name}}</span>
+        <span :class="{'t-active':'xlb' == checkedTab ?true:false}" @click="changeTab('xlb')">{{jyForm.xlb.name}}</span>
+        <span :class="{'t-active':'thxhdb' == checkedTab ?true:false}" @click="changeTab('thxhdb')">{{jyForm.thxhdb.name}}</span>
+        <span :class="{'t-active':'xxbjjsy' == checkedTab ?true:false}" @click="changeTab('xxbjjsy')">{{jyForm.xxbjjsy.name}}</span>
+        <span :class="{'t-active':'dbCS' == checkedTab ?true:false}"
+              @click="changeTab('dbCS')">{{jyForm.dbCS.name}}</span>
+        <span :class="{'t-active':'knxmIII' == checkedTab ?true:false}" @click="changeTab('knxmIII')">{{jyForm.knxmIII.name}}</span>
       </div>
       <div style="clear: both;"></div>
-      <div class="tab-content table-box">
-        <div>
-          <span>血常规</span>
+      <div class="tab-content">
+        <div class="table-box" v-if="'xcg' == checkedTab">
+          <h1>{{jyForm.xcg.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.xcg.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
           <table>
             <tr>
-              <td>课程名称</td>
-              <td>日期</td>
-              <td>状态</td>
-              <td>备注</td>
-              <td>操作</td>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
             </tr>
+            <tr v-for="item in jyForm.xcg.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'xsh' == checkedTab">
+          <h1>{{jyForm.xsh.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.xsh.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
             <tr>
-              <td>1</td>
-              <td>3</td>
-              <td>3</td>
-              <td>4</td>
-              <td>删除</td>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.xsh.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'nxsx' == checkedTab">
+          <h1>{{jyForm.nxsx.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.nxsx.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.nxsx.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'txbpas' == checkedTab">
+          <h1>{{jyForm.txbpas.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.txbpas.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.txbpas.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'cmCfydb' == checkedTab">
+          <h1>{{jyForm.cmCfydb.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.cmCfydb.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.cmCfydb.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'xlb' == checkedTab">
+          <h1>{{jyForm.xlb.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.xlb.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.xlb.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'thxhdb' == checkedTab">
+          <h1>{{jyForm.thxhdb.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.thxhdb.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.thxhdb.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'xxbjjsy' == checkedTab">
+          <h1>{{jyForm.xxbjjsy.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.xxbjjsy.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.xxbjjsy.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'dbCS' == checkedTab">
+          <h1>{{jyForm.dbCS.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.dbCS.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.dbCS.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="table-box" v-if="'knxmIII' == checkedTab">
+          <h1>{{jyForm.knxmIII.name}}</h1>
+          <span class="span1">
+          <el-date-picker v-model="jyForm.knxmIII.date" align="right" type="date"
+                          placeholder="选择日期"></el-date-picker></span>
+          <span class="span2">日期:</span>
+          <table>
+            <tr>
+              <th></th>
+              <th>检验项目</th>
+              <th>检验结果</th>
+              <th>单位</th>
+              <th>参考范围</th>
+            </tr>
+            <tr v-for="item in jyForm.knxmIII.items">
+              <td>{{item.No}}</td>
+              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+              <td>
+                <el-input v-model="item.value"></el-input>
+              </td>
+              <td>{{item.unit}}</td>
+              <td>{{item.std_low +" - "+ item.std_high}}</td>
             </tr>
           </table>
         </div>
@@ -59,131 +311,62 @@
     },
     data () {
       return {
-        baseData:{
-          cmCfydb: {
-            items: [
-              {
-                "No": "1",
-                "key": "HSCRP",
-                "name": "超敏c反应蛋白",
-                "std_high": "3",
-                "std_low": "0",
-                "unit": "mg/L"
-              }
-            ],
-            name: "超敏C反应蛋白"
+        jyForm: {
+          xcg: {
+            items: [],
+            name: "",
+            date: ""
           },
-          dbCS: {
-            items: [
-              {
-                "No": "1",
-                "key": "PC",
-                "name": "蛋白C",
-                "std_high": "140",
-                "std_low": "65",
-                "unit": "%"
-              }
-            ],
-            name: "蛋白C+S"
-          },
-          knxmIII: {
-            items: [
-              {
-                "No": "1",
-                "key": "ATIII",
-                "name": "抗凝血酶III",
-                "std_high": "120",
-                "std_low": "80",
-                "unit": "%"
-              }
-            ],
-            name: "抗凝血酶III"
+          xsh: {
+            items: [],
+            name: "",
+            date: ""
           },
           nxsx: {
-            items: [
-              {
-                "No": "1",
-                "key": "PT%",
-                "name": "凝血酶原时间活动度",
-                "std_high": "120",
-                "std_low": "70",
-                "unit": "%"
-              }
-
-            ],
-            name: "凝血四项"
-          },
-          thxhdb: {
-            items: [
-              {
-                "No": "1",
-                "key": "HbAlc",
-                "name": "糖化血红蛋白",
-                "std_high": "6",
-                "std_low": "4",
-                "unit": "%"
-              }
-            ],
-            name: "糖化血红蛋白"
+            items: [],
+            name: "",
+            date: ""
           },
           txbpas: {
-            items: [
-              {
-                "No": "1",
-                "key": "HCY",
-                "name": "同型半胱氨酸",
-                "std_high": "20",
-                "std_low": "0",
-                "unit": "umol/L"
-              }
-            ],
-            name: "同型半胱氨酸"
+            items: [],
+            name: "",
+            date: ""
           },
-          xcg: {
-            items: [
-              {
-                "No": "1",
-                "key": "WBC",
-                "name": "白细胞计数",
-                "std_high": "10",
-                "std_low": "4",
-                "unit": "10^9/L"
-              },
-            ],
-            name: "血常规"
+          cmCfydb: {
+            items: [],
+            name: "",
+            date: ""
           },
           xlb: {
-            items: [
-              {
-                "No": "1",
-                "key": "xjnd",
-                "name": "血浆粘度",
-                "std_high": "1.71",
-                "std_low": "1.17",
-                "unit": "mPa.s"
-              },
-
-            ],
-            name: "血生化"
+            items: [],
+            name: "",
+            date: ""
+          },
+          dbCS: {
+            items: [],
+            name: "",
+            date: ""
+          },
+          thxhdb: {
+            items: [],
+            name: "",
+            date: ""
           },
           xxbjjsy: {
-            items: [
-              {
-                "No": "1",
-                "key": "ADP-Pagt",
-                "name": "ADP诱导的血小板聚集实验",
-                "std_high": "84",
-                "std_low": "52",
-                "unit": "%"
-              }
-            ],
-            name: "血小板聚集试验"
-          }
+            items: [],
+            name: "",
+            date: ""
+          },
+          knxmIII: {
+            items: [],
+            name: ""
+          },
         },
-        jyForm:''
+        checkedTab: "xcg"
       }
     },
     mounted(){
+      this.getJy()
       this.writeBack()
     },
     methods: {
@@ -219,10 +402,20 @@
         }
         return true
       },
+      changeTab(tab) {
+        this.checkedTab = tab
+      },
       getJy () {
         this.$resource(InputUrl + 'dict/jy.php').get().then((response) => {
           if (response.status == 200) {
-            this.baseData = response.body
+            let result = response.body
+            for (let key in result) {
+              this.jyForm[key].name = result[key].name
+              this.jyForm[key].items = result[key].items
+//              for (let i = 0; i < result[key].items.length; i++) {
+//                result[key].items[i].value = ''
+//              }
+            }
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -235,21 +428,28 @@
 <style scoped>
   @import "../../style/info_input.css";
 
-  .x-content{
+  .x-content {
     padding: 0;
     border: none;
   }
-  .tabs span {
-    padding: 5px;
-    background: #C0CCDA;
-    color: #fff;
-    display: inline-block;
-    float: left;
-    margin-right: 1px;
-    margin-top: 5px;
-    cursor: pointer;
+
+  .table-box > h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
   }
-  .tabs .t-active{
-    background: #49C5D9;
+
+  .table-box > .span1, .table-box > .span2 {
+    width: 150px;
+    float: right;
+    height: 40px;
+    line-height: 40px;
   }
+
+  .table-box > .span2 {
+    width: 40px;
+    float: right;
+  }
+
+
 </style>
