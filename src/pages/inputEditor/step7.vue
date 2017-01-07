@@ -25,7 +25,7 @@
         <div class="table-box" v-show="'abcd2' == checkedTab">
           <h1>ABCD2评分量表（TIA早期卒中风险预测工具)</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('abcd2')">清空</el-button></span>
-          <span class="span2">总分:{{abcd2Total}}</span>
+          <span class="span2">总分: {{abcd2Total}}</span>
           <table>
             <tr>
               <th colspan="3">ABCD2评分（总分0-7）</th>
@@ -51,19 +51,36 @@
               <td rowspan="2">C</td>
               <td rowspan="2">临床症状</td>
               <td>单侧无力</td>
-              <td rowspan="2">
+              <td>
                 <el-input v-model="pflbForm.abcd2.No3"></el-input>
               </td>
             </tr>
             <tr>
               <td>不伴有无力的言语障碍</td>
+              <td>
+                <el-input v-model="pflbForm.abcd2.No4"></el-input>
+              </td>
+            </tr>
+            <tr>
+              <td rowspan="2">D</td>
+              <td rowspan="2">临床症状持续时间</td>
+              <td>>60分钟</td>
+              <td>
+                <el-input v-model="pflbForm.abcd2.No5"></el-input>
+              </td>
+            </tr>
+            <tr>
+              <td>>10~59分钟</td>
+              <td>
+                <el-input v-model="pflbForm.abcd2.No6"></el-input>
+              </td>
             </tr>
             <tr>
               <td>D</td>
               <td>糖尿病(mmHg)</td>
               <td>有</td>
               <td>
-                <el-input v-model="pflbForm.abcd2.No4"></el-input>
+                <el-input v-model="pflbForm.abcd2.No7"></el-input>
               </td>
             </tr>
           </table>
@@ -72,7 +89,7 @@
         <div class="table-box" v-show="'mRs' == checkedTab">
           <h1>改良Rankin量表</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('mRs')">清空</el-button></span>
-          <span class="span2">总分:{{mRsTotal}}</span>
+          <span class="span2">总分: {{mRsTotal}}</span>
           <table>
             <tr style="height: 35px;">
               <td>0分 无神经功能障碍，日常生活正常</td>
@@ -109,7 +126,7 @@
         <div class="table-box" v-show="'mmse' == checkedTab">
           <h1>精神状态简易速检表（MMSE）</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('mmse')">清空</el-button></span>
-          <span class="span2">总分:{{mmseTotal}}</span>
+          <span class="span2">总分: {{mmseTotal}}</span>
           <table>
             <tr>
               <td>序号</td>
@@ -339,7 +356,7 @@
         <div class="table-box" v-show="'nihss' == checkedTab">
           <h1>美国国立卫生研究院卒中量表（NIHSS）</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nihss')">清空</el-button></span>
-          <span class="span2">总分:{{nihssTotal}}</span>
+          <span class="span2">总分: {{nihssTotal}}</span>
           <table>
             <tr>
               <td></td>
@@ -630,14 +647,19 @@
         // 校验,信息要么全填,要么全不填,emptyFlag和fullFlag如果都为1了,说明有空也有填的,校验不通过
         let emptyFlag = 0, fullFlag = 0;
         for (let key in this.pflbForm[pTab]) {
-          if (this.pflbForm[pTab][key] == '') {
-            emptyFlag = 1;
-          } else {
-            fullFlag = 1;
+          if (key != 'total') {
+            var reg = /^\s*|\s*$/g; // 去空格
+            let temp = this.pflbForm[pTab][key]
+            temp = String(temp).replace(reg, "")
+            if (temp == '') {
+              emptyFlag = 1;
+            } else {
+              fullFlag = 1;
+            }
           }
         }
         if (emptyFlag == 1 && fullFlag == 1) {
-          this.alertMsg("warning", '请将信息填写完整,或清空不填')
+          this.alertMsg("warning", '信息校验有误')
           return false
         }
         return true
@@ -645,11 +667,19 @@
       computer(obj){
         let total = 0;
         for (let key in obj) {
-          if (key != 'total') {
-            total += parseInt(obj[key])
+          let exp = /^[0-9]+$/; // 数字
+          var reg = /^\s*|\s*$/g; // 去空格
+
+          obj[key] = String(obj[key]).replace(reg, "")
+
+          if(key != 'total') {
+            if (exp.test(obj[key])) {
+              total += parseInt(obj[key])
+            } else if (!exp.test(obj[key]) && obj[key] !='') {
+              this.alertMsg("warning", '分数应为数字')
+            }
           }
         }
-        obj.total = total
         return total
       },
       getPflb () {
@@ -720,16 +750,20 @@
     },
     computed: {
       abcd2Total: function () {
-        return this.computer(this.pflbForm.abcd2)
+        this.pflbForm.abcd2.total = this.computer(this.pflbForm.abcd2)
+        return this.pflbForm.abcd2.total
       },
       nihssTotal: function () {
-        return this.computer(this.pflbForm.nihss)
+        this.pflbForm.nihss.total = this.computer(this.pflbForm.nihss)
+        return this.pflbForm.nihss.total
       },
       mRsTotal: function () {
-        return this.computer(this.pflbForm.mRs)
+        this.pflbForm.mRs.total = this.computer(this.pflbForm.mRs)
+        return this.pflbForm.mRs.total
       },
       mmseTotal: function () {
-        return this.computer(this.pflbForm.mmse)
+        this.pflbForm.mmse.total = this.computer(this.pflbForm.mmse)
+        return this.pflbForm.mmse.total
       }
     }
   }

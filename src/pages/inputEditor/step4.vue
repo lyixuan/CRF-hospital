@@ -318,42 +318,42 @@
           xcg: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           xsh: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           nxsx: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           txbpas: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           cmCfydb: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           xlb: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           dbCS: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           thxhdb: {
             items: [],
             name: "",
-            date: null,
+            date: null
           },
           xxbjjsy: {
             items: [],
@@ -364,7 +364,7 @@
             items: [],
             name: "",
             date: null
-          },
+          }
         },
         tabList: [],
         checkedTab: ""
