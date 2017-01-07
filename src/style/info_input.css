@@ -21,7 +21,7 @@
 .guide-area .x-btn{
   text-align: right;
 }
-.guide-area .x-btn .el-button>span{
+.guide-area .x-btn .el-button>span ,.input-step5 .el-button>span{
   font-size: 12px!important;
 }
 /** =======================
@@ -29,13 +29,14 @@
  * 内容区 -tab内容区
  ===========================*/
 .x-content {
-  border: 1px solid  #D7D7D7;
+  border: 1px solid  #E4E4E4;
   margin: 15px;
   padding: 20px 10px;
+  position: relative;
 }
 .x-content .tabs span {
   padding: 5px;
-  background: #ccc;
+  background: #C1C1C1;
   color: #fff;
   display: inline-block;
   float: left;

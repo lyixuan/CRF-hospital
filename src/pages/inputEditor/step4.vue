@@ -14,7 +14,9 @@
     <div class="x-content">
       <div class="tabs">
         <span v-for="item in tabList" :class="{'t-active': item.key == checkedTab ?true:false}"
-              @click="changeTab(item.key)">{{item.name}}
+              @click="changeTab(item.key)">
+           {{item.name}}
+          <i class="el-icon-check" v-show="jyForm[item.key].date" :class="{ green: item.key == checkedTab?false:true }"></i>
         </span>
       </div>
       <div style="clear: both;"></div>
@@ -23,7 +25,7 @@
           <h1>{{jyForm.xcg.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xcg.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xcg')">清空</el-button></span>
           <table>
@@ -51,7 +53,7 @@
           <h1>{{jyForm.xsh.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xsh.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xsh')">清空</el-button></span>
           <table>
@@ -79,7 +81,7 @@
           <h1>{{jyForm.nxsx.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.nxsx.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nxsx')">清空</el-button></span>
           <table>
@@ -107,7 +109,7 @@
           <h1>{{jyForm.txbpas.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.txbpas.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('txbpas')">清空</el-button></span>
           <table>
@@ -135,7 +137,7 @@
           <h1>{{jyForm.cmCfydb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.cmCfydb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('cmCfydb')">清空</el-button></span>
           <table>
@@ -163,7 +165,7 @@
           <h1>{{jyForm.xlb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xlb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xlb')">清空</el-button></span>
           <table>
@@ -191,7 +193,7 @@
           <h1>{{jyForm.thxhdb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.thxhdb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('thxhdb')">清空</el-button></span>
           <table>
@@ -219,7 +221,7 @@
           <h1>{{jyForm.xxbjjsy.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xxbjjsy.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xxbjjsy')">清空</el-button></span>
           <table>
@@ -247,7 +249,7 @@
           <h1>{{jyForm.dbCS.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.dbCS.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('dbCS')">清空</el-button></span>
           <table>
@@ -275,7 +277,7 @@
           <h1>{{jyForm.knxmIII.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.knxmIII.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('knxmIII')">清空</el-button></span>
           <table>
@@ -316,42 +318,42 @@
           xcg: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           xsh: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           nxsx: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           txbpas: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           cmCfydb: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           xlb: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           dbCS: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           thxhdb: {
             items: [],
             name: "",
-            date: null
+            date: null,
           },
           xxbjjsy: {
             items: [],
@@ -394,8 +396,8 @@
             this.jyForm[key].items[i].std_low = info[key].items[i].std_low
           }
         }
-        // 初始化选中tab和pre tab
-        this.preTab = this.checkedTab = this.tabList[0].key
+        // 初始化选中tab
+        this.checkedTab = this.tabList[0].key
         this.jyForm = JSON.parse(JSON.stringify(info));
       },
       storage() {
@@ -459,8 +461,8 @@
               }
               this.tabList.push({key: key, name: result[key].name})
             }
-            // 初始化选中tab和pre tab
-            this.preTab = this.checkedTab = this.tabList[0].key
+            // 初始化选中tab
+            this.checkedTab = this.tabList[0].key
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -484,7 +486,7 @@
     font-size: 16px;
   }
 
-  .table-box > .span1, .table-box > .span2{
+  .table-box > .span1, .table-box > .span2 {
     width: 150px;
     float: right;
     height: 40px;
@@ -495,10 +497,14 @@
     width: 40px;
     float: right;
   }
-  .table-box > .span3{
+
+  .table-box > .span3 {
     width: 60px;
     float: left;
     margin-top: 8px;
+  }
+  .green{
+    color: #13CE66;
   }
 
 
