@@ -25,7 +25,7 @@
         <div class="table-box" v-show="'abcd2' == checkedTab">
           <h1>ABCD2评分量表（TIA早期卒中风险预测工具)</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('abcd2')">清空</el-button></span>
-          <span class="span2">总分:{{pflbForm.abcd2.total}}</span>
+          <span class="span2">总分:{{abcd2Total}}</span>
           <table>
             <tr>
               <th colspan="3">ABCD2评分（总分0-7）</th>
@@ -72,7 +72,7 @@
         <div class="table-box" v-show="'mRs' == checkedTab">
           <h1>改良Rankin量表</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('mRs')">清空</el-button></span>
-          <span class="span2">总分:{{pflbForm.abcd2.total}}</span>
+          <span class="span2">总分:{{mRsTotal}}</span>
           <table>
             <tr style="height: 35px;">
               <td>0分 无神经功能障碍，日常生活正常</td>
@@ -109,7 +109,7 @@
         <div class="table-box" v-show="'mmse' == checkedTab">
           <h1>精神状态简易速检表（MMSE）</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('mmse')">清空</el-button></span>
-          <span class="span2">总分:{{pflbForm.abcd2.total}}</span>
+          <span class="span2">总分:{{mmseTotal}}</span>
           <table>
             <tr>
               <td>序号</td>
@@ -339,7 +339,7 @@
         <div class="table-box" v-show="'nihss' == checkedTab">
           <h1>美国国立卫生研究院卒中量表（NIHSS）</h1>
           <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nihss')">清空</el-button></span>
-          <span class="span2">总分:{{pflbForm.abcd2.total}}</span>
+          <span class="span2">总分:{{nihssTotal}}</span>
           <table>
             <tr>
               <td></td>
@@ -646,9 +646,10 @@
         let total = 0;
         for (let key in obj) {
           if (key != 'total') {
-            total += obj[key]
+            total += parseInt(obj[key])
           }
         }
+        obj.total = total
         return total
       },
       getPflb () {
@@ -717,46 +718,19 @@
         }
       }
     },
-    watch: {
-//      'pflbForm.abcd2': {
-//        handler: (newVal, oldVal)=> {
-//          this.computer(newVal)
-//        },
-//        deep: true
-//      },
-//      'pflbForm.nihss': {
-//        handler: (newVal, oldVal)=> {
-//          this.pflbForm.nihss.total = 0;
-//          for (let key in newVal) {
-//            if (key != 'total') {
-//              this.pflbForm.nihss.total += newVal[key]
-//            }
-//          }
-//        },
-//        deep: true
-//      },
-//      'pflbForm.mRs': {
-//        handler: (newVal, oldVal)=> {
-//          this.pflbForm.mRs.total = 0;
-//          for (let key in newVal) {
-//            if (key != 'total') {
-//              this.pflbForm.mRs.total += newVal[key]
-//            }
-//          }
-//        },
-//        deep: true
-//      },
-//      'pflbForm.mmse': {
-//        handler: (newVal, oldVal)=> {
-//          this.pflbForm.mmse.total = 0;
-//          for (let key in newVal) {
-//            if (key != 'total') {
-//              this.pflbForm.mmse.total += newVal[key]
-//            }
-//          }
-//        },
-//        deep: true
-//      }
+    computed: {
+      abcd2Total: function () {
+        return this.computer(this.pflbForm.abcd2)
+      },
+      nihssTotal: function () {
+        return this.computer(this.pflbForm.nihss)
+      },
+      mRsTotal: function () {
+        return this.computer(this.pflbForm.mRs)
+      },
+      mmseTotal: function () {
+        return this.computer(this.pflbForm.mmse)
+      }
     }
   }
 </script>
