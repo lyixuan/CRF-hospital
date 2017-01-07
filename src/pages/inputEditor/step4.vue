@@ -5,35 +5,27 @@
       <el-row>
         <el-col :span="12" class="x-title">检验</el-col>
         <el-col :span="12" class="x-btn">
-          <el-button type="primary" @click="stepTo(3)" size="mini">上一步</el-button>
-          <el-button type="primary" @click="stepTo(5)" size="mini">下一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo(3)" size="mini">上一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo(5)" size="mini">下一步</el-button>
         </el-col>
       </el-row>
     </div>
     <div style="clear: both;"></div>
     <div class="x-content">
       <div class="tabs">
-        <span :class="{'t-active':'xcg' == checkedTab ?true:false}" @click="changeTab('xcg')">{{jyForm.xcg.name}}</span>
-        <span :class="{'t-active':'xsh' == checkedTab ?true:false}" @click="changeTab('xsh')">{{jyForm.xsh.name}}</span>
-        <span :class="{'t-active':'nxsx' == checkedTab ?true:false}"
-              @click="changeTab('nxsx')">{{jyForm.nxsx.name}}</span>
-        <span :class="{'t-active':'txbpas' == checkedTab ?true:false}" @click="changeTab('txbpas')">{{jyForm.txbpas.name}}</span>
-        <span :class="{'t-active':'cmCfydb' == checkedTab ?true:false}" @click="changeTab('cmCfydb')">{{jyForm.cmCfydb.name}}</span>
-        <span :class="{'t-active':'xlb' == checkedTab ?true:false}" @click="changeTab('xlb')">{{jyForm.xlb.name}}</span>
-        <span :class="{'t-active':'thxhdb' == checkedTab ?true:false}" @click="changeTab('thxhdb')">{{jyForm.thxhdb.name}}</span>
-        <span :class="{'t-active':'xxbjjsy' == checkedTab ?true:false}" @click="changeTab('xxbjjsy')">{{jyForm.xxbjjsy.name}}</span>
-        <span :class="{'t-active':'dbCS' == checkedTab ?true:false}"
-              @click="changeTab('dbCS')">{{jyForm.dbCS.name}}</span>
-        <span :class="{'t-active':'knxmIII' == checkedTab ?true:false}" @click="changeTab('knxmIII')">{{jyForm.knxmIII.name}}</span>
+        <span v-for="item in tabList" :class="{'t-active': item.key == checkedTab ?true:false}"
+              @click="changeTab(item.key)">{{item.name}}
+        </span>
       </div>
       <div style="clear: both;"></div>
       <div class="tab-content">
-        <div class="table-box" v-if="'xcg' == checkedTab">
+        <div class="table-box" v-show="'xcg' == checkedTab">
           <h1>{{jyForm.xcg.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xcg.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xcg')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -55,12 +47,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'xsh' == checkedTab">
+        <div class="table-box" v-show="'xsh' == checkedTab">
           <h1>{{jyForm.xsh.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xsh.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xsh')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -82,12 +75,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'nxsx' == checkedTab">
+        <div class="table-box" v-show="'nxsx' == checkedTab">
           <h1>{{jyForm.nxsx.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.nxsx.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nxsx')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -109,12 +103,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'txbpas' == checkedTab">
+        <div class="table-box" v-show="'txbpas' == checkedTab">
           <h1>{{jyForm.txbpas.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.txbpas.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('txbpas')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -136,12 +131,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'cmCfydb' == checkedTab">
+        <div class="table-box" v-show="'cmCfydb' == checkedTab">
           <h1>{{jyForm.cmCfydb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.cmCfydb.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('cmCfydb')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -163,12 +159,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'xlb' == checkedTab">
+        <div class="table-box" v-show="'xlb' == checkedTab">
           <h1>{{jyForm.xlb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xlb.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xlb')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -190,12 +187,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'thxhdb' == checkedTab">
+        <div class="table-box" v-show="'thxhdb' == checkedTab">
           <h1>{{jyForm.thxhdb.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.thxhdb.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('thxhdb')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -217,12 +215,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'xxbjjsy' == checkedTab">
+        <div class="table-box" v-show="'xxbjjsy' == checkedTab">
           <h1>{{jyForm.xxbjjsy.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.xxbjjsy.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xxbjjsy')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -244,12 +243,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'dbCS' == checkedTab">
+        <div class="table-box" v-show="'dbCS' == checkedTab">
           <h1>{{jyForm.dbCS.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.dbCS.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('dbCS')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -271,12 +271,13 @@
           </table>
         </div>
 
-        <div class="table-box" v-if="'knxmIII' == checkedTab">
+        <div class="table-box" v-show="'knxmIII' == checkedTab">
           <h1>{{jyForm.knxmIII.name}}</h1>
           <span class="span1">
           <el-date-picker v-model="jyForm.knxmIII.date" align="right" type="date"
-                          placeholder="选择日期"></el-date-picker></span>
+                          placeholder="选择日期" :editable="false"></el-date-picker></span>
           <span class="span2">日期:</span>
+          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('knxmIII')">清空</el-button></span>
           <table>
             <tr>
               <th></th>
@@ -315,95 +316,136 @@
           xcg: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           xsh: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           nxsx: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           txbpas: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           cmCfydb: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           xlb: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           dbCS: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           thxhdb: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           xxbjjsy: {
             items: [],
             name: "",
-            date: ""
+            date: null
           },
           knxmIII: {
             items: [],
-            name: ""
+            name: "",
+            date: null
           },
         },
-        checkedTab: "xcg"
+        tabList: [],
+        checkedTab: ""
       }
     },
     mounted(){
-      this.getJy()
-      this.writeBack()
+      let info = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+      if (info) {
+        this.writeBack(info)
+      } else {
+        this.getJy()
+      }
     },
     methods: {
-      writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step4_jy'))
-        if (info) {
-          this.jyForm = info
+      writeBack (info) {
+        // 信息回显,value值在json转为vue的obj时,总是丢失,未找到原因,用下面方式暂时可以解决
+        for (let key in info) {
+          this.tabList.push({key: key, name: info[key].name})
+          this.jyForm[key].name = info[key].name
+          this.jyForm[key].date = info[key].date
+          for (var i = 0; i < info[key].items.length; i++) {
+            this.jyForm[key].items[i] = {}
+            this.jyForm[key].items[i].No = info[key].items[i].No
+            this.jyForm[key].items[i].key = info[key].items[i].key
+            this.jyForm[key].items[i].name = info[key].items[i].name
+            this.jyForm[key].items[i].unit = info[key].items[i].unit
+            this.jyForm[key].items[i].value = info[key].items[i].value
+            this.jyForm[key].items[i].std_high = info[key].items[i].std_high
+            this.jyForm[key].items[i].std_low = info[key].items[i].std_low
+          }
         }
+        // 初始化选中tab和pre tab
+        this.preTab = this.checkedTab = this.tabList[0].key
+        this.jyForm = JSON.parse(JSON.stringify(info));
       },
       storage() {
+        for (let key in this.jyForm) {
+          this.jyForm[key].date ? this.jyForm[key].date = this.formatDate(new Date(this.jyForm[key].date)) : ""
+        }
         window.localStorage.setItem('x_step4_jy', JSON.stringify(this.jyForm))
       },
       saveAndStepTo(num) {
-        if (this.validate()) {
-          this.storage()
-          this.alertMsg("success", '"检验" 已暂存')
-          this.stepTo(num)
-        } else {
-          this.alertMsg("warning", '信息校验有误')
-          return false;
-        }
-      },
-      validate() {
-        for (let key in this.jwsForm) {
-          if (this.jwsForm[key].type == '1' && this.jwsForm[key].info) {
-            for (let iKey in this.jwsForm[key].info) {
-              if (this.jwsForm[key].info[iKey] == '' || this.jwsForm[key].info[iKey] == null) {
-                return false
-                break
-              }
-            }
+        for (let key in this.jyForm) {
+          if (!this.validate(key)) {
+            return
           }
+        }
+        this.storage()
+        this.alertMsg("success", '"检验" 所填内容已暂存')
+        this.stepTo(num)
+      },
+      validate(pTab) {
+        // 校验,信息要么全填,要么全不填,emptyFlag和fullFlag如果都为1了,说明有空也有填的,校验不通过
+        let emptyFlag = 0, fullFlag = 0;
+        if (this.jyForm[pTab].date == null || this.jyForm[pTab].date == '') {
+          emptyFlag = 1
+        } else {
+          fullFlag = 1;
+        }
+        for (var i = 0; i < this.jyForm[pTab].items.length; i++) {
+          if (this.jyForm[pTab].items[i].value == '' || this.jyForm[pTab].items[i].value == null) {
+            emptyFlag = 1;
+          } else {
+            fullFlag = 1;
+          }
+        }
+        if (emptyFlag == 1 && fullFlag == 1) {
+          this.alertMsg("warning", '请将 "' + this.jyForm[pTab].name + '" 信息填写完整,或清空不填')
+          return false
         }
         return true
       },
       changeTab(tab) {
-        this.checkedTab = tab
+        if (this.validate(this.checkedTab)) {
+          // 校验通过才可切换
+          this.checkedTab = tab
+        }
+      },
+      clearTable(tab) {
+        this.jyForm[tab].date = null
+        for (var i = 0; i < this.jyForm[tab].items.length; i++) {
+          this.$set(this.jyForm[tab].items[i], 'value', null);
+        }
       },
       getJy () {
         this.$resource(InputUrl + 'dict/jy.php').get().then((response) => {
@@ -412,10 +454,13 @@
             for (let key in result) {
               this.jyForm[key].name = result[key].name
               this.jyForm[key].items = result[key].items
-//              for (let i = 0; i < result[key].items.length; i++) {
-//                result[key].items[i].value = ''
-//              }
+              for (let v = 0; v < this.jyForm[key].items.length; v++) {
+                this.$set(this.jyForm[key].items[v], 'value', null);
+              }
+              this.tabList.push({key: key, name: result[key].name})
             }
+            // 初始化选中tab和pre tab
+            this.preTab = this.checkedTab = this.tabList[0].key
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -439,7 +484,7 @@
     font-size: 16px;
   }
 
-  .table-box > .span1, .table-box > .span2 {
+  .table-box > .span1, .table-box > .span2{
     width: 150px;
     float: right;
     height: 40px;
@@ -449,6 +494,11 @@
   .table-box > .span2 {
     width: 40px;
     float: right;
+  }
+  .table-box > .span3{
+    width: 60px;
+    float: left;
+    margin-top: 8px;
   }
 
 

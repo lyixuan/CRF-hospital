@@ -58,6 +58,14 @@ Vue.prototype.stepTo = function (num) {
   router.push({path: '/inputEditor/page' + num})
 };
 
+Vue.prototype.formatDate = function (date) {
+  /**
+   * format date to yyyy-MM-dd
+   * @date 毫秒
+   */
+  return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
+
+};
 // // 拦截器
 // Vue.http.interceptors.push((request, next) => {
 //   next((response) => {

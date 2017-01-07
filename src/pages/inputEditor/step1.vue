@@ -173,43 +173,41 @@
       }
     },
     mounted () {
-      this.getJbxx()
-      this.writeBack()
+      let info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+      let base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
+      if (info) {
+        this.writeBack(info)
+      }
+      if (base) {
+        this.baseData = base;
+      } else {
+        this.getJbxx()
+      }
     },
     methods: {
-      writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
-        if (info) {
-          this.jbxxForm.card_id = info.card_id
-          this.jbxxForm.name = info.name
-          this.jbxxForm.visit_date = new Date(info.visit_date)
-          this.jbxxForm.sex = info.sex
-          this.jbxxForm.age = info.age
-          this.jbxxForm.birthday = new Date(info.birthday)
-          this.jbxxForm.mobile = info.mobile
-          this.jbxxForm.addr = info.addr
-          this.writeFlag = true
-          this.jbxxForm.sick_type.type = info.sick_type.type
-          this.jbxxForm.sick_type.sick = info.sick_type.sick
-        }
+      writeBack (info) {
+        this.jbxxForm.card_id = info.card_id
+        this.jbxxForm.name = info.name
+        this.jbxxForm.visit_date = new Date(info.visit_date)
+        this.jbxxForm.sex = info.sex
+        this.jbxxForm.age = info.age
+        this.jbxxForm.birthday = new Date(info.birthday)
+        this.jbxxForm.mobile = info.mobile
+        this.jbxxForm.addr = info.addr
+        this.writeFlag = true
+        this.jbxxForm.sick_type.type = info.sick_type.type
+        this.jbxxForm.sick_type.sick = info.sick_type.sick
       },
       storage() {
-        function formatDate(date) {
-          /**
-           * format date to yyyy-MM-dd
-           * @date 毫秒
-           */
-          return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
-        }
-        this.jbxxForm.visit_date = formatDate(new Date(this.jbxxForm.visit_date))
-        this.jbxxForm.birthday = formatDate(new Date(this.jbxxForm.birthday))
+        this.jbxxForm.visit_date = this.formatDate(new Date(this.jbxxForm.visit_date))
+        this.jbxxForm.birthday = this.formatDate(new Date(this.jbxxForm.birthday))
         window.localStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
         this.$refs['jbxxForm'].validate((valid) => {
           if (valid) {
             this.storage()
-            this.alertMsg("success", '"基本信息" 已暂存')
+            this.alertMsg("success", '"基本信息" 所填内容已暂存')
             this.stepTo(num)
           } else {
             this.alertMsg("warning", '信息校验有误')
@@ -221,6 +219,7 @@
         this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
+            window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }

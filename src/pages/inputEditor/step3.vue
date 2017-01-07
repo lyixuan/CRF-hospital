@@ -311,33 +311,26 @@
       }
     },
     mounted(){
-      this.writeBack()
+      let info = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+      if (info) {
+        this.writeBack(info)
+      }
     },
     methods: {
-      writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step3_jws'))
-        if (info) {
-          this.jwsForm = info
-        }
+      writeBack (info) {
+        this.jwsForm = info
       },
       storage() {
-        function formatDate(date) {
-          /**
-           * format date to yyyy-MM-dd
-           * @date 毫秒
-           */
-          return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
-        }
-        this.jwsForm.gxy.info.zg_date = formatDate(new Date(this.jwsForm.gxy.info.zg_date))
-        this.jwsForm.gxy.info.now_date  = formatDate(new Date(this.jwsForm.gxy.info.now_date))
-        this.jwsForm.tnb.info.date = formatDate(new Date(this.jwsForm.tnb.info.date))
-        this.jwsForm.gxb.info.date = formatDate(new Date(this.jwsForm.gxb.info.date))
+        this.jwsForm.gxy.info.zg_date = this.formatDate(new Date(this.jwsForm.gxy.info.zg_date))
+        this.jwsForm.gxy.info.now_date  = this.formatDate(new Date(this.jwsForm.gxy.info.now_date))
+        this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
+        this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
         window.localStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {
         if (this.validate()) {
           this.storage()
-          this.alertMsg("success", '"既往史" 已暂存')
+          this.alertMsg("success", '"既往史" 所填内容已暂存')
           this.stepTo(num)
         } else {
           this.alertMsg("warning", '存在既往史的项目必须填写完整信息')

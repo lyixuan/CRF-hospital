@@ -104,7 +104,7 @@
         this.$refs['bsForm'].validate((valid) => {
           if (valid) {
             this.storage()
-            this.alertMsg("success", '"病史" 已暂存')
+            this.alertMsg("success", '"病史" 所填内容已暂存')
             this.stepTo(num)
           } else {
             this.alertMsg("warning", '信息校验有误')
