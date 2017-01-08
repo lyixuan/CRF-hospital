@@ -906,13 +906,19 @@
       <el-row class="view-boot">
         <el-col :span="16">&nbsp;</el-col>
         <el-col :span="4" style="float: right">
-          <el-button class="m-el-button" type="primary" @click="stepTo(10)">保存</el-button>
+          <el-button class="m-el-button" type="primary" @click="openDia">保存</el-button>
         </el-col>
         <el-col :span="4">
           <el-button class="m-el-button"  type="primary" @click="stepTo(9)">返回</el-button>
         </el-col>
       </el-row>
     </div>
+    <el-dialog title="消息提示" v-model="dialogVisible" size="tiny" :close-on-click-modal="false"
+               :close-on-press-escape="false" :show-close="false">
+      <span style="font-size: 16px;font-weight: bold;margin-left: 40%;">是否确定保存?</span>
+      <span slot="footer" class="dialog-footer first"><el-button type="primary" @click="cancel">取消</el-button></span>
+      <span slot="footer" class="dialog-footer"><el-button type="primary" @click="submitForm">保存,并开始下次录入</el-button></span>
+    </el-dialog>
   </div>
 </template>
 
@@ -996,7 +1002,10 @@
           nihss: {},
           mRs: {},
           mmse: {}
-        }
+        },
+
+        dialogVisible:false,
+        submitList: {}
       }
     },
     mounted(){
@@ -1087,6 +1096,93 @@
         this.x_step7_pflb.nihss = temp.nihss
         this.x_step7_pflb.mRs = temp.mRs
         this.x_step7_pflb.mmse = temp.mmse
+      },
+
+      openDia(){
+        this.dialogVisible = true;
+      },
+      submitForm() {
+        this.sStep1()
+        this.sStep2()
+        this.sStep3()
+        this.sStep4()
+        this.sStep5()
+        this.sStep6()
+        this.sStep7()
+        var resource = this.$resource(InputUrl + 'form_post.php')
+        resource.save({}, this.submitList).then((response) => {
+          if (response.status == 200) {
+            this.clearAndStepTo(1)
+          } else {
+            this.alertMsg("error", response.status + ':' +response.body.msg + " - " + response.url)
+          }
+        }, (response) => {
+          this.alertMsg("error", response.status + " - " + response.url)
+        })
+      },
+      sStep1(){
+        this.submitList.jbxx = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+      },
+      sStep2(){
+        this.submitList.bs = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+      },
+      sStep3(){
+        this.submitList.jws = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+      },
+      sStep4(){
+        this.submitList.jy = {}
+        // 只提交有内容的检验,即date不为null
+        let x_step4_jy = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+        for (let key in x_step4_jy) {
+          if (x_step4_jy[key].date) {
+            this.submitList.jy[key] = x_step4_jy[key]
+          }
+        }
+      },
+      sStep5(){
+        this.submitList.yx = {}
+        let temp = JSON.parse(window.localStorage.getItem('x_step5_yx'))
+        let checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
+        for (let key in temp) {
+          for (let i = 0; i < checkedList.length; i++) {
+            if (key == checkedList[i]) {
+              this.submitList.yx[key] = temp[key]
+            }
+          }
+        }
+      },
+      sStep6(){
+        this.submitList.zlfa = {}
+        let temp = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
+        let checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
+        this.x_step6_zlfa_date = temp.date
+        for (let key in temp) {
+          if (key != 'date') {
+            for (let i = 0; i < checkedList.length; i++) {
+              if (key == checkedList[i]) {
+                delete temp[key].types
+                this.submitList.zlfa[key] = temp[key]
+              }
+            }
+          }
+        }
+      },
+      sStep7(){
+        this.submitList.pflb = {}
+        let x_step7_pflb = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
+        for (let key in x_step7_pflb) {
+          if (x_step7_pflb[key].No1 != '') {
+            this.submitList.pflb[key] = x_step7_pflb[key]
+          }
+        }
+      },
+      clearAndStepTo(num){
+        this.clearStorage()
+        this.dialogVisible=false
+        this.stepTo(num)
+      },
+      cancel(){
+        this.dialogVisible=false
       }
     }
   }
@@ -1126,5 +1222,8 @@
   .view-boot .m-el-button{
     float: right;
     width: 120px;
+  }
+  .first{
+    margin-right: 10px;
   }
 </style>

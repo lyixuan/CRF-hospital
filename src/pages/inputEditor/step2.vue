@@ -12,7 +12,7 @@
     </div>
     <div style="clear: both;"></div>
     <div class="x-content">
-      <el-form ref="bsForm" :model="bsForm" :rules="rules" label-width="80px">
+      <el-form ref="bsForm" :model="bsForm" :rules="rules" label-width="90px">
         <el-row>
           <el-col :span="23">
             <el-form-item label="主诉:" prop="zs">

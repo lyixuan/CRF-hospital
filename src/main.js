@@ -58,6 +58,25 @@ Vue.prototype.stepTo = function (num) {
   router.push({path: '/inputEditor/page' + num})
 };
 
+Vue.prototype.clearStorage = function () {
+  localStorage.removeItem("x_step1_jbxx");
+  localStorage.removeItem("x_step2_bs");
+  localStorage.removeItem("x_step3_jws");
+  localStorage.removeItem("x_step4_jy");
+  localStorage.removeItem("x_step5_yx");
+  localStorage.removeItem("x_step5_yx_checkList");
+  localStorage.removeItem("x_step5_yx_checkedList");
+  localStorage.removeItem("x_step6_zlfa");
+  localStorage.removeItem("x_step6_zlfa_checkList");
+  localStorage.removeItem("x_step6_zlfa_checkedList");
+  localStorage.removeItem("x_step6_zlfa_dosageList");
+  localStorage.removeItem("x_step6_zlfa_frequencyList");
+  localStorage.removeItem("x_step6_zlfa_usageList");
+  localStorage.removeItem("x_step7_pflb");
+  localStorage.removeItem("x_step7_pflb_tabList");
+  localStorage.removeItem("x_step8_tpsc");
+};
+
 Vue.prototype.formatDate = function (date) {
   /**
    * format date to yyyy-MM-dd

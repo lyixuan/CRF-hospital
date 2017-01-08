@@ -12,7 +12,7 @@
     </div>
     <div style="clear: both;"></div>
     <div class="x-content">
-      <el-form ref="jwsForm" :model="jwsForm" :rules="rules" label-width="80px">
+      <el-form ref="jwsForm" :model="jwsForm" :rules="rules" label-width="90px">
         <el-row>
           <el-col :span="7">
             <el-form-item label="高血压:" required>

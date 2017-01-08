@@ -5,13 +5,14 @@
       <el-row>
         <el-col :span="12" class="x-title">基本信息</el-col>
         <el-col :span="12" class="x-btn">
+          <el-button type="primary" @click="clearAndStepTo(1)" size="mini">全部清空</el-button>
           <el-button type="primary" @click="saveAndStepTo(2)" size="mini">下一步</el-button>
         </el-col>
       </el-row>
     </div>
     <div style="clear: both;"></div>
     <div class="x-content">
-      <el-form ref="jbxxForm" :model="jbxxForm" :rules="rules" label-width="80px">
+      <el-form ref="jbxxForm" :model="jbxxForm" :rules="rules" label-width="90px">
         <el-row>
           <el-col :span="7">
             <el-form-item label="诊疗卡号:" prop="card_id">
@@ -217,6 +218,7 @@
       },
       getJbxx () {
         this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
+          console.log(response)
           if (response.status == 200) {
             this.baseData = response.body
             window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
@@ -224,6 +226,24 @@
             this.alertMsg("error", response.status + " - " + response.url)
           }
         })
+      },
+      clearAndStepTo(num){
+        this.clearStorage()
+        this.jbxxForm = {
+          card_id: '',
+          name: '',
+          visit_date: '',
+          sex: 'male',
+          age: '',
+          birthday: '',
+          mobile: '',
+          addr: '',
+          sick_type: {
+            type: 'jm',
+            sick: ''
+          }
+        }
+        this.$refs['jbxxForm'].resetFields();
       }
     },
     watch: {
