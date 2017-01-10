@@ -23,7 +23,8 @@
                :close-on-press-escape="false" :show-close="false">
       <span style="font-size: 16px;font-weight: bold;margin-left: 40%;">是否确定保存?</span>
       <span slot="footer" class="dialog-footer first"><el-button type="primary" @click="cancel">取消</el-button></span>
-      <span slot="footer" class="dialog-footer"><el-button type="primary" @click="submitForm">保存,并开始下次录入</el-button></span>
+      <span slot="footer" class="dialog-footer"><el-button type="primary"
+                                                           @click="submitForm">保存,并开始下次录入</el-button></span>
     </el-dialog>
 
   </div>
@@ -54,12 +55,13 @@
         this.getStep5()
         this.getStep6()
         this.getStep7()
+        this.getStep8()
         var resource = this.$resource(InputUrl + 'form_post.php')
         resource.save({}, this.submitList).then((response) => {
           if (response.status == 200) {
             this.clearAndStepTo(1)
           } else {
-            this.alertMsg("error", response.status + ':' +response.body.msg + " - " + response.url)
+            this.alertMsg("error", response.status + ':' + response.body.msg + " - " + response.url)
           }
         }, (response) => {
           this.alertMsg("error", response.status + " - " + response.url)
@@ -121,13 +123,25 @@
           }
         }
       },
+      getStep8(){
+        this.submitList.img = {}
+        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        for (let key in x_step8_img) {
+          if (x_step8_img[key].length > 0) {
+            this.submitList.img[key]=[]
+            for (let i = 0; i < x_step8_img[key].length; i++) {
+              this.submitList.img[key].push(x_step8_img[key][i].response.id)
+            }
+          }
+        }
+      },
       clearAndStepTo(num){
         this.clearStorage()
         this.stepTo(num)
         this.dialogVisible = false
       },
       cancel(){
-        this.dialogVisible=false
+        this.dialogVisible = false
       }
     }
   }
@@ -154,7 +168,8 @@
     text-align: center;
     margin-bottom: 13%;
   }
-  .first{
+
+  .first {
     margin-right: 10px;
   }
 </style>

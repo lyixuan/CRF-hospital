@@ -92,7 +92,7 @@
         localStorage.removeItem("x_step2_bs");
       }
       if (info) {
-        this.writeBack()
+        this.writeBack(info)
       }
     },
     methods: {

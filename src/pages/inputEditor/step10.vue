@@ -1109,6 +1109,7 @@
         this.sStep5()
         this.sStep6()
         this.sStep7()
+        this.stStep8()
         var resource = this.$resource(InputUrl + 'form_post.php')
         resource.save({}, this.submitList).then((response) => {
           if (response.status == 200) {
@@ -1173,6 +1174,18 @@
         for (let key in x_step7_pflb) {
           if (x_step7_pflb[key].No1 != '') {
             this.submitList.pflb[key] = x_step7_pflb[key]
+          }
+        }
+      },
+      stStep8(){
+        this.submitList.img = {}
+        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        for (let key in x_step8_img) {
+          if (x_step8_img[key].length > 0) {
+            this.submitList.img[key]=[]
+            for (let i = 0; i < x_step8_img[key].length; i++) {
+              this.submitList.img[key].push(x_step8_img[key][i].response.id)
+            }
           }
         }
       },
