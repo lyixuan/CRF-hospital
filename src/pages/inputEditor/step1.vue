@@ -19,7 +19,10 @@
               <el-input v-model="jbxxForm.card_id"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="1">&nbsp;</el-col>
+          <el-col :span="1">&nbsp;
+            <span class="js-text" @click="checkout">检索<span class="js-line1"></span><span
+              class="js-line2"></span></span>
+          </el-col>
           <el-col :span="7">
             <el-form-item label="姓名:" prop="name">
               <el-input v-model="jbxxForm.name"></el-input>
@@ -174,11 +177,22 @@
       }
     },
     mounted () {
-      let info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
-      let base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
+      let info, base;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+      } catch (err) {
+        localStorage.removeItem("x_step1_jbxx");
+      }
       if (info) {
         this.writeBack(info)
       }
+
+      try {
+        base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
+      } catch (err) {
+        localStorage.removeItem("x_step1_jbxx_base");
+      }
+
       if (base) {
         this.baseData = base;
       } else {
@@ -218,7 +232,6 @@
       },
       getJbxx () {
         this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
-          console.log(response)
           if (response.status == 200) {
             this.baseData = response.body
             window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
@@ -244,6 +257,32 @@
           }
         }
         this.$refs['jbxxForm'].resetFields();
+      },
+      checkout(){
+        let cardId = this.jbxxForm.card_id
+        if (!cardId) {
+          this.alertMsg("warning", "诊疗卡号不能为空")
+          return
+        }
+        console.log(cardId)
+        this.$resource(InputUrl + 'search.php').get({card_id: cardId}).then((response) => {
+          if (response.status == 200) {
+            window.localStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
+            window.localStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
+            window.localStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
+            let info;
+            try {
+              info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+            } catch (err) {
+              localStorage.removeItem("x_step1_jbxx");
+              this.alertMsg("warning", "检索失败")
+            }
+            this.writeBack(info)
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+
       }
     },
     watch: {
@@ -262,4 +301,38 @@
 
 <style scoped>
   @import "../../style/info_input.css";
+
+  .js-text {
+    position: relative;
+    background: #20C1DC;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    margin-top: 1px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .js-text:hover {
+    opacity: 0.8;
+  }
+
+  .js-line1, .js-line2 {
+    position: absolute;
+    border: 1px solid #C0CCDA;
+    display: inline-block;
+    left: -50px;
+    width: 60px;
+    height: 14px;
+  }
+
+  .js-line1 {
+    border-bottom: none;
+    top: -16px;
+  }
+
+  .js-line2 {
+    border-top: none;
+    top: 28px;
+  }
 </style>

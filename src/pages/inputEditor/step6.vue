@@ -145,12 +145,23 @@
       }
     },
     mounted(){
-      let info = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-      let info_checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
-      let info_checkList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkList'))
-      let info_dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
-      let info_frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
-      let info_usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
+      let info,info_checkedList,info_checkList,info_dosageList,info_frequencyList,info_usageList;
+      try {
+         info = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
+         info_checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
+         info_checkList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkList'))
+         info_dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
+         info_frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
+         info_usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
+      } catch (err) {
+        localStorage.removeItem("x_step6_zlfa");
+        localStorage.removeItem("x_step6_zlfa_checkedList");
+        localStorage.removeItem("x_step6_zlfa_checkList");
+        localStorage.removeItem("x_step6_zlfa_dosageList");
+        localStorage.removeItem("x_step6_zlfa_frequencyList");
+        localStorage.removeItem("x_step6_zlfa_usageList");
+      }
+
       if (info) {
         this.writeBack(info, info_checkedList, info_checkList, info_dosageList, info_frequencyList, info_usageList)
       } else {

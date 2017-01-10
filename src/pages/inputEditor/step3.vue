@@ -311,7 +311,12 @@
       }
     },
     mounted(){
-      let info = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+      let info;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+      } catch (err) {
+        localStorage.removeItem("x_step3_jws");
+      }
       if (info) {
         this.writeBack(info)
       }

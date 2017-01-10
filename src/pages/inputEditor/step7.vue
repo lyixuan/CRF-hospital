@@ -605,8 +605,14 @@
       }
     },
     mounted(){
-      let info = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
-      let info_tabList = JSON.parse(window.localStorage.getItem('x_step7_pflb_tabList'))
+      let info,info_tabList;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
+        info_tabList = JSON.parse(window.localStorage.getItem('x_step7_pflb_tabList'))
+      } catch (err) {
+        localStorage.removeItem("x_step7_pflb");
+        localStorage.removeItem("x_step7_pflb_tabList");
+      }
       if (info) {
         this.writeBack(info, info_tabList)
       } else {

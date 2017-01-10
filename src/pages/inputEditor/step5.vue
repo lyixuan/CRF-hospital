@@ -140,9 +140,17 @@
       }
     },
     mounted(){
-      let info = JSON.parse(window.localStorage.getItem('x_step5_yx'))
-      let info_checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
-      let info_checkList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkList'))
+      let info,info_checkedList,info_checkList;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step5_yx'))
+        info_checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
+        info_checkList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkList'))
+      } catch (err) {
+        localStorage.removeItem("x_step5_yx");
+        localStorage.removeItem("x_step5_yx_checkedList");
+        localStorage.removeItem("x_step5_yx_checkList");
+      }
+
       if (info) {
         this.writeBack(info, info_checkedList, info_checkList)
       } else {

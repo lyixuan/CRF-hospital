@@ -371,7 +371,12 @@
       }
     },
     mounted(){
-      let info = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+      let info;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+      } catch (err) {
+        localStorage.removeItem("x_step4_jy");
+      }
       if (info) {
         this.writeBack(info)
       } else {
