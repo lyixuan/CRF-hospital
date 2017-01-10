@@ -21,31 +21,33 @@
       <div style="clear: both;"></div>
       <div class="tab-content">
         <el-form ref="yxForm" :model="yxForm" label-width="60px">
-          <el-row class="line-out" v-for="item in checkedList">
-            <el-col :span="3">
-              <el-button type="info">{{yxForm[item].name}}</el-button>
-            </el-col>
-            <el-col :span="5">
-              <el-form-item label="日期:">
-                <el-date-picker v-model="yxForm[item].date" align="right" type="date"
-                                placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="描述:">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制512字内"
-                          v-model=yxForm[item].ms
-                          :maxlength="512"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :span="8">
-              <el-form-item label="结论:">
-                <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制256字内"
-                          v-model=yxForm[item].jl
-                          :maxlength="256"></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
+          <transition-group name="fade-list">
+            <el-row class="line-out" v-for="item in checkedList" v-bind:key="item">
+              <el-col :span="3">
+                <el-button type="info">{{yxForm[item].name}}</el-button>
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="日期:">
+                  <el-date-picker v-model="yxForm[item].date" align="right" type="date"
+                                  placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="描述:">
+                  <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制512字内"
+                            v-model=yxForm[item].ms
+                            :maxlength="512"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="8">
+                <el-form-item label="结论:">
+                  <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制256字内"
+                            v-model=yxForm[item].jl
+                            :maxlength="256"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </transition-group>
         </el-form>
       </div>
     </div>
@@ -140,7 +142,7 @@
       }
     },
     mounted(){
-      let info,info_checkedList,info_checkList;
+      let info, info_checkedList, info_checkList;
       try {
         info = JSON.parse(window.localStorage.getItem('x_step5_yx'))
         info_checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
@@ -242,6 +244,7 @@
     padding: 5px;
     font-size: 12px;
   }
+
   .background-text {
     position: absolute;
     top: 100px;

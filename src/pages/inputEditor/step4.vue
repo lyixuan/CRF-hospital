@@ -16,290 +16,307 @@
         <span v-for="item in tabList" :class="{'t-active': item.key == checkedTab ?true:false}"
               @click="changeTab(item.key)">
            {{item.name}}
-          <i class="el-icon-check" v-show="jyForm[item.key].date" :class="{ green: item.key == checkedTab?false:true }"></i>
+          <i class="el-icon-check" v-show="jyForm[item.key].date"
+             :class="{ green: item.key == checkedTab?false:true }"></i>
         </span>
       </div>
       <div style="clear: both;"></div>
       <div class="tab-content">
-        <div class="table-box" v-show="'xcg' == checkedTab">
-          <h1>{{jyForm.xcg.name}}</h1>
-          <span class="span1">
+        <transition name="fade">
+          <div class="table-box" v-show="'xcg' == checkedTab">
+            <h1>{{jyForm.xcg.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.xcg.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xcg')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.xcg.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'xsh' == checkedTab">
-          <h1>{{jyForm.xsh.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xcg')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.xcg.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'xsh' == checkedTab">
+            <h1>{{jyForm.xsh.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.xsh.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xsh')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.xsh.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'nxsx' == checkedTab">
-          <h1>{{jyForm.nxsx.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xsh')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.xsh.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'nxsx' == checkedTab">
+            <h1>{{jyForm.nxsx.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.nxsx.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nxsx')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.nxsx.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'txbpas' == checkedTab">
-          <h1>{{jyForm.txbpas.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nxsx')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.nxsx.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'txbpas' == checkedTab">
+            <h1>{{jyForm.txbpas.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.txbpas.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('txbpas')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.txbpas.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'cmCfydb' == checkedTab">
-          <h1>{{jyForm.cmCfydb.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('txbpas')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.txbpas.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'cmCfydb' == checkedTab">
+            <h1>{{jyForm.cmCfydb.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.cmCfydb.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('cmCfydb')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.cmCfydb.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'xlb' == checkedTab">
-          <h1>{{jyForm.xlb.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini"
+                                           @click="clearTable('cmCfydb')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.cmCfydb.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'xlb' == checkedTab">
+            <h1>{{jyForm.xlb.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.xlb.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xlb')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.xlb.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'thxhdb' == checkedTab">
-          <h1>{{jyForm.thxhdb.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xlb')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.xlb.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'thxhdb' == checkedTab">
+            <h1>{{jyForm.thxhdb.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.thxhdb.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('thxhdb')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.thxhdb.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'xxbjjsy' == checkedTab">
-          <h1>{{jyForm.xxbjjsy.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini"
+                                           @click="clearTable('thxhdb')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.thxhdb.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'xxbjjsy' == checkedTab">
+            <h1>{{jyForm.xxbjjsy.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.xxbjjsy.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xxbjjsy')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.xxbjjsy.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'dbCS' == checkedTab">
-          <h1>{{jyForm.dbCS.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini"
+                                           @click="clearTable('xxbjjsy')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.xxbjjsy.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'dbCS' == checkedTab">
+            <h1>{{jyForm.dbCS.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.dbCS.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('dbCS')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.dbCS.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
-
-        <div class="table-box" v-show="'knxmIII' == checkedTab">
-          <h1>{{jyForm.knxmIII.name}}</h1>
-          <span class="span1">
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('dbCS')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.dbCS.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+        <transition name="fade">
+          <div class="table-box" v-show="'knxmIII' == checkedTab">
+            <h1>{{jyForm.knxmIII.name}}</h1>
+            <span class="span1">
           <el-date-picker v-model="jyForm.knxmIII.date" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
-          <span class="span2">日期:</span>
-          <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('knxmIII')">清空</el-button></span>
-          <table>
-            <tr>
-              <th></th>
-              <th>检验项目</th>
-              <th>检验结果</th>
-              <th>单位</th>
-              <th>参考范围</th>
-            </tr>
-            <tr v-for="item in jyForm.knxmIII.items">
-              <td>{{item.No}}</td>
-              <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
-                style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
-              <td>
-                <el-input v-model="item.value"></el-input>
-              </td>
-              <td>{{item.unit}}</td>
-              <td>{{item.std_low +" - "+ item.std_high}}</td>
-            </tr>
-          </table>
-        </div>
+            <span class="span2">日期:</span>
+            <span class="span3"><el-button icon="delete" size="mini"
+                                           @click="clearTable('knxmIII')">清空</el-button></span>
+            <table>
+              <tr>
+                <th></th>
+                <th>检验项目</th>
+                <th>检验结果</th>
+                <th>单位</th>
+                <th>参考范围</th>
+              </tr>
+              <tr v-for="item in jyForm.knxmIII.items">
+                <td>{{item.No}}</td>
+                <td><span style="width: 100px;text-align: left;display: inline-block;">{{item.key}}</span><span
+                  style="width: 160px;text-align: left;display: inline-block">{{item.name}}</span></td>
+                <td>
+                  <el-input v-model="item.value"></el-input>
+                </td>
+                <td>{{item.unit}}</td>
+                <td>{{item.std_low +" - "+ item.std_high}}</td>
+              </tr>
+            </table>
+          </div>
+        </transition>
+
       </div>
     </div>
   </div>
@@ -508,7 +525,8 @@
     float: left;
     margin-top: 8px;
   }
-  .green{
+
+  .green {
     color: #13CE66;
   }
 

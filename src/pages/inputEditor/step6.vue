@@ -30,39 +30,41 @@
               </el-form-item>
             </el-col>
           </el-row>
-          <el-row class="line-out" v-for="item in checkedList">
-            <el-col :span="3">
-              <el-button type="info">{{zlfaForm[item].name}}</el-button>
-            </el-col>
-            <el-col :span="5">
-              <el-form-item label="种类:">
-                <el-select v-model="zlfaForm[item].type" placeholder="请选择">
-                  <el-option v-for="item in zlfaForm[item].types" :label="item.name" :value="item.key"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="5">
-              <el-form-item label="用量:">
-                <el-select v-model="zlfaForm[item].dosage" placeholder="请选择">
-                  <el-option v-for="item in dosageList" :label="item.name" :value="item.id"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="5">
-              <el-form-item label="次数:">
-                <el-select v-model="zlfaForm[item].frequency" placeholder="请选择">
-                  <el-option v-for="item in frequencyList" :label="item.name" :value="item.id"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-            <el-col :span="5">
-              <el-form-item label="服用方式:">
-                <el-select v-model="zlfaForm[item].usage" placeholder="请选择">
-                  <el-option v-for="item in usageList" :label="item.name" :value="item.id"></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
+          <transition-group name="fade-list">
+            <el-row class="line-out" v-for="item in checkedList" v-bind:key="item">
+              <el-col :span="3">
+                <el-button type="info">{{zlfaForm[item].name}}</el-button>
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="种类:">
+                  <el-select v-model="zlfaForm[item].type" placeholder="请选择">
+                    <el-option v-for="item in zlfaForm[item].types" :label="item.name" :value="item.key"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="用量:">
+                  <el-select v-model="zlfaForm[item].dosage" placeholder="请选择">
+                    <el-option v-for="item in dosageList" :label="item.name" :value="item.id"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="次数:">
+                  <el-select v-model="zlfaForm[item].frequency" placeholder="请选择">
+                    <el-option v-for="item in frequencyList" :label="item.name" :value="item.id"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+              <el-col :span="5">
+                <el-form-item label="服用方式:">
+                  <el-select v-model="zlfaForm[item].usage" placeholder="请选择">
+                    <el-option v-for="item in usageList" :label="item.name" :value="item.id"></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </transition-group>
         </el-form>
       </div>
     </div>
@@ -145,14 +147,14 @@
       }
     },
     mounted(){
-      let info,info_checkedList,info_checkList,info_dosageList,info_frequencyList,info_usageList;
+      let info, info_checkedList, info_checkList, info_dosageList, info_frequencyList, info_usageList;
       try {
-         info = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-         info_checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
-         info_checkList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkList'))
-         info_dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
-         info_frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
-         info_usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
+        info = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
+        info_checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
+        info_checkList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkList'))
+        info_dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
+        info_frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
+        info_usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
       } catch (err) {
         localStorage.removeItem("x_step6_zlfa");
         localStorage.removeItem("x_step6_zlfa_checkedList");

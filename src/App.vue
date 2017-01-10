@@ -3,7 +3,9 @@
     <v-header></v-header>
     <v-sidebar></v-sidebar>
     <div id="view-wrap">
-      <router-view id="view-cont"></router-view>
+      <transition name="appear">
+        <router-view id="view-cont"></router-view>
+      </transition>
     </div>
   </div>
 </template>
@@ -24,23 +26,26 @@
   * {
     font-size: 12px;
   }
-  a{
-    text-decoration:none
+
+  a {
+    text-decoration: none
   }
+
   body {
     background: #fff;
     margin: 0;
     padding: 0;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
     font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
   }
+
   #view-wrap {
     width: 100%;
-    padding:50px 0px 0px 160px;
+    padding: 50px 0px 0px 160px;
     box-sizing: border-box;
   }
-  #view-cont{
+
+  #view-cont {
     background: #fff;
     overflow: hidden;
   }
