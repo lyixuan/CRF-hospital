@@ -85,17 +85,22 @@
       }
     },
     mounted(){
-      this.writeBack()
+      let info;
+      try {
+        info = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+      } catch (err) {
+        localStorage.removeItem("x_step2_bs");
+      }
+      if (info) {
+        this.writeBack()
+      }
     },
     methods: {
-      writeBack () {
-        let info = JSON.parse(window.localStorage.getItem('x_step2_bs'))
-        if (info) {
-          this.bsForm.zs = info.zs
-          this.bsForm.xbs = info.xbs
-          this.bsForm.ct = info.ct
-          this.bsForm.zd = info.zd
-        }
+      writeBack (info) {
+        this.bsForm.zs = info.zs
+        this.bsForm.xbs = info.xbs
+        this.bsForm.ct = info.ct
+        this.bsForm.zd = info.zd
       },
       storage() {
         window.localStorage.setItem('x_step2_bs', JSON.stringify(this.bsForm))
