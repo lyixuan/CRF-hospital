@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <span class="title">管理控制台</span>
-    <span class="user"><span class="cont">夏明明</span><i class="el-icon-caret-bottom"></i></span>
+    <!--<span class="user"><span class="cont">夏明明</span><i class="el-icon-caret-bottom"></i></span>-->
   </div>
 </template>
 
