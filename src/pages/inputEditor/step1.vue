@@ -59,7 +59,7 @@
         </el-row>
         <el-row>
           <el-col :span="7">
-            <el-form-item label="电话:" prop="mobile">
+            <el-form-item label="联系电话:" prop="mobile">
               <el-input v-model="jbxxForm.mobile"></el-input>
             </el-form-item>
           </el-col>
@@ -321,14 +321,14 @@
     position: absolute;
     border: 1px solid #C0CCDA;
     display: inline-block;
-    left: -50px;
+    left: -45px;
     width: 60px;
-    height: 14px;
+    height: 8px;
   }
 
   .js-line1 {
     border-bottom: none;
-    top: -16px;
+    top: -10px;
   }
 
   .js-line2 {

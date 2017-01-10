@@ -109,8 +109,11 @@
   transition: all .3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 /*appear*/
-.appear-enter-active, .appear-leave-active {
-  transition: opacity .3s
+.appear-leave-active {
+  transition: opacity 0s;
+}
+.appear-enter-active{
+  transition: opacity 1s;
 }
 .appear-enter, .appear-leave-active {
   opacity: 0

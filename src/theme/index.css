@@ -10381,27 +10381,27 @@
 }
 
 .el-step__title.is-finish {
-  font-weight: 500;
+  font-weight: normal;
   color: #13ce66; /*color: #20a0ff;*/
 }
 
 .el-step__title.is-error {
-  font-weight: 600;
+  font-weight: normal;
   color: #ff4949;
 }
 
 .el-step__title.is-success {
-  font-weight: 600;
+  font-weight: normal;
   color: #13ce66;
 }
 
 .el-step__title.is-wait {
-  font-weight: 400;
+  font-weight: normal;
   color: #99a9bf;
 }
 
 .el-step__title.is-process {
-  font-weight: 600;
+  font-weight: normal;
   color: #475669;
 }
 
