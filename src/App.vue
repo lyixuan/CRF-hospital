@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <v-header></v-header>
-    <v-sidebar></v-sidebar>
+    <!--<v-header></v-header>-->
+    <!--<v-sidebar></v-sidebar>-->
     <div id="view-wrap">
       <transition name="appear">
         <router-view id="view-cont"></router-view>

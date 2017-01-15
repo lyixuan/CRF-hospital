@@ -19,6 +19,7 @@ import InputEditorPage8 from './pages/inputEditor/step8.vue'
 import InputEditorPage9 from './pages/inputEditor/step9.vue'
 import InputEditorPage10 from './pages/inputEditor/step10.vue'
 import InputEditorPage11 from './pages/inputEditor/step11.vue'
+import demo from './pages/inputEditor/demo.vue'
 
 
 Vue.use(VueRouter);
@@ -27,7 +28,7 @@ Vue.use(ElementUI);
 require('./config')
 
 const routes = [
-  {path: '/', component: InputEditorPage1},
+  {path: '/', component: demo},
   {path: '/inputEditor/page1', component: InputEditorPage1},
   {path: '/inputEditor/page2', component: InputEditorPage2},
   {path: '/inputEditor/page3', component: InputEditorPage3},
