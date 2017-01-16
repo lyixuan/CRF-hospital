@@ -56,7 +56,7 @@
         this.getStep6()
         this.getStep7()
         this.getStep8()
-        var resource = this.$resource(InputUrl + 'form_post')
+        var resource = this.$resource(PATH_RECORD + 'form_post')
         resource.save({}, this.submitList).then((response) => {
           if (response.status == 200) {
             this.clearAndStepTo(1)

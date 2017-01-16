@@ -213,7 +213,7 @@
         return true
       },
       getZlfa () {
-        this.$resource(InputUrl + 'dict/zlfa').get().then((response) => {
+        this.$resource(PATH_RECORD + 'dict/zlfa').get().then((response) => {
             if (response.status == 200) {
               let result_items = response.body.items
               this.dosageList = response.body.dosage.items
