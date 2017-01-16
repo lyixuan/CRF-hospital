@@ -127,7 +127,7 @@
     },
     data() {
       return {
-        uploadUrl: InputUrl + 'img/upload.php',
+        uploadUrl: InputUrl + 'img/upload',
         jbxxFileList: [],
         bsFileList: [],
         jwsFileList: [],

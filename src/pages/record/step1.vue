@@ -231,7 +231,7 @@
         });
       },
       getJbxx () {
-        this.$resource(InputUrl + 'dict/jbxx.php').get().then((response) => {
+        this.$resource(InputUrl + 'dict/jbxx').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
             window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
@@ -264,8 +264,7 @@
           this.alertMsg("warning", "诊疗卡号不能为空")
           return
         }
-        console.log(cardId)
-        this.$resource(InputUrl + 'search.php').get({card_id: cardId}).then((response) => {
+        this.$resource(InputUrl + 'search').get({card_id: cardId}).then((response) => {
           if (response.status == 200) {
             window.localStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
             window.localStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))

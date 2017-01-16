@@ -8,17 +8,17 @@ import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
 import './theme/index.css'
 
-import InputEditorPage1 from './pages/inputEditor/step1.vue'
-import InputEditorPage2 from './pages/inputEditor/step2.vue'
-import InputEditorPage3 from './pages/inputEditor/step3.vue'
-import InputEditorPage4 from './pages/inputEditor/step4.vue'
-import InputEditorPage5 from './pages/inputEditor/step5.vue'
-import InputEditorPage6 from './pages/inputEditor/step6.vue'
-import InputEditorPage7 from './pages/inputEditor/step7.vue'
-import InputEditorPage8 from './pages/inputEditor/step8.vue'
-import InputEditorPage9 from './pages/inputEditor/step9.vue'
-import InputEditorPage10 from './pages/inputEditor/step10.vue'
-import InputEditorPage11 from './pages/inputEditor/step11.vue'
+import RecordPage1 from './pages/record/step1.vue'
+import RecordPage2 from './pages/record/step2.vue'
+import RecordPage3 from './pages/record/step3.vue'
+import RecordPage4 from './pages/record/step4.vue'
+import RecordPage5 from './pages/record/step5.vue'
+import RecordPage6 from './pages/record/step6.vue'
+import RecordPage7 from './pages/record/step7.vue'
+import RecordPage8 from './pages/record/step8.vue'
+import RecordPage9 from './pages/record/step9.vue'
+import RecordPage10 from './pages/record/step10.vue'
+import RecordPage11 from './pages/record/step11.vue'
 
 
 Vue.use(VueRouter);
@@ -27,18 +27,18 @@ Vue.use(ElementUI);
 require('./config')
 
 const routes = [
-  {path: '/', component: InputEditorPage1},
-  {path: '/inputEditor/page1', component: InputEditorPage1},
-  {path: '/inputEditor/page2', component: InputEditorPage2},
-  {path: '/inputEditor/page3', component: InputEditorPage3},
-  {path: '/inputEditor/page4', component: InputEditorPage4},
-  {path: '/inputEditor/page5', component: InputEditorPage5},
-  {path: '/inputEditor/page6', component: InputEditorPage6},
-  {path: '/inputEditor/page7', component: InputEditorPage7},
-  {path: '/inputEditor/page8', component: InputEditorPage8},
-  {path: '/inputEditor/page9', component: InputEditorPage9},
-  {path: '/inputEditor/page10', component: InputEditorPage10},
-  {path: '/inputEditor/page11', component: InputEditorPage11}
+  {path: '/', component: RecordPage1},
+  {path: '/record/page1', component: RecordPage1},
+  {path: '/record/page2', component: RecordPage2},
+  {path: '/record/page3', component: RecordPage3},
+  {path: '/record/page4', component: RecordPage4},
+  {path: '/record/page5', component: RecordPage5},
+  {path: '/record/page6', component: RecordPage6},
+  {path: '/record/page7', component: RecordPage7},
+  {path: '/record/page8', component: RecordPage8},
+  {path: '/record/page9', component: RecordPage9},
+  {path: '/record/page10', component: RecordPage10},
+  {path: '/record/page11', component: RecordPage11}
 ];
 
 const router = new VueRouter({
@@ -55,7 +55,7 @@ Vue.prototype.alertMsg = function (type, msg) {
 };
 
 Vue.prototype.stepTo = function (num) {
-  router.push({path: '/inputEditor/page' + num})
+  router.push({path: '/record/page' + num})
 };
 
 Vue.prototype.clearStorage = function () {
@@ -74,7 +74,7 @@ Vue.prototype.clearStorage = function () {
   localStorage.removeItem("x_step6_zlfa_usageList");
   localStorage.removeItem("x_step7_pflb");
   localStorage.removeItem("x_step7_pflb_tabList");
-  localStorage.removeItem("x_step8_tpsc");
+  localStorage.removeItem("x_step8_img");
 };
 
 Vue.prototype.formatDate = function (date) {

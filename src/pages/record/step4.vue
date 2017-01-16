@@ -472,7 +472,7 @@
         }
       },
       getJy () {
-        this.$resource(InputUrl + 'dict/jy.php').get().then((response) => {
+        this.$resource(InputUrl + 'dict/jy').get().then((response) => {
           if (response.status == 200) {
             let result = response.body
             for (let key in result) {

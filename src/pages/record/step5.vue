@@ -191,7 +191,7 @@
         return true
       },
       getYx () {
-        this.$resource(InputUrl + 'dict/yx.php').get().then((response) => {
+        this.$resource(InputUrl + 'dict/yx').get().then((response) => {
             if (response.status == 200) {
               let result = response.body.yx_items
               this.checkList = result
