@@ -23,8 +23,10 @@
                :close-on-press-escape="false" :show-close="false">
       <span style="font-size: 16px;font-weight: bold;margin-left: 40%;">是否确定保存?</span>
       <span slot="footer" class="dialog-footer first"><el-button type="primary" @click="cancel">取消</el-button></span>
-      <span slot="footer" class="dialog-footer"><el-button type="primary"
-                                                           @click="submitForm">保存,并开始下次录入</el-button></span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="submitForm" v-if="!saving">保存,并开始下次录入</el-button>
+      <el-button type="primary" @click="submitForm" v-if="saving">保存中...</el-button>
+      </span>
     </el-dialog>
 
   </div>
@@ -39,6 +41,7 @@
     },
     data () {
       return {
+        saving:false,
         dialogVisible: false,
         submitList: {}
       }
@@ -57,13 +60,16 @@
         this.getStep7()
         this.getStep8()
         var resource = this.$resource(PATH_RECORD + 'form_post')
+        this.saving = true
         resource.save({}, this.submitList).then((response) => {
+          this.saving = false
           if (response.status == 200) {
             this.clearAndStepTo(1)
           } else {
             this.alertMsg("error", response.status + ':' + response.body.msg + " - " + response.url)
           }
         }, (response) => {
+          this.saving = false
           this.alertMsg("error", response.status + " - " + response.url)
         })
       },
