@@ -85,14 +85,20 @@ Vue.prototype.formatDate = function (date) {
   return date.getFullYear() + '-' + ((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)) + '-' + (date.getDate() < 10 ? '0' + date.getDate() : date.getDate())
 
 };
-// // 拦截器
-// Vue.http.interceptors.push((request, next) => {
-//   next((response) => {
-//     if (response.status != 200) {
-//       this.alertMsg("error", response.status + " - " + response.url)
-//     }
-//   });
-// });
+// 拦截器
+Vue.http.interceptors.push((request, next) => {
+  /**
+   * 暂时增加.php后缀  ***注意***  图片上传的url无法拦截处理,需要单独修改
+   *
+   * 现有位置1. step8.vue
+   */
+  request.url = request.url + '.php'
+  next((response) => {
+    if (response.status != 200) {
+      this.alertMsg("error", response.status + " - " + response.url)
+    }
+  });
+});
 
 new Vue({
   el: '#app',

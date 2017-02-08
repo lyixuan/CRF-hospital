@@ -127,7 +127,7 @@
     },
     data() {
       return {
-        uploadUrl: PATH_RECORD + 'img/upload',
+        uploadUrl: PATH_RECORD + 'img/upload.php',
         jbxxFileList: [],
         bsFileList: [],
         jwsFileList: [],
