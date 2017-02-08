@@ -25,7 +25,7 @@
       <span slot="footer" class="dialog-footer first"><el-button type="primary" @click="cancel">取消</el-button></span>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="submitForm" v-if="!saving">保存,并开始下次录入</el-button>
-      <el-button type="primary" @click="submitForm" v-if="saving">保存中...</el-button>
+      <el-button type="primary" v-if="saving">保存中...</el-button>
       </span>
     </el-dialog>
 
