@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar" :class="{sidebarClose:isClose}">
     <div class="sidebar-header" @click="changeSidebar"><i class="el-icon-more"></i></div>
-    <router-link to="/inputEditor/page1">
+    <router-link to="/record/page1">
       <div class="menu active" :class="{sidebarClose:isClose}">
         <i class="el-icon-document icon"></i>
         <span>CRF信息录入</span>
