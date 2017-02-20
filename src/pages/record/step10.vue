@@ -1101,6 +1101,18 @@
         this.x_step7_pflb.mRs = temp.mRs
         this.x_step7_pflb.mmse = temp.mmse
       },
+      getStep8(){
+        this.submitList.img = {}
+        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        for (let key in x_step8_img) {
+          if (x_step8_img[key].length > 0) {
+            this.submitList.img[key]=[]
+            for (let i = 0; i < x_step8_img[key].length; i++) {
+              this.submitList.img[key].push(x_step8_img[key][i].response.id)
+            }
+          }
+        }
+      },
 
       openDia(){
         this.dialogVisible = true;

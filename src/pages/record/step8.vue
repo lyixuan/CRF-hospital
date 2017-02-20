@@ -23,7 +23,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="jbxxFileList">
+                :default-file-list="jbxx">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -37,7 +37,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="bsFileList">
+                :default-file-list="bs">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -51,7 +51,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="jwsFileList">
+                :default-file-list="jws">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -65,7 +65,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="jyFileList">
+                :default-file-list="jy">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -79,7 +79,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="yxFileList">
+                :default-file-list="yx">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -93,7 +93,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="zlfaFileList">
+                :default-file-list="zlfa">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -107,7 +107,7 @@
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
                 :on-success="handleSuccess"
-                :default-file-list="pflbFileList">
+                :default-file-list="pflb">
                 <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
               </el-upload>
             </th>
@@ -128,13 +128,13 @@
     data() {
       return {
         uploadUrl: PATH_RECORD + 'img/upload.php',
-        jbxxFileList: [],
-        bsFileList: [],
-        jwsFileList: [],
-        jyFileList: [],
-        yxFileList: [],
-        zlfaFileList: [],
-        pflbFileList: []
+        jbxx: [],
+        bs: [],
+        jws: [],
+        jy: [],
+        yx: [],
+        zlfa: [],
+        pflb: []
       };
     },
     mounted(){
@@ -147,7 +147,7 @@
       if (info) {
         this.writeBack(info)
       }
-      console.log(this.bsFileList)
+      console.log(this.bs)
     },
     methods: {
       handleRemove(file, fileList) {
@@ -174,27 +174,27 @@
         if (response.item) {
           param = param + '_' + response.item
         }
-        listStr = param + 'FileList';
+        listStr = param;
         return listStr
       },
       writeBack (info) {
-        this.jbxxFileList = info.jbxxFileList;
-        this.bsFileList = info.bsFileList;
-        this.jwsFileList = info.jwsFileList;
-        this.jyFileList = info.jyFileList;
-        this.yxFileList = info.yxFileList;
-        this.zlfaFileList = info.zlfaFileList;
-        this.pflbFileList = info.pflbFileList;
+        this.jbxx = info.jbxx;
+        this.bs = info.bs;
+        this.jws = info.jws;
+        this.jy = info.jy;
+        this.yx = info.yx;
+        this.zlfa = info.zlfa;
+        this.pflb = info.pflb;
       },
       storage() {
         let fileList = {}
-        fileList.jbxxFileList = this.jbxxFileList;
-        fileList.bsFileList = this.bsFileList;
-        fileList.jwsFileList = this.jwsFileList;
-        fileList.jyFileList = this.jyFileList;
-        fileList.yxFileList = this.yxFileList;
-        fileList.zlfaFileList = this.zlfaFileList;
-        fileList.pflbFileList = this.pflbFileList;
+        fileList.jbxx = this.jbxx;
+        fileList.bs = this.bs;
+        fileList.jws = this.jws;
+        fileList.jy = this.jy;
+        fileList.yx = this.yx;
+        fileList.zlfa = this.zlfa;
+        fileList.pflb= this.pflb;
         window.localStorage.setItem('x_step8_img', JSON.stringify(fileList))
       },
       saveAndStepTo(num) {

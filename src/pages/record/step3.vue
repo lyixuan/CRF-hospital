@@ -27,7 +27,7 @@
             <el-row>
               <el-col :span="5">
                 <el-form-item label="最高:" >
-                  <el-date-picker v-model="jwsForm.gxy.info.zg_date" align="right" type="year"
+                  <el-date-picker v-model="jwsForm.gxy.info.zg_date" align="right" type="year" :clearable="false"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
@@ -48,7 +48,7 @@
               </el-col>
               <el-col :span="5">
                 <el-form-item label="现在:">
-                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year"
+                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year" :clearable="false"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
@@ -85,7 +85,7 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="年份:">
-                  <el-date-picker v-model="jwsForm.tnb.info.date" align="right" type="year"
+                  <el-date-picker v-model="jwsForm.tnb.info.date" align="right" type="year" :clearable="false"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
@@ -116,7 +116,7 @@
             <el-row>
               <el-col :span="12">
                 <el-form-item label="年份:">
-                  <el-date-picker v-model="jwsForm.gxb.info.date" align="right" type="year"
+                  <el-date-picker v-model="jwsForm.gxb.info.date" align="right" type="year" :clearable="false"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
@@ -326,10 +326,10 @@
         this.jwsForm = info
       },
       storage() {
-        this.jwsForm.gxy.info.zg_date = this.formatDate(new Date(this.jwsForm.gxy.info.zg_date))
-        this.jwsForm.gxy.info.now_date  = this.formatDate(new Date(this.jwsForm.gxy.info.now_date))
-        this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
-        this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
+        this.jwsForm.gxy.info.zg_date = this.jwsForm.gxy.info.zg_date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxy.info.zg_date)) :''
+        this.jwsForm.gxy.info.now_date  = this.jwsForm.gxy.info.now_date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxy.info.now_date)):''
+        this.jwsForm.tnb.info.date = this.jwsForm.tnb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.tnb.info.date)):''
+        this.jwsForm.gxb.info.date = this.jwsForm.gxb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxb.info.date)):''
         window.localStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {
@@ -346,7 +346,7 @@
         for (let key in this.jwsForm) {
           if (this.jwsForm[key].type == '1' && this.jwsForm[key].info) {
             for (let iKey in this.jwsForm[key].info) {
-              if (this.jwsForm[key].info[iKey] == '' || this.jwsForm[key].info[iKey] == null) {
+              if (this.jwsForm[key].info[iKey] == '' || this.jwsForm[key].info[iKey] == null || this.jwsForm[key].info[iKey] =='NaN-NaN-NaN' ) {
                 return false
                 break
               }
