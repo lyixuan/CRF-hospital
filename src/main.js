@@ -44,7 +44,7 @@ const routes = [
 const router = new VueRouter({
   routes // （缩写）相当于 routes: routes
 });
-
+// Vue.http.options.root = 'http://192.168.43.7:80'
 
 Vue.prototype.alertMsg = function (type, msg) {
   //type : success/warning/info/error

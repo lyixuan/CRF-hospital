@@ -326,10 +326,10 @@
         this.jwsForm = info
       },
       storage() {
-        this.jwsForm.gxy.info.zg_date = this.jwsForm.gxy.info.zg_date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxy.info.zg_date)) :''
-        this.jwsForm.gxy.info.now_date  = this.jwsForm.gxy.info.now_date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxy.info.now_date)):''
-        this.jwsForm.tnb.info.date = this.jwsForm.tnb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.tnb.info.date)):''
-        this.jwsForm.gxb.info.date = this.jwsForm.gxb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxb.info.date)):''
+        this.jwsForm.gxy.info.zg_date = this.formatDate(new Date(this.jwsForm.gxy.info.zg_date))
+        this.jwsForm.gxy.info.now_date  = this.formatDate(new Date(this.jwsForm.gxy.info.now_date))
+        this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
+        this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
         window.localStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {
