@@ -1221,7 +1221,7 @@
 </script>
 
 <style scoped>
-  @import "../../style/info_input.css";
+  @import "../../style/record.css";
 
   * {
     font-family: "Microsoft YaHei", "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti;

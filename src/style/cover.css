@@ -1,0 +1,18 @@
+.header .el-menu{
+  z-index: -1!important;
+}
+.header .el-menu--dark{
+  background-color:#373D41!important;
+  padding-right: 20px;
+}
+
+.header .el-menu--horizontal .el-submenu .el-submenu__title{
+  height: 50px!important;
+  line-height: 50px!important;
+}
+.header .el-menu--horizontal .el-submenu{
+  float: right!important;
+}
+.header .el-menu--horizontal .el-submenu > .el-menu{
+  top: 52px!important;
+}

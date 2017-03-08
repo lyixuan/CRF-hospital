@@ -122,5 +122,5 @@
 </script>
 
 <style scoped>
-  @import "../../style/info_input.css";
+  @import "../../style/record.css";
 </style>

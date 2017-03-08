@@ -199,7 +199,6 @@
       },
       saveAndStepTo(num) {
         this.storage()
-        this.alertMsg("success", '"图片" 内容已暂存')
         this.stepTo(num)
       }
     }
@@ -207,7 +206,7 @@
 </script>
 
 <style scoped>
-  @import "../../style/info_input.css";
+  @import "../../style/record.css";
 
   .x-content {
     border: none;

@@ -299,7 +299,7 @@
 </script>
 
 <style scoped>
-  @import "../../style/info_input.css";
+  @import "../../style/record.css";
 
   .js-text {
     position: relative;

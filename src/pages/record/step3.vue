@@ -360,7 +360,7 @@
 </script>
 
 <style scoped>
-  @import "../../style/info_input.css";
+  @import "../../style/record.css";
 
   .el-form-item {
     margin-bottom: 3px !important;
