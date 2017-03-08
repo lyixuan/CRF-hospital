@@ -16,21 +16,24 @@
     name: 'header',
     data () {
       return {
-        uusessions_name:'未登录'
+        uusessions_name: '未登录'
       }
     },
     mounted (){
       this.getSession()
     },
-    methods:{
+    methods: {
       getSession(){
         let uusessions = JSON.parse(window.sessionStorage.getItem('uusessions'))
-        this.uusessions_name = uusessions ? uusessions.userName : '未登录'
-        var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
-        window.location.href = url;
+        if (uusessions) {
+          this.uusessions_name = uusessions.userName
+        } else {
+          var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
+          window.location.href = url;
+        }
       },
       handleSelect(key, keyPath) {
-        if('logout' == key){
+        if ('logout' == key) {
           this.$resource(PATH_LOGIN + 'logout').get().then((response) => {
             if (response.status == 200) {
               sessionStorage.removeItem('uusessions')
@@ -48,16 +51,18 @@
 
 <style scoped>
   @import "../style/cover.css";
+
   .header {
     position: fixed;
-    top:0;
+    top: 0;
     left: 0;
     right: 0;
     height: 50px;
     z-index: 100;
     background: #373D41;
   }
-  .header span{
+
+  .header span {
     width: 160px;
     height: 100%;
     color: #fff;
@@ -67,20 +72,24 @@
     letter-spacing: 2px;
     cursor: pointer;
   }
+
   .header .title {
     border-right: 1px solid #2A2F32;
     float: left;
   }
+
   .header .user {
     border-left: 1px solid #2A2F32;
     float: right;
     text-align: center;
     padding-right: 5px;
   }
-  .header .user i{
+
+  .header .user i {
     color: #fff;
   }
-  .header .user .cont{
+
+  .header .user .cont {
     padding: 0 20px;
   }
 </style>
