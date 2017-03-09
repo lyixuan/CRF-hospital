@@ -1,16 +1,16 @@
 <template>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header" @click="changeSidebar"><i class="el-icon-more"></i></div>
-    <router-link to="/record">
-      <div class="menu">
-        <i class="el-icon-document icon"></i>
-        <span>CRF信息录入</span>
-      </div>
-    </router-link>
     <router-link to="/search">
       <div class="menu">
         <i class="el-icon-search icon"></i>
         <span>CRF信息检索</span>
+      </div>
+    </router-link>
+    <router-link to="/record">
+      <div class="menu">
+        <i class="el-icon-document icon"></i>
+        <span>CRF信息录入</span>
       </div>
     </router-link>
   </div>
@@ -31,10 +31,10 @@
         let menus = document.getElementsByClassName("menu")
         if (this.isClose) {
           let width = 56
-          var timer = setInterval(fn, 6)
+          var timer = setInterval(fn, 2)
 
           function fn() {
-            width += 2
+            width += 5
             view.style = "padding-left:" + width + "px;"
             if (width == 166) {
               clearInterval(timer)
@@ -42,10 +42,10 @@
           }
 
           let swidth = 50
-          var stimer = setInterval(sfn, 6)
+          var stimer = setInterval(sfn, 2)
 
           function sfn() {
-            swidth += 2
+            swidth += 5
             sidebar.style = "width:" + swidth + "px;"
             for (let i = 0; i < menus.length; i++) {
               menus[i].style = "width:" + swidth + "px;"
@@ -58,10 +58,10 @@
         } else {
           view.style = "padding-left:56px;"
           let width = 166
-          var timer2 = setInterval(fn2, 6)
+          var timer2 = setInterval(fn2, 2)
 
           function fn2() {
-            width -= 2
+            width -= 5
             view.style = "padding-left:" + width + "px;"
             if (width == 56) {
               clearInterval(timer2)
@@ -69,10 +69,10 @@
           }
 
           let swidth = 160
-          var stimer2 = setInterval(sfn2, 6)
+          var stimer2 = setInterval(sfn2, 2)
 
           function sfn2() {
-            swidth -= 2
+            swidth -= 5
             sidebar.style = "width:" + swidth + "px;"
             for (let i = 0; i < menus.length; i++) {
               menus[i].style = "width:" + swidth + "px;"

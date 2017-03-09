@@ -26,7 +26,7 @@ var loginObj = {
         if (xhr.status === 200) {
           if (window.sessionStorage) {
             sessionStorage.setItem("uusessions", params);
-            var url = window.location.href.replace(/login.html/, "index.html")
+            var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "#/search";
             window.location.href = url;
           } else {
             //ie8以下
