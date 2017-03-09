@@ -187,17 +187,7 @@
         this.writeBack(info)
       }
 
-      try {
-        base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
-      } catch (err) {
-        localStorage.removeItem("x_step1_jbxx_base");
-      }
-
-      if (base) {
-        this.baseData = base;
-      } else {
-        this.getJbxx()
-      }
+      this.getJbxx()
     },
     methods: {
       writeBack (info) {
@@ -234,7 +224,6 @@
         this.$resource(PATH_RECORD + 'dict/jbxx').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
-            window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }

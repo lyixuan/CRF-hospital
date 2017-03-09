@@ -204,9 +204,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   position: fixed;
   bottom: 10px;
   z-index: -1;
-  width: 350px;
+  width: 380px;
   left: 50%;
-  margin-left: -175px;
+  margin-left: -200px;
 }
 
 .footer span {

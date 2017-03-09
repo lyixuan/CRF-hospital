@@ -1,10 +1,16 @@
 <template>
-  <div class="sidebar" :class="{sidebarClose:isClose}">
+  <div class="sidebar" id="sidebar">
     <div class="sidebar-header" @click="changeSidebar"><i class="el-icon-more"></i></div>
-    <router-link to="/record/page1">
-      <div class="menu active" :class="{sidebarClose:isClose}">
+    <router-link to="/record">
+      <div class="menu">
         <i class="el-icon-document icon"></i>
         <span>CRF信息录入</span>
+      </div>
+    </router-link>
+    <router-link to="/search">
+      <div class="menu">
+        <i class="el-icon-search icon"></i>
+        <span>CRF信息检索</span>
       </div>
     </router-link>
   </div>
@@ -21,7 +27,61 @@
     methods: {
       changeSidebar () {
         let view = document.getElementById("view-wrap")
-        this.isClose ? view.style = "padding-left:166px;" : view.style = "padding-left:56px;"
+        let sidebar = document.getElementById("sidebar")
+        let menus = document.getElementsByClassName("menu")
+        if (this.isClose) {
+          let width = 56
+          var timer = setInterval(fn, 6)
+
+          function fn() {
+            width += 2
+            view.style = "padding-left:" + width + "px;"
+            if (width == 166) {
+              clearInterval(timer)
+            }
+          }
+
+          let swidth = 50
+          var stimer = setInterval(sfn, 6)
+
+          function sfn() {
+            swidth += 2
+            sidebar.style = "width:" + swidth + "px;"
+            for (let i = 0; i < menus.length; i++) {
+              menus[i].style = "width:" + swidth + "px;"
+            }
+            if (swidth == 160) {
+              clearInterval(stimer)
+            }
+          }
+
+        } else {
+          view.style = "padding-left:56px;"
+          let width = 166
+          var timer2 = setInterval(fn2, 6)
+
+          function fn2() {
+            width -= 2
+            view.style = "padding-left:" + width + "px;"
+            if (width == 56) {
+              clearInterval(timer2)
+            }
+          }
+
+          let swidth = 160
+          var stimer2 = setInterval(sfn2, 6)
+
+          function sfn2() {
+            swidth -= 2
+            sidebar.style = "width:" + swidth + "px;"
+            for (let i = 0; i < menus.length; i++) {
+              menus[i].style = "width:" + swidth + "px;"
+            }
+            if (swidth == 50) {
+              clearInterval(stimer2)
+            }
+          }
+        }
         this.isClose = !this.isClose
       }
     }
@@ -64,13 +124,14 @@
     padding-left: 20px;
     color: #fff;
     overflow: hidden;
+    margin-top: 1px;
   }
 
   .menu span {
     color: #fff;
   }
 
-  .active {
+  a.active .menu{
     background: #20C1DC;
   }
 
@@ -79,7 +140,4 @@
     color: #fff;
   }
 
-  .sidebarClose {
-    width: 50px;
-  }
 </style>

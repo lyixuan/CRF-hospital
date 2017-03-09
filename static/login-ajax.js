@@ -6,10 +6,10 @@ if (navigator.userAgent.toLocaleLowerCase().indexOf('msie') !== -1 && !+[1,]) {
 var loginObj = {
   loginSubmit: function (params, url) {
     var postData = {
-      userName: document.getElementById("account").value,
+      user_name: document.getElementById("account").value,
       password: document.getElementById("password").value
     }
-    if (postData.userName == '') {
+    if (postData.user_name == '') {
       loginObj.loginError();
       return
     }
