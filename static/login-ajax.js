@@ -13,6 +13,9 @@ var loginObj = {
       loginObj.loginError();
       return
     }
+    var storage = JSON.stringify({
+      user_name: document.getElementById("account").value
+    });
     params = JSON.stringify(postData);
     url = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
     var xhr = null;
@@ -25,7 +28,7 @@ var loginObj = {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
           if (window.sessionStorage) {
-            sessionStorage.setItem("uusessions", params);
+            sessionStorage.setItem("uusessions", storage);
             var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "#/search";
             window.location.href = url;
           } else {
