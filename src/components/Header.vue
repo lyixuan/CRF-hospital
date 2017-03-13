@@ -28,8 +28,8 @@
         if (uusessions) {
           this.uusessions_name = uusessions.userName
         } else {
-          var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
-          window.location.href = url;
+//          var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
+//          window.location.href = url;
         }
       },
       handleSelect(key, keyPath) {

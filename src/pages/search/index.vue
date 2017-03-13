@@ -94,7 +94,7 @@
           current_page: this.current_page,
           page_size: this.page_size
         }
-        this.$resource(PATH_SEARCH + 'survey').get(params).then((response) => {
+        this.$resource(PATH_SEARCH + 'list').get(params).then((response) => {
           if (response.status == 200 && response.body.code == 200) {
             this.tableData = response.body.data
             this.total = response.body.total
