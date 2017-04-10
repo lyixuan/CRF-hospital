@@ -35,33 +35,37 @@
               <el-col :span="3">
                 <el-button type="info">{{zlfaForm[item].name}}</el-button>
               </el-col>
-              <el-col :span="5">
-                <el-form-item label="种类:">
-                  <el-select v-model="zlfaForm[item].type" placeholder="请选择">
-                    <el-option v-for="item in zlfaForm[item].types" :label="item.name" :value="item.key"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="5">
-                <el-form-item label="用量:">
-                  <el-select v-model="zlfaForm[item].dosage" placeholder="请选择">
-                    <el-option v-for="item in dosageList" :label="item.name" :value="item.id"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="5">
-                <el-form-item label="次数:">
-                  <el-select v-model="zlfaForm[item].frequency" placeholder="请选择">
-                    <el-option v-for="item in frequencyList" :label="item.name" :value="item.id"></el-option>
-                  </el-select>
-                </el-form-item>
-              </el-col>
-              <el-col :span="5">
-                <el-form-item label="服用方式:">
-                  <el-select v-model="zlfaForm[item].usage" placeholder="请选择">
-                    <el-option v-for="item in usageList" :label="item.name" :value="item.id"></el-option>
-                  </el-select>
-                </el-form-item>
+              <el-col :span="21">
+                <el-row v-for="(value,key) in zlfaForm[item]" v-if="key != 'name' && key != 'types'">
+                  <el-col :span="5">
+                    <el-form-item label="种类:">
+                      <el-select v-model="zlfaForm[item][key].type" placeholder="请选择">
+                        <el-option v-for="item in zlfaForm[item].types" :label="item.name" :value="item.key"></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="5">
+                    <el-form-item label="用量:">
+                      <el-select v-model="zlfaForm[item][key].dosage" placeholder="请选择">
+                        <el-option v-for="item in dosageList" :label="item.name" :value="item.id"></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="5">
+                    <el-form-item label="次数:">
+                      <el-select v-model="zlfaForm[item][key].frequency" placeholder="请选择">
+                        <el-option v-for="item in frequencyList" :label="item.name" :value="item.id"></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :span="5">
+                    <el-form-item label="服用方式:">
+                      <el-select v-model="zlfaForm[item][key].usage" placeholder="请选择">
+                        <el-option v-for="item in usageList" :label="item.name" :value="item.id"></el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
               </el-col>
             </el-row>
           </transition-group>
@@ -89,59 +93,74 @@
           date: '',
           RIC: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           },
           jty: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
-          },
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
+          }
+          ,
           jyy: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           },
           jzy: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           },
           kn: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           },
           kxxby: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           },
           other: {
             name: "",
-            type: "",
-            dosage: "",
-            frequency: "",
-            usage: "",
-            types: []
+            types: [],
+            z1: {
+              type: "",
+              dosage: "",
+              frequency: "",
+              usage: "",
+            }
           }
         }
       }

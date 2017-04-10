@@ -53,7 +53,7 @@ Vue.http.interceptors.push((request, next) => {
   request.url = request.url + '.php'
   next((response) => {
     if (response.status != 200) {
-      this.alertMsg("error", response.status + " - " + response.url)
+      Vue.prototype.alertMsg("error", response.status + " - " + response.url)
     }
   });
 });
