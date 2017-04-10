@@ -140,9 +140,9 @@
     mounted(){
       let info;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
       } catch (err) {
-        localStorage.removeItem("x_step8_img");
+        sessionStorage.removeItem("x_step8_img");
       }
       if (info) {
         this.writeBack(info)
@@ -195,7 +195,7 @@
         fileList.yx = this.yx;
         fileList.zlfa = this.zlfa;
         fileList.pflb= this.pflb;
-        window.localStorage.setItem('x_step8_img', JSON.stringify(fileList))
+        window.sessionStorage.setItem('x_step8_img', JSON.stringify(fileList))
       },
       saveAndStepTo(num) {
         this.storage()

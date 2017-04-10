@@ -17,22 +17,22 @@ Vue.prototype.stepTo = function (num) {
 };
 
 Vue.prototype.clearStorage = function () {
-  localStorage.removeItem("x_step1_jbxx");
-  localStorage.removeItem("x_step2_bs");
-  localStorage.removeItem("x_step3_jws");
-  localStorage.removeItem("x_step4_jy");
-  localStorage.removeItem("x_step5_yx");
-  localStorage.removeItem("x_step5_yx_checkList");
-  localStorage.removeItem("x_step5_yx_checkedList");
-  localStorage.removeItem("x_step6_zlfa");
-  localStorage.removeItem("x_step6_zlfa_checkList");
-  localStorage.removeItem("x_step6_zlfa_checkedList");
-  localStorage.removeItem("x_step6_zlfa_dosageList");
-  localStorage.removeItem("x_step6_zlfa_frequencyList");
-  localStorage.removeItem("x_step6_zlfa_usageList");
-  localStorage.removeItem("x_step7_pflb");
-  localStorage.removeItem("x_step7_pflb_tabList");
-  localStorage.removeItem("x_step8_img");
+  sessionStorage.removeItem("x_step1_jbxx");
+  sessionStorage.removeItem("x_step2_bs");
+  sessionStorage.removeItem("x_step3_jws");
+  sessionStorage.removeItem("x_step4_jy");
+  sessionStorage.removeItem("x_step5_yx");
+  sessionStorage.removeItem("x_step5_yx_checkList");
+  sessionStorage.removeItem("x_step5_yx_checkedList");
+  sessionStorage.removeItem("x_step6_zlfa");
+  sessionStorage.removeItem("x_step6_zlfa_checkList");
+  sessionStorage.removeItem("x_step6_zlfa_checkedList");
+  sessionStorage.removeItem("x_step6_zlfa_dosageList");
+  sessionStorage.removeItem("x_step6_zlfa_frequencyList");
+  sessionStorage.removeItem("x_step6_zlfa_usageList");
+  sessionStorage.removeItem("x_step7_pflb");
+  sessionStorage.removeItem("x_step7_pflb_tabList");
+  sessionStorage.removeItem("x_step8_img");
 };
 
 Vue.prototype.formatDate = function (date) {

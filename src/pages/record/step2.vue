@@ -87,9 +87,9 @@
     mounted(){
       let info;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
       } catch (err) {
-        localStorage.removeItem("x_step2_bs");
+        sessionStorage.removeItem("x_step2_bs");
       }
       if (info) {
         this.writeBack(info)
@@ -103,7 +103,7 @@
         this.bsForm.zd = info.zd
       },
       storage() {
-        window.localStorage.setItem('x_step2_bs', JSON.stringify(this.bsForm))
+        window.sessionStorage.setItem('x_step2_bs', JSON.stringify(this.bsForm))
       },
       saveAndStepTo(num) {
         this.$refs['bsForm'].validate((valid) => {

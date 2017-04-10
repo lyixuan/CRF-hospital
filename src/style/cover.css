@@ -16,3 +16,15 @@
 .header .el-menu--horizontal .el-submenu > .el-menu{
   top: 52px!important;
 }
+/* form label*/
+.zhong-lei-label .el-form-item__label{
+  width: 50px!important;
+}
+.add-btn button{
+  float: right;
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  padding: 0!important;
+}

@@ -144,13 +144,13 @@
     mounted(){
       let info, info_checkedList, info_checkList;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step5_yx'))
-        info_checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
-        info_checkList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkList'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
+        info_checkedList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkedList'))
+        info_checkList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkList'))
       } catch (err) {
-        localStorage.removeItem("x_step5_yx");
-        localStorage.removeItem("x_step5_yx_checkedList");
-        localStorage.removeItem("x_step5_yx_checkList");
+        sessionStorage.removeItem("x_step5_yx");
+        sessionStorage.removeItem("x_step5_yx_checkedList");
+        sessionStorage.removeItem("x_step5_yx_checkList");
       }
 
       if (info) {
@@ -169,9 +169,9 @@
         for (let key in this.yxForm) {
           this.yxForm[key].date ? this.yxForm[key].date = this.formatDate(new Date(this.yxForm[key].date)) : ""
         }
-        window.localStorage.setItem('x_step5_yx', JSON.stringify(this.yxForm))
-        window.localStorage.setItem('x_step5_yx_checkedList', JSON.stringify(this.checkedList))
-        window.localStorage.setItem('x_step5_yx_checkList', JSON.stringify(this.checkList))
+        window.sessionStorage.setItem('x_step5_yx', JSON.stringify(this.yxForm))
+        window.sessionStorage.setItem('x_step5_yx_checkedList', JSON.stringify(this.checkedList))
+        window.sessionStorage.setItem('x_step5_yx_checkList', JSON.stringify(this.checkList))
       },
       saveAndStepTo(num) {
         if (this.validate()) {

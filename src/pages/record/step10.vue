@@ -18,7 +18,7 @@
             <td colspan="3">住址: {{x_step1_jbxx.addr}}</td>
           </tr>
           <tr>
-            <td>病史分类:</td>
+            <td>病史分类</td>
             <td colspan="4">{{x_step1_jbxx.sick_type ? x_step1_jbxx.sick_type.sick:''}}</td>
           </tr>
         </table>
@@ -117,6 +117,12 @@
           </tr>
         </table>
         <div class="t-header">四、检验</div>
+        <table v-show="!x_step4_jy.xcg.date&&!x_step4_jy.xsh.date&&!x_step4_jy.nxsx.date&&!x_step4_jy.txbpas.date&&!x_step4_jy.cmCfydb.date&&!x_step4_jy.xlb.date&&
+!x_step4_jy.thxhdb.date&&!x_step4_jy.xxbjjsy.date&&!x_step4_jy.dbCS.date&&!x_step4_jy.knxmIII.date">
+          <tr>
+            <td>无</td>
+          </tr>
+        </table>
         <table v-show="x_step4_jy.xcg.date == null ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.xcg.name}} [{{x_step4_jy.xcg.date}}]</td>
@@ -295,7 +301,7 @@
         </table>
         <table v-show="x_step4_jy.dbCS.date == null ? false : true">
           <tr>
-            <td colspan="5">{{x_step4_jy.dbCS.name}}  [{{x_step4_jy.dbCS.date}}]</td>
+            <td colspan="5">{{x_step4_jy.dbCS.name}} [{{x_step4_jy.dbCS.date}}]</td>
           </tr>
           <tr>
             <th></th>
@@ -338,6 +344,11 @@
           </tr>
         </table>
         <div class="t-header">五、影像学检查</div>
+        <table v-if="x_step5_yx.length<1">
+          <tr>
+            <td>无</td>
+          </tr>
+        </table>
         <table>
           <tr v-for="item in x_step5_yx">
             <td width="9%">{{item.name}}</td>
@@ -347,7 +358,12 @@
           </tr>
         </table>
         <div class="t-header">六、治疗方案</div>
-        <table>
+        <table v-if="!x_step6_zlfa_date">
+          <tr>
+            <td>无</td>
+          </tr>
+        </table>
+        <table v-if="x_step6_zlfa_date">
           <tr>
             <td colspan="5">日期: {{x_step6_zlfa_date}}</td>
           </tr>
@@ -360,9 +376,14 @@
           </tr>
         </table>
         <div class="t-header">七、评分量表</div>
+        <table v-show="!x_step7_pflb.abcd2.No1&&!x_step7_pflb.mRs.No1&&!x_step7_pflb.mmse.No1&&!x_step7_pflb.nihss.No1">
+          <tr>
+            <td>无</td>
+          </tr>
+        </table>
         <table v-show="x_step7_pflb.abcd2.No1 == ''?false:true">
           <tr>
-            <td colspan="4">ABCD2评分  [总分: {{x_step7_pflb.abcd2.total}}]</td>
+            <td colspan="4">ABCD2评分 [总分: {{x_step7_pflb.abcd2.total}}]</td>
           </tr>
           <tr>
             <th colspan="3">ABCD2评分（总分0-7）</th>
@@ -909,7 +930,7 @@
           <el-button class="m-el-button" type="primary" @click="openDia">保存</el-button>
         </el-col>
         <el-col :span="4">
-          <el-button class="m-el-button"  type="primary" @click="stepTo(9)">返回</el-button>
+          <el-button class="m-el-button" type="primary" @click="stepTo(9)">返回</el-button>
         </el-col>
       </el-row>
     </div>
@@ -930,7 +951,7 @@
     name: 'input-step10',
     data () {
       return {
-        saving:false,
+        saving: false,
         x_step1_jbxx: {},
         x_step2_bs: {},
         x_step3_jws: {
@@ -1000,7 +1021,7 @@
         },
         x_step5_yx: [],
         x_step6_zlfa: [],
-        x_step6_zlfa_date:"",
+        x_step6_zlfa_date: "",
         x_step7_pflb: {
           abcd2: {},
           nihss: {},
@@ -1008,7 +1029,7 @@
           mmse: {}
         },
 
-        dialogVisible:false,
+        dialogVisible: false,
         submitList: {}
       }
     },
@@ -1023,7 +1044,7 @@
     },
     methods: {
       getStep1(){
-        this.x_step1_jbxx = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+        this.x_step1_jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
         let base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
         for (let i = 0; i < base.jm.length; i++) {
           if (this.x_step1_jbxx.sick_type.sick == base.jm[i].key) {
@@ -1037,17 +1058,17 @@
         }
       },
       getStep2(){
-        this.x_step2_bs = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+        this.x_step2_bs = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
       },
       getStep3(){
-        this.x_step3_jws = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+        this.x_step3_jws = JSON.parse(window.sessionStorage.getItem('x_step3_jws'))
       },
       getStep4(){
-        this.x_step4_jy = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+        this.x_step4_jy = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
       },
       getStep5(){
-        let temp = JSON.parse(window.localStorage.getItem('x_step5_yx'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkedList'))
         for (let key in temp) {
           for (let i = 0; i < checkedList.length; i++) {
             if (key == checkedList[i]) {
@@ -1057,45 +1078,52 @@
         }
       },
       getStep6(){
-        let temp = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
-        let dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
-        let frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
-        let usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
+        let dosageList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_dosageList'))
+        let frequencyList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_frequencyList'))
+        let usageList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_usageList'))
         this.x_step6_zlfa_date = temp.date
         for (let key in temp) {
-          if (key != 'date'){
+          if (key != 'date') {
             for (let i = 0; i < checkedList.length; i++) {
               if (key == checkedList[i]) {
-                for (let d = 0; d < dosageList.length; d++) {
-                  if (temp[key].dosage == dosageList[d].id) {
-                    temp[key].dosage = dosageList[d].name
+                for (let j in temp[key]) {
+                  if (j != 'name' && j != 'types' && j != 'flag') {
+                    for (let d = 0; d < dosageList.length; d++) {
+                      if (temp[key][j].dosage == dosageList[d].id) {
+                        temp[key][j].dosage = dosageList[d].name
+                      }
+                    }
+                    for (let f = 0; f < frequencyList.length; f++) {
+                      if (temp[key][j].frequency == frequencyList[f].id) {
+                        temp[key][j].frequency = frequencyList[f].name
+                      }
+                    }
+                    for (let u = 0; u < usageList.length; u++) {
+                      if (temp[key][j].usage == usageList[u].id) {
+                        temp[key][j].usage = usageList[u].name
+                      }
+                    }
+                    for (let t = 0; t < temp[key].types.length; t++) {
+                      if (temp[key][j].type == temp[key].types[t].key) {
+                        temp[key][j].type = temp[key].types[t].name
+                      }
+                    }
+                    temp[key][j].name = temp[key].name
+                    this.x_step6_zlfa.push(temp[key][j])
+                    console.log(temp[key][j])
                   }
                 }
-                for (let f = 0; f < frequencyList.length; f++) {
-                  if (temp[key].frequency == frequencyList[f].id) {
-                    temp[key].frequency = frequencyList[f].name
-                  }
-                }
-                for (let u = 0; u < usageList.length; u++) {
-                  if (temp[key].usage == usageList[u].id) {
-                    temp[key].usage = usageList[u].name
-                  }
-                }
-                for (let t = 0; t < temp[key].types.length; t++) {
-                  if (temp[key].type == temp[key].types[t].key) {
-                    temp[key].type = temp[key].types[t].name
-                  }
-                }
-                this.x_step6_zlfa.push(temp[key])
               }
             }
           }
         }
 
+        console.log(this.x_step6_zlfa)
       },
       getStep7(){
-        let temp = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
         this.x_step7_pflb.abcd2 = temp.abcd2
         this.x_step7_pflb.nihss = temp.nihss
         this.x_step7_pflb.mRs = temp.mRs
@@ -1103,10 +1131,10 @@
       },
       getStep8(){
         this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
         for (let key in x_step8_img) {
           if (x_step8_img[key].length > 0) {
-            this.submitList.img[key]=[]
+            this.submitList.img[key] = []
             for (let i = 0; i < x_step8_img[key].length; i++) {
               this.submitList.img[key].push(x_step8_img[key][i].response.id)
             }
@@ -1133,7 +1161,7 @@
           if (response.status == 200) {
             this.clearAndStepTo(1)
           } else {
-            this.alertMsg("error", response.status + ':' +response.body.msg + " - " + response.url)
+            this.alertMsg("error", response.status + ':' + response.body.msg + " - " + response.url)
           }
         }, (response) => {
           this.saving = false
@@ -1141,18 +1169,18 @@
         })
       },
       sStep1(){
-        this.submitList.jbxx = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+        this.submitList.jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
       },
       sStep2(){
-        this.submitList.bs = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+        this.submitList.bs = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
       },
       sStep3(){
-        this.submitList.jws = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+        this.submitList.jws = JSON.parse(window.sessionStorage.getItem('x_step3_jws'))
       },
       sStep4(){
         this.submitList.jy = {}
         // 只提交有内容的检验,即date不为null
-        let x_step4_jy = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+        let x_step4_jy = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
         for (let key in x_step4_jy) {
           if (x_step4_jy[key].date) {
             this.submitList.jy[key] = x_step4_jy[key]
@@ -1161,8 +1189,8 @@
       },
       sStep5(){
         this.submitList.yx = {}
-        let temp = JSON.parse(window.localStorage.getItem('x_step5_yx'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkedList'))
         for (let key in temp) {
           for (let i = 0; i < checkedList.length; i++) {
             if (key == checkedList[i]) {
@@ -1173,15 +1201,19 @@
       },
       sStep6(){
         this.submitList.zlfa = {}
-        let temp = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
         this.x_step6_zlfa_date = temp.date
         for (let key in temp) {
           if (key != 'date') {
             for (let i = 0; i < checkedList.length; i++) {
               if (key == checkedList[i]) {
-                delete temp[key].types
-                this.submitList.zlfa[key] = temp[key]
+                this.submitList.zlfa[key] = []
+                for (let ik in temp[key]) {
+                  if (ik != 'name' && ik != 'types' && ik != 'flag') {
+                    this.submitList.zlfa[key].push(temp[key][ik])
+                  }
+                }
               }
             }
           }
@@ -1189,7 +1221,7 @@
       },
       sStep7(){
         this.submitList.pflb = {}
-        let x_step7_pflb = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
+        let x_step7_pflb = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
         for (let key in x_step7_pflb) {
           if (x_step7_pflb[key].No1 != '') {
             this.submitList.pflb[key] = x_step7_pflb[key]
@@ -1198,10 +1230,10 @@
       },
       stStep8(){
         this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
         for (let key in x_step8_img) {
           if (x_step8_img[key].length > 0) {
-            this.submitList.img[key]=[]
+            this.submitList.img[key] = []
             for (let i = 0; i < x_step8_img[key].length; i++) {
               this.submitList.img[key].push(x_step8_img[key][i].response.id)
             }
@@ -1210,11 +1242,11 @@
       },
       clearAndStepTo(num){
         this.clearStorage()
-        this.dialogVisible=false
+        this.dialogVisible = false
         this.stepTo(num)
       },
       cancel(){
-        this.dialogVisible=false
+        this.dialogVisible = false
       }
     }
   }
@@ -1248,14 +1280,17 @@
     padding: 0 10px;
     color: #555;
   }
-  .view-boot{
+
+  .view-boot {
     margin-top: 10px;
   }
-  .view-boot .m-el-button{
+
+  .view-boot .m-el-button {
     float: right;
     width: 120px;
   }
-  .first{
+
+  .first {
     margin-right: 10px;
   }
 </style>

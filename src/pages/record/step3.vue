@@ -313,9 +313,9 @@
     mounted(){
       let info;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step3_jws'))
       } catch (err) {
-        localStorage.removeItem("x_step3_jws");
+        sessionStorage.removeItem("x_step3_jws");
       }
       if (info) {
         this.writeBack(info)
@@ -330,7 +330,7 @@
         this.jwsForm.gxy.info.now_date  = this.formatDate(new Date(this.jwsForm.gxy.info.now_date))
         this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
         this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
-        window.localStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
+        window.sessionStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {
         if (this.validate()) {

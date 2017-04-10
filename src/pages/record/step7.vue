@@ -613,11 +613,11 @@
     mounted(){
       let info, info_tabList;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
-        info_tabList = JSON.parse(window.localStorage.getItem('x_step7_pflb_tabList'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
+        info_tabList = JSON.parse(window.sessionStorage.getItem('x_step7_pflb_tabList'))
       } catch (err) {
-        localStorage.removeItem("x_step7_pflb");
-        localStorage.removeItem("x_step7_pflb_tabList");
+        sessionStorage.removeItem("x_step7_pflb");
+        sessionStorage.removeItem("x_step7_pflb_tabList");
       }
       if (info) {
         this.writeBack(info, info_tabList)
@@ -631,8 +631,8 @@
         this.tabList = JSON.parse(JSON.stringify(info_tabList));
       },
       storage() {
-        window.localStorage.setItem('x_step7_pflb', JSON.stringify(this.pflbForm))
-        window.localStorage.setItem('x_step7_pflb_tabList', JSON.stringify(this.tabList))
+        window.sessionStorage.setItem('x_step7_pflb', JSON.stringify(this.pflbForm))
+        window.sessionStorage.setItem('x_step7_pflb_tabList', JSON.stringify(this.tabList))
       },
       saveAndStepTo(num) {
         for (let key in this.pflbForm) {

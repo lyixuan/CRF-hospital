@@ -179,9 +179,9 @@
     mounted () {
       let info, base;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
       } catch (err) {
-        localStorage.removeItem("x_step1_jbxx");
+        sessionStorage.removeItem("x_step1_jbxx");
       }
       if (info) {
         this.writeBack(info)
@@ -206,7 +206,7 @@
       storage() {
         this.jbxxForm.visit_date = this.formatDate(new Date(this.jbxxForm.visit_date))
         this.jbxxForm.birthday = this.formatDate(new Date(this.jbxxForm.birthday))
-        window.localStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
+        window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
         this.$refs['jbxxForm'].validate((valid) => {
@@ -224,6 +224,7 @@
         this.$resource(PATH_RECORD + 'dict/jbxx').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
+            window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -255,14 +256,14 @@
         }
         this.$resource(PATH_RECORD + 'search').get({card_id: cardId}).then((response) => {
           if (response.status == 200) {
-            window.localStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
-            window.localStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
-            window.localStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
+            window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
+            window.sessionStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
+            window.sessionStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
             let info;
             try {
-              info = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+              info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
             } catch (err) {
-              localStorage.removeItem("x_step1_jbxx");
+              sessionStorage.removeItem("x_step1_jbxx");
               this.alertMsg("warning", "检索失败")
             }
             this.writeBack(info)

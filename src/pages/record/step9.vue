@@ -74,18 +74,18 @@
         })
       },
       getStep1(){
-        this.submitList.jbxx = JSON.parse(window.localStorage.getItem('x_step1_jbxx'))
+        this.submitList.jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
       },
       getStep2(){
-        this.submitList.bs = JSON.parse(window.localStorage.getItem('x_step2_bs'))
+        this.submitList.bs = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
       },
       getStep3(){
-        this.submitList.jws = JSON.parse(window.localStorage.getItem('x_step3_jws'))
+        this.submitList.jws = JSON.parse(window.sessionStorage.getItem('x_step3_jws'))
       },
       getStep4(){
         this.submitList.jy = {}
         // 只提交有内容的检验,即date不为null
-        let x_step4_jy = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+        let x_step4_jy = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
         for (let key in x_step4_jy) {
           if (x_step4_jy[key].date) {
             this.submitList.jy[key] = x_step4_jy[key]
@@ -94,8 +94,8 @@
       },
       getStep5(){
         this.submitList.yx = {}
-        let temp = JSON.parse(window.localStorage.getItem('x_step5_yx'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step5_yx_checkedList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkedList'))
         for (let key in temp) {
           for (let i = 0; i < checkedList.length; i++) {
             if (key == checkedList[i]) {
@@ -106,15 +106,19 @@
       },
       getStep6(){
         this.submitList.zlfa = {}
-        let temp = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-        let checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
+        let temp = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
+        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
         this.x_step6_zlfa_date = temp.date
         for (let key in temp) {
           if (key != 'date') {
             for (let i = 0; i < checkedList.length; i++) {
               if (key == checkedList[i]) {
-                delete temp[key].types
-                this.submitList.zlfa[key] = temp[key]
+                this.submitList.zlfa[key]=[]
+                for(let ik in temp[key]){
+                  if(ik != 'name' && ik !='types' && ik !='flag'){
+                    this.submitList.zlfa[key].push(temp[key][ik])
+                  }
+                }
               }
             }
           }
@@ -122,7 +126,7 @@
       },
       getStep7(){
         this.submitList.pflb = {}
-        let x_step7_pflb = JSON.parse(window.localStorage.getItem('x_step7_pflb'))
+        let x_step7_pflb = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
         for (let key in x_step7_pflb) {
           if (x_step7_pflb[key].No1 != '') {
             this.submitList.pflb[key] = x_step7_pflb[key]
@@ -131,7 +135,7 @@
       },
       getStep8(){
         this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.localStorage.getItem('x_step8_img'))
+        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
         for (let key in x_step8_img) {
           if (x_step8_img[key].length > 0) {
             this.submitList.img[key]=[]

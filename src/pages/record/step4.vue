@@ -390,9 +390,9 @@
     mounted(){
       let info;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step4_jy'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
       } catch (err) {
-        localStorage.removeItem("x_step4_jy");
+        sessionStorage.removeItem("x_step4_jy");
       }
       if (info) {
         this.writeBack(info)
@@ -426,7 +426,7 @@
         for (let key in this.jyForm) {
           this.jyForm[key].date ? this.jyForm[key].date = this.formatDate(new Date(this.jyForm[key].date)) : ""
         }
-        window.localStorage.setItem('x_step4_jy', JSON.stringify(this.jyForm))
+        window.sessionStorage.setItem('x_step4_jy', JSON.stringify(this.jyForm))
       },
       saveAndStepTo(num) {
         for (let key in this.jyForm) {

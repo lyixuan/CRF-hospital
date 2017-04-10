@@ -36,11 +36,17 @@
                 <el-button type="info">{{zlfaForm[item].name}}</el-button>
               </el-col>
               <el-col :span="21">
-                <el-row v-for="(value,key) in zlfaForm[item]" v-if="key != 'name' && key != 'types'">
-                  <el-col :span="5">
-                    <el-form-item label="种类:">
+                <el-row :gutter="10" v-for="(value,key) in zlfaForm[item]" v-if="key != 'name' && key != 'types' && key != 'flag'">
+                  <el-col :span="2" class="add-btn">
+                    &nbsp;
+                    <el-button type="info" @click="addType(item,key)" v-if="key == zlfaForm[item].flag">+</el-button>
+                    <el-button type="danger" @click="delType(item,key)" v-if="key != 'z1' && key == zlfaForm[item].flag">-</el-button>
+                  </el-col>
+                  <el-col :span="6">
+                    <el-form-item label="种类:" class="zhong-lei-label">
                       <el-select v-model="zlfaForm[item][key].type" placeholder="请选择">
-                        <el-option v-for="item in zlfaForm[item].types" :label="item.name" :value="item.key"></el-option>
+                        <el-option v-for="item in zlfaForm[item].types" :label="item.name"
+                                   :value="item.key"></el-option>
                       </el-select>
                     </el-form-item>
                   </el-col>
@@ -168,19 +174,19 @@
     mounted(){
       let info, info_checkedList, info_checkList, info_dosageList, info_frequencyList, info_usageList;
       try {
-        info = JSON.parse(window.localStorage.getItem('x_step6_zlfa'))
-        info_checkedList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkedList'))
-        info_checkList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_checkList'))
-        info_dosageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_dosageList'))
-        info_frequencyList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_frequencyList'))
-        info_usageList = JSON.parse(window.localStorage.getItem('x_step6_zlfa_usageList'))
+        info = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
+        info_checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
+        info_checkList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkList'))
+        info_dosageList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_dosageList'))
+        info_frequencyList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_frequencyList'))
+        info_usageList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_usageList'))
       } catch (err) {
-        localStorage.removeItem("x_step6_zlfa");
-        localStorage.removeItem("x_step6_zlfa_checkedList");
-        localStorage.removeItem("x_step6_zlfa_checkList");
-        localStorage.removeItem("x_step6_zlfa_dosageList");
-        localStorage.removeItem("x_step6_zlfa_frequencyList");
-        localStorage.removeItem("x_step6_zlfa_usageList");
+        sessionStorage.removeItem("x_step6_zlfa");
+        sessionStorage.removeItem("x_step6_zlfa_checkedList");
+        sessionStorage.removeItem("x_step6_zlfa_checkList");
+        sessionStorage.removeItem("x_step6_zlfa_dosageList");
+        sessionStorage.removeItem("x_step6_zlfa_frequencyList");
+        sessionStorage.removeItem("x_step6_zlfa_usageList");
       }
 
       if (info) {
@@ -200,12 +206,12 @@
       },
       storage() {
         this.zlfaForm.date ? this.zlfaForm.date = this.formatDate(new Date(this.zlfaForm.date)) : ""
-        window.localStorage.setItem('x_step6_zlfa', JSON.stringify(this.zlfaForm))
-        window.localStorage.setItem('x_step6_zlfa_checkedList', JSON.stringify(this.checkedList))
-        window.localStorage.setItem('x_step6_zlfa_checkList', JSON.stringify(this.checkList))
-        window.localStorage.setItem('x_step6_zlfa_dosageList', JSON.stringify(this.dosageList))
-        window.localStorage.setItem('x_step6_zlfa_frequencyList', JSON.stringify(this.frequencyList))
-        window.localStorage.setItem('x_step6_zlfa_usageList', JSON.stringify(this.usageList))
+        window.sessionStorage.setItem('x_step6_zlfa', JSON.stringify(this.zlfaForm))
+        window.sessionStorage.setItem('x_step6_zlfa_checkedList', JSON.stringify(this.checkedList))
+        window.sessionStorage.setItem('x_step6_zlfa_checkList', JSON.stringify(this.checkList))
+        window.sessionStorage.setItem('x_step6_zlfa_dosageList', JSON.stringify(this.dosageList))
+        window.sessionStorage.setItem('x_step6_zlfa_frequencyList', JSON.stringify(this.frequencyList))
+        window.sessionStorage.setItem('x_step6_zlfa_usageList', JSON.stringify(this.usageList))
       },
       saveAndStepTo(num) {
         if (this.validate()) {
@@ -217,12 +223,16 @@
       validate() {
         // 勾选的项目必填
         for (let i = 0; i < this.checkedList.length; i++) {
-          if (this.zlfaForm[this.checkedList[i]].type == ''
-            || this.zlfaForm[this.checkedList[i]].dosage == ''
-            || this.zlfaForm[this.checkedList[i]].frequency == ''
-            || this.zlfaForm[this.checkedList[i]].usage == '') {
-            this.alertMsg("warning", '请将 "' + this.zlfaForm[this.checkedList[i]].name + '" 信息填写完整')
-            return false
+          for(let k in this.zlfaForm[this.checkedList[i]]){
+            if(k != 'name' && k != 'types'){
+              if (this.zlfaForm[this.checkedList[i]][k].type == ''
+                || this.zlfaForm[this.checkedList[i]][k].dosage == ''
+                || this.zlfaForm[this.checkedList[i]][k].frequency == ''
+                || this.zlfaForm[this.checkedList[i]][k].usage == '') {
+                this.alertMsg("warning", '请将 "' + this.zlfaForm[this.checkedList[i]].name + '" 信息填写完整')
+                return false
+              }
+            }
           }
           if (this.zlfaForm.date == '') {
             this.alertMsg("warning", '请选择治疗方案日期')
@@ -244,6 +254,7 @@
                   if (key == key1) {
                     this.zlfaForm[key1].name = result_items[key].name
                     this.zlfaForm[key1].types = result_items[key].items
+                    this.zlfaForm[key1].flag = "z1"
                   }
                 }
               }
@@ -252,6 +263,24 @@
             }
           }
         )
+      },
+      addType(m, k){
+        let kn = parseInt(k.substr(1, 1))
+        let str = 'z' + ++kn
+        this.zlfaForm[m].flag = str;
+        this.$set(this.zlfaForm[m], str, {
+          type: "",
+          dosage: "",
+          frequency: "",
+          usage: ""
+        });
+
+      },
+      delType(m, k){
+        this.$set(this.zlfaForm[m], k, null);
+        delete this.zlfaForm[m][k]
+        let kn = parseInt(k.substr(1, 1))
+        this.zlfaForm[m].flag ='z'+ --kn;
       }
     }
   }
@@ -298,4 +327,5 @@
     font-size: 18px;
     color: #00A2CA;
   }
+
 </style>
