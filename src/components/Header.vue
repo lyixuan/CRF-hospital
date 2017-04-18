@@ -26,10 +26,11 @@
       getSession(){
         let uusessions = JSON.parse(window.sessionStorage.getItem('uusessions'))
         if (uusessions) {
-          this.uusessions_name = uusessions.userName
+          this.uusessions_name = uusessions.user_name
         } else {
-//          var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
-//          window.location.href = url;
+          sessionStorage.removeItem('uusessions')
+          var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.php";
+          window.location.href = url;
         }
       },
       handleSelect(key, keyPath) {
@@ -37,7 +38,7 @@
           this.$resource(PATH_LOGIN + 'logout').get().then((response) => {
             if (response.status == 200) {
               sessionStorage.removeItem('uusessions')
-              var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.html";
+              var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.php";
               window.location.href = url;
             } else {
               this.alertMsg("error", response.status + " - " + response.url)

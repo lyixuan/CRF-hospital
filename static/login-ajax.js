@@ -17,7 +17,7 @@ var loginObj = {
       user_name: document.getElementById("account").value
     });
     params = JSON.stringify(postData);
-    url = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
+    url = '/api/login.php'
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
@@ -26,10 +26,10 @@ var loginObj = {
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
+        if (xhr.status === 200 && xhr.body.code == 200) {
           if (window.sessionStorage) {
             sessionStorage.setItem("uusessions", storage);
-            var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "#/search";
+            var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "index.html#/search";
             window.location.href = url;
           } else {
             //ie8以下

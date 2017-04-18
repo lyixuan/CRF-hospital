@@ -180,14 +180,18 @@
       let info, base;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
+        base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
       } catch (err) {
         sessionStorage.removeItem("x_step1_jbxx");
-      }
-      if (info) {
-        this.writeBack(info)
+        sessionStorage.removeItem("x_step1_jbxx_base");
       }
 
-      this.getJbxx()
+      if (base) {
+        this.baseData = base;
+      } else {
+        this.getJbxx()
+      }
+
     },
     methods: {
       writeBack (info) {
