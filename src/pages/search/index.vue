@@ -98,8 +98,6 @@
           if (response.status == 200 && response.body.code == 200) {
             this.tableData = response.body.data
             this.total = response.body.total
-            this.page_size = response.body.page_size
-            this.current_page = response.body.current_page
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
