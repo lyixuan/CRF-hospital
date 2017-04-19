@@ -17,7 +17,7 @@ var loginObj = {
       user_name: document.getElementById("account").value
     });
     params = JSON.stringify(postData);
-    url = '/api/login.php'
+    url = '/login/login.php'
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
