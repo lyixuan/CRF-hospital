@@ -1204,6 +1204,7 @@
         let temp = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
         let checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
         this.x_step6_zlfa_date = temp.date
+        this.submitList.zlfa.date = temp.date
         for (let key in temp) {
           if (key != 'date') {
             for (let i = 0; i < checkedList.length; i++) {

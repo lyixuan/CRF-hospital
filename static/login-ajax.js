@@ -18,6 +18,7 @@ var loginObj = {
     });
     params = JSON.stringify(postData);
     url = '/login/login.php'
+    // url = 'http://rap.taobao.org/mockjsdata/12461/login/login.php'
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
@@ -26,7 +27,8 @@ var loginObj = {
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
-        if (xhr.status === 200 && xhr.body.code == 200) {
+        var res = JSON.parse(xhr.response)
+        if (xhr.status === 200 && res.code == 200) {
           if (window.sessionStorage) {
             sessionStorage.setItem("uusessions", storage);
             var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "index.html#/search";
