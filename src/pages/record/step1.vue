@@ -259,7 +259,7 @@
           return
         }
         this.$resource(PATH_RECORD + 'search').get({card_id: cardId}).then((response) => {
-          if (response.status == 200) {
+          if (response.body.code == 200) {
             window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
             window.sessionStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
             window.sessionStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
@@ -272,7 +272,7 @@
             }
             this.writeBack(info)
           } else {
-            this.alertMsg("error", response.status + " - " + response.url)
+            this.alertMsg("error", "没有检索到信息")
           }
         })
 
