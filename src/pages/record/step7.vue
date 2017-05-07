@@ -625,6 +625,12 @@
         this.getPflb()
       }
     },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
+    },
     methods: {
       writeBack (info, info_tabList) {
         this.pflbForm = JSON.parse(JSON.stringify(info));

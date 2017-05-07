@@ -1042,6 +1042,12 @@
       this.getStep6()
       this.getStep7()
     },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
+    },
     methods: {
       getStep1(){
         this.x_step1_jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))

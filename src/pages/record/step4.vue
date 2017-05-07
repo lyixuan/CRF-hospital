@@ -400,6 +400,12 @@
         this.getJy()
       }
     },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
+    },
     methods: {
       writeBack (info) {
         // 信息回显,value值在json转为vue的obj时,总是丢失,未找到原因,用下面方式暂时可以解决

@@ -149,6 +149,12 @@
       }
       console.log(this.bs)
     },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
+    },
     methods: {
       handleRemove(file, fileList) {
         let listStr = this.constructStr(file.response)

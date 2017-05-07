@@ -195,6 +195,12 @@
         this.getZlfa()
       }
     },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
+    },
     methods: {
       writeBack (info, info_checkedList, info_checkList, info_dosageList, info_frequencyList, info_usageList) {
         this.zlfaForm = JSON.parse(JSON.stringify(info));
