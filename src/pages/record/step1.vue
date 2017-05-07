@@ -191,6 +191,9 @@
       } else {
         this.getJbxx()
       }
+      if (info) {
+        this.writeBack(info)
+      }
 
     },
     methods: {

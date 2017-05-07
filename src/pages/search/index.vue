@@ -51,7 +51,7 @@
         @size-change="handleSizeChange"
         :current-page="current_page"
         :page-size="page_size"
-        :page-sizes="[10, 50, 100, 200, 500]"
+        :page-sizes="[10, 20, 30]"
         layout="total,sizes, prev, pager, next"
         :total="total">
       </el-pagination>
@@ -75,6 +75,12 @@
     },
     mounted () {
       this.search()
+    },
+    beforeDestroy: function () {
+      this.$el.innerHTML='';
+      for(let k in this.$data){
+        delete this.$data[k]
+      }
     },
     methods: {
       sexFormat(row, col){
