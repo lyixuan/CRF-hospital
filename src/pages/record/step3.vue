@@ -35,13 +35,13 @@
                 &nbsp;
               </el-col>
               <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_zg_high" placeholder="高值"></el-input>
+                <el-input v-model="jwsForm.gxy.info.xy_zg_high" placeholder="收缩压"></el-input>
               </el-col>
               <el-col :span="1" class="m-label">
                 /
               </el-col>
               <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_zg_low" placeholder="低值"></el-input>
+                <el-input v-model="jwsForm.gxy.info.xy_zg_low" placeholder="舒张压"></el-input>
               </el-col>
               <el-col :span="1" class="m-label">
                 mmHg
@@ -56,13 +56,13 @@
                 &nbsp;
               </el-col>
               <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_now_high" placeholder="高值"></el-input>
+                <el-input v-model="jwsForm.gxy.info.xy_now_high" placeholder="收缩压"></el-input>
               </el-col>
               <el-col :span="1" class="m-label">
                 /
               </el-col>
               <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_now_low" placeholder="低值"></el-input>
+                <el-input v-model="jwsForm.gxy.info.xy_now_low" placeholder="舒张压"></el-input>
               </el-col>
               <el-col :span="1" class="m-label">
                 mmHg
