@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <span class="title">管理控制台</span>
+    <span class="title">CRF控制台</span>
     <!--<span class="user"><span class="cont">{{uusessions_name}}</span><i class="el-icon-caret-bottom"></i></span>-->
     <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-submenu index="1">
@@ -30,7 +30,7 @@
         } else {
           sessionStorage.removeItem('uusessions')
           var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.php";
-          window.location.href = url;
+//          window.location.href = url;
         }
       },
       handleSelect(key, keyPath) {
@@ -60,7 +60,6 @@
     right: 0;
     height: 50px;
     z-index: 100;
-    background: #373D41;
   }
 
   .header span {
@@ -77,6 +76,7 @@
   .header .title {
     border-right: 1px solid #2A2F32;
     float: left;
+    border-bottom: 2px solid #1d8ce0;
   }
 
   .header .user {

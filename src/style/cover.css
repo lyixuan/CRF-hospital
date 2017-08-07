@@ -2,7 +2,6 @@
   z-index: -1!important;
 }
 .header .el-menu--dark{
-  background-color:#373D41!important;
   padding-right: 20px;
 }
 
@@ -27,4 +26,12 @@
   margin-left: 5px;
   margin-top: 5px;
   padding: 0!important;
+}
+.el-menu{
+  border-radius: 0;
+}
+
+.el-scrollbar>div{
+  margin-bottom: 0!important;
+  margin-right: 0!important;
 }

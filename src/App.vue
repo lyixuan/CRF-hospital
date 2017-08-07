@@ -47,6 +47,7 @@
 
   #view-cont {
     background: #fff;
+    min-height: 100%;
     overflow: hidden;
   }
 </style>

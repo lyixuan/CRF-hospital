@@ -197,8 +197,8 @@
 
     },
     beforeDestroy: function () {
-      this.$el.innerHTML='';
-      for(let k in this.$data){
+      this.$el.innerHTML = '';
+      for (let k in this.$data) {
         delete this.$data[k]
       }
     },
@@ -268,21 +268,17 @@
           return
         }
         this.$resource(PATH_RECORD + 'search').get({card_id: cardId}).then((response) => {
-          if (response.body.code == 200) {
-            window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
-            window.sessionStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
-            window.sessionStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
-            let info;
-            try {
-              info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
-            } catch (err) {
-              sessionStorage.removeItem("x_step1_jbxx");
-              this.alertMsg("warning", "检索失败")
-            }
-            this.writeBack(info)
-          } else {
-            this.alertMsg("error", "没有检索到信息")
+          window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(response.body.jbxx))
+          window.sessionStorage.setItem('x_step2_bs', JSON.stringify(response.body.bs))
+          window.sessionStorage.setItem('x_step3_jws', JSON.stringify(response.body.jws))
+          let info;
+          try {
+            info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
+          } catch (err) {
+            sessionStorage.removeItem("x_step1_jbxx");
+            this.alertMsg("warning", "检索失败")
           }
+          this.writeBack(info)
         })
 
       }

@@ -4,7 +4,7 @@ if (navigator.userAgent.toLocaleLowerCase().indexOf('msie') !== -1 && !+[1,]) {
 }
 
 var loginObj = {
-  loginSubmit: function (params, url) {
+  loginSubmit: function () {
     var postData = {
       user_name: document.getElementById("account").value,
       password: document.getElementById("password").value
@@ -13,12 +13,9 @@ var loginObj = {
       loginObj.loginError();
       return
     }
-    var storage = JSON.stringify({
-      user_name: document.getElementById("account").value
-    });
-    params = JSON.stringify(postData);
-    url = '/login/login.php'
-    // url = 'http://rap.taobao.org/mockjsdata/12461/login/login.php'
+    var params = JSON.stringify(postData);
+    //var  postUrl = '/login/login.php'
+    var postUrl = 'http://rap.taobao.org/mockjsdata/12461/login/login.php'
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
@@ -27,15 +24,14 @@ var loginObj = {
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
+        sessionStorage.setItem("uusessions", xhr.response);
         var res = JSON.parse(xhr.response)
         if (xhr.status === 200 && res.code == 200) {
           if (window.sessionStorage) {
-            sessionStorage.setItem("uusessions", storage);
-            var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "index.html#/search";
-            window.location.href = url;
+            window.location.href = 'http://'+window.location.host + "/index.html#/search";
           } else {
             //ie8以下
-            alert('您的浏览器版本过低,请升级浏览器或更换他浏览器再试！');
+            alert('您的浏览器版本太老了！！请升级浏览器或更换他浏览器再试。');
           }
         } else {
           loginObj.loginError();
@@ -43,7 +39,7 @@ var loginObj = {
         }
       }
     };
-    xhr.open("POST", url, true);
+    xhr.open("POST", postUrl, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(params);
   },
@@ -82,6 +78,6 @@ document.getElementById("submit").onclick = loginObj.loginSubmit;
 document.getElementById("password").onkeydown = function (event) {
   var e = event || window.event || arguments.callee.caller.arguments[0];
   if (e && e.keyCode == 13) {
-    document.getElementById("submit").onclick
+    loginObj.loginSubmit()
   }
 };
