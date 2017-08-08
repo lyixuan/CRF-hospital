@@ -6,7 +6,7 @@
         <el-col :span="12" class="x-title">图片上传</el-col>
         <el-col :span="12" class="x-btn">
           <el-button type="primary" @click="saveAndStepTo(7)" size="mini">上一步</el-button>
-          <el-button type="primary" @click="saveAndStepTo(9)" size="mini">下一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo('end')" size="mini">下一步</el-button>
         </el-col>
       </el-row>
     </div>

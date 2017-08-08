@@ -327,7 +327,8 @@
       },
       storage() {
         this.jwsForm.gxy.info.zg_date = this.formatDate(new Date(this.jwsForm.gxy.info.zg_date))
-        this.jwsForm.gxy.info.now_date  = this.formatDate(new Date(this.jwsForm.gxy.info.now_date))
+        console.log(this.jwsForm.gxy.info.now_date)
+        this.jwsForm.gxy.info.now_date  = new Date(this.jwsForm.gxy.info.now_date)?this.formatDate(new Date(this.jwsForm.gxy.info.now_date)):null
         this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
         this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
         window.sessionStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))

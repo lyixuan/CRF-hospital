@@ -7,8 +7,8 @@
           <el-submenu index="1">
             <template slot="title" class="el-icon-menu"><i class="el-icon-menu"></i>统计分析</template>
             <el-menu-item index="stata_survey"><i class="el-icon-menu"></i>概览</el-menu-item>
-            <el-menu-item index="1-2"><i class="el-icon-menu"></i>基本信息</el-menu-item>
-            <el-menu-item index="1-3"><i class="el-icon-menu"></i>既往史</el-menu-item>
+            <el-menu-item index="stata_basic"><i class="el-icon-menu"></i>基本信息</el-menu-item>
+            <el-menu-item index="stata_history"><i class="el-icon-menu"></i>既往史</el-menu-item>
             <el-menu-item index="1-4"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
@@ -22,7 +22,7 @@
           </el-submenu>
           <el-submenu index="3">
             <template slot="title"><i class="el-icon-document"></i>信息录入</template>
-            <el-menu-item index="record"><i class="el-icon-document"></i>信息录入</el-menu-item>
+            <el-menu-item index="record_1"><i class="el-icon-document"></i>信息录入</el-menu-item>
           </el-submenu>
           <el-submenu index="4">
             <template slot="title"><i class="el-icon-setting"></i>设置</template>

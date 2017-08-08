@@ -13,7 +13,7 @@ Vue.prototype.alertMsg = function (type, msg) {
 };
 
 Vue.prototype.stepTo = function (num) {
-  router.push({path: '/record/page' + num})
+  router.push({path: '/record_' + num})
 };
 
 Vue.prototype.clearStorage = function () {

@@ -14,7 +14,7 @@
       <div class="tab-content">
         <div class="finish-tip"><i class="el-icon-circle-check" style="font-size: 30px;"></i> 恭喜！信息录入完成</div>
         <div class="finish-btn">
-          <el-button type="primary" @click="stepTo(10)">预览</el-button>
+          <el-button type="primary" @click="stepTo('preview')">预览</el-button>
           <el-button type="primary" @click="openDia">保存</el-button>
         </div>
       </div>

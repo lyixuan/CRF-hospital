@@ -930,7 +930,7 @@
           <el-button class="m-el-button" type="primary" @click="openDia">保存</el-button>
         </el-col>
         <el-col :span="4">
-          <el-button class="m-el-button" type="primary" @click="stepTo(9)">返回</el-button>
+          <el-button class="m-el-button" type="primary" @click="stepTo('end')">返回</el-button>
         </el-col>
       </el-row>
     </div>

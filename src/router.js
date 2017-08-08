@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+// 录入
 import RecordPage1 from './pages/record/step1'
 import RecordPage2 from './pages/record/step2'
 import RecordPage3 from './pages/record/step3'
@@ -17,24 +18,27 @@ import SearchIndex from './pages/search/index'
 import SearchDetail from './pages/search/detail'
 // 统计
 import Survey from './pages/stata/survey'
+import Basic from './pages/stata/basic'
+import History from './pages/stata/history'
 
 Vue.use(VueRouter);
 
 const routes = [
+  {path: '/', component: Survey},
   {path: '/stata_survey', component: Survey},
-  {path: '/', component: RecordPage1},
-  {path: '/record', component: RecordPage1},
-  {path: '/record/page1', component: RecordPage1},
-  {path: '/record/page2', component: RecordPage2},
-  {path: '/record/page3', component: RecordPage3},
-  {path: '/record/page4', component: RecordPage4},
-  {path: '/record/page5', component: RecordPage5},
-  {path: '/record/page6', component: RecordPage6},
-  {path: '/record/page7', component: RecordPage7},
-  {path: '/record/page8', component: RecordPage8},
-  {path: '/record/page9', component: RecordPage9},
-  {path: '/record/page10', component: RecordPage10},
-  {path: '/record/page11', component: RecordPage11},
+  {path: '/stata_basic', component: Basic},
+  {path: '/stata_history', component: History},
+  {path: '/record_1', component: RecordPage1},
+  {path: '/record_2', component: RecordPage2},
+  {path: '/record_3', component: RecordPage3},
+  {path: '/record_4', component: RecordPage4},
+  {path: '/record_5', component: RecordPage5},
+  {path: '/record_6', component: RecordPage6},
+  {path: '/record_7', component: RecordPage7},
+  {path: '/record_8', component: RecordPage8},
+  {path: '/record_end', component: RecordPage9},
+  {path: '/record_preview', component: RecordPage10},
+  {path: '/record_11', component: RecordPage11},
 
   {path: '/search', component: SearchIndex},
   {path: '/search/detail/:id', component: SearchDetail}

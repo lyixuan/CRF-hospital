@@ -72,7 +72,7 @@
         </el-row>
         <el-row>
           <el-col :span="7">
-            <el-form-item label="疾病分类:" required>
+            <el-form-item label="疾病类型:" required>
               <el-radio-group v-model="jbxxForm.sick_type.type">
                 <el-radio label="jm">静脉</el-radio>
                 <el-radio label="dm">动脉</el-radio>
