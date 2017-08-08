@@ -25,6 +25,7 @@
 <style>
   * {
     font-size: 12px;
+    box-sizing: border-box;
   }
 
   a {
@@ -42,7 +43,7 @@
   #view-wrap {
     width: 100%;
     padding: 50px 0px 0px 160px;
-    box-sizing: border-box;
+
   }
 
   #view-cont {

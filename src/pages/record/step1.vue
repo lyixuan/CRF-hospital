@@ -196,12 +196,6 @@
       }
 
     },
-    beforeDestroy: function () {
-      this.$el.innerHTML = '';
-      for (let k in this.$data) {
-        delete this.$data[k]
-      }
-    },
     methods: {
       writeBack (info) {
         this.jbxxForm.card_id = info.card_id

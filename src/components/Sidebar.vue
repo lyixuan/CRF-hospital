@@ -1,18 +1,12 @@
 <template>
-  <!--<router-link to="/search">-->
-    <!--<div class="menu">-->
-      <!--<i class="el-icon-search icon"></i>-->
-      <!--<span>CRF信息检索</span>-->
-    <!--</div>-->
-  <!--</router-link>-->
   <div id="sidebar">
     <el-row class="tac">
 
       <el-col :span="24">
-        <el-menu default-active="1-1" mode="vertical" router="true" unique-opened="true"  theme="dark">
+        <el-menu default-active="stata_survey" mode="vertical" :router="true" :unique-opened="true"  theme="dark">
           <el-submenu index="1">
             <template slot="title" class="el-icon-menu"><i class="el-icon-menu"></i>统计分析</template>
-            <el-menu-item index="1-1"><i class="el-icon-menu"></i>概览</el-menu-item>
+            <el-menu-item index="stata_survey"><i class="el-icon-menu"></i>概览</el-menu-item>
             <el-menu-item index="1-2"><i class="el-icon-menu"></i>基本信息</el-menu-item>
             <el-menu-item index="1-3"><i class="el-icon-menu"></i>既往史</el-menu-item>
             <el-menu-item index="1-4"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
@@ -63,7 +57,7 @@
   #sidebar {
     width: 160px;
     position: fixed;
-    top: 52px;
+    top: 50px;
     bottom: 0;
     left: 0;
     background: #1F2F3D;

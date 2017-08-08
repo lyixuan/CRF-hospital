@@ -28,7 +28,7 @@ var loginObj = {
         var res = JSON.parse(xhr.response)
         if (xhr.status === 200 && res.code == 200) {
           if (window.sessionStorage) {
-            window.location.href = 'http://'+window.location.host + "/index.html#/search";
+            window.location.href = 'http://'+window.location.host + "/index.html";
           } else {
             //ie8以下
             alert('您的浏览器版本太老了！！请升级浏览器或更换他浏览器再试。');

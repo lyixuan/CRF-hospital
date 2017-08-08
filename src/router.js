@@ -15,10 +15,13 @@ import RecordPage11 from './pages/record/step11'
 
 import SearchIndex from './pages/search/index'
 import SearchDetail from './pages/search/detail'
+// 统计
+import Survey from './pages/stata/survey'
 
 Vue.use(VueRouter);
 
 const routes = [
+  {path: '/stata_survey', component: Survey},
   {path: '/', component: RecordPage1},
   {path: '/record', component: RecordPage1},
   {path: '/record/page1', component: RecordPage1},

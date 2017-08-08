@@ -159,12 +159,6 @@
         this.getYx()
       }
     },
-    beforeDestroy: function () {
-      this.$el.innerHTML='';
-      for(let k in this.$data){
-        delete this.$data[k]
-      }
-    },
     methods: {
       writeBack (info, info_checkedList, info_checkList) {
         this.yxForm = JSON.parse(JSON.stringify(info));

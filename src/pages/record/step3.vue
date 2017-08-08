@@ -321,12 +321,6 @@
         this.writeBack(info)
       }
     },
-    beforeDestroy: function () {
-      this.$el.innerHTML='';
-      for(let k in this.$data){
-        delete this.$data[k]
-      }
-    },
     methods: {
       writeBack (info) {
         this.jwsForm = info

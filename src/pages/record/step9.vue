@@ -46,12 +46,6 @@
         submitList: {}
       }
     },
-    beforeDestroy: function () {
-      this.$el.innerHTML='';
-      for(let k in this.$data){
-        delete this.$data[k]
-      }
-    },
     methods: {
       openDia(){
         this.dialogVisible = true;

@@ -1,0 +1,14 @@
+
+
+.el-breadcrumb{
+  height: 30px!important;
+  line-height: 30px!important;
+  margin-top: 2px!important;
+  border-bottom: 1px solid #dddddd!important;
+  padding: 0 10px;
+}
+.wrap-10{
+  padding: 10px;
+  background: #F5F5F5;
+  overflow: hidden;
+}
