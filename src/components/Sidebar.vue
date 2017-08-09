@@ -9,7 +9,7 @@
             <el-menu-item index="stata_survey"><i class="el-icon-menu"></i>概览</el-menu-item>
             <el-menu-item index="stata_basic"><i class="el-icon-menu"></i>基本信息</el-menu-item>
             <el-menu-item index="stata_history"><i class="el-icon-menu"></i>既往史</el-menu-item>
-            <el-menu-item index="1-4"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
+            <el-menu-item index="stata_cure"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-search"></i>信息检索</template>

@@ -15,7 +15,7 @@ var loginObj = {
     }
     var params = JSON.stringify(postData);
     //var  postUrl = '/login/login.php'
-    var postUrl = 'http://rap.taobao.org/mockjsdata/12461/login/login.php'
+    var postUrl = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();

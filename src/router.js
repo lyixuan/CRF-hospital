@@ -20,6 +20,7 @@ import SearchDetail from './pages/search/detail'
 import Survey from './pages/stata/survey'
 import Basic from './pages/stata/basic'
 import History from './pages/stata/history'
+import Cure from './pages/stata/cure'
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,8 @@ const routes = [
   {path: '/stata_survey', component: Survey},
   {path: '/stata_basic', component: Basic},
   {path: '/stata_history', component: History},
+  {path: '/stata_cure', component: Cure},
+
   {path: '/record_1', component: RecordPage1},
   {path: '/record_2', component: RecordPage2},
   {path: '/record_3', component: RecordPage3},

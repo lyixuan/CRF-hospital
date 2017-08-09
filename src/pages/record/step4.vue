@@ -472,7 +472,7 @@
         }
       },
       getJy () {
-        this.$resource(PATH_RECORD + 'dict/jy').get().then((response) => {
+        this.$resource(PATH_RECORD + 'jy').get().then((response) => {
           if (response.status == 200) {
             let result = response.body
             for (let key in result) {

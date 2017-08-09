@@ -228,7 +228,7 @@
         });
       },
       getJbxx () {
-        this.$resource(PATH_RECORD + 'dict/jbxx').get().then((response) => {
+        this.$resource(PATH_RECORD + 'jbxx').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
             window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))

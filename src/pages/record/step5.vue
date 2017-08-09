@@ -191,7 +191,7 @@
         return true
       },
       getYx () {
-        this.$resource(PATH_RECORD + 'dict/yx').get().then((response) => {
+        this.$resource(PATH_RECORD + 'yx').get().then((response) => {
             if (response.status == 200) {
               let result = response.body.yx_items
               this.checkList = result

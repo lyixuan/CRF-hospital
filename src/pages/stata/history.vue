@@ -19,7 +19,7 @@
           </el-col>
           <el-col :span="8">
             <div class="box" id="chart-h2-dz">
-              <div style="text-align: center;font-weight: 600;font-size: 16px;color:#444;margin-bottom: 18px;">对照表</div>
+              <div style="text-align: center;font-weight: 600;font-size: 16px;color:#444;margin-bottom: 10px;">对照表</div>
               <table border="1" bordercolor="#ccc" width="100%" cellspacing="0" cellpadding="5">
                 <tr>
                   <th>类别</th>
@@ -47,7 +47,7 @@
                   <td>90~99</td>
                 </tr>
                 <tr>
-                  <td>2级高血压(重度)</td>
+                  <td>2级高血压(中度)</td>
                   <td>160~179</td>
                   <td>100~109</td>
                 </tr>
@@ -98,7 +98,8 @@
         let o = document.getElementById('chart-h1');
         let o1 = document.getElementById('chart-h2');
         let o2 = document.getElementById('chart-h2-dz');
-        o.style.height = o1.style.height = o2.style.height = clientheight * 0.5 + 'px';
+        o.style.height = clientheight * 0.6 + 'px';
+        o1.style.height = o2.style.height = clientheight * 0.55 + 'px';
       },
       c1(){
         let myChart = echarts.init(document.getElementById('chart-h1'));
