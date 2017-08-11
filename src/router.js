@@ -22,6 +22,9 @@ import Basic from './pages/stata/basic'
 import History from './pages/stata/history'
 import Cure from './pages/stata/cure'
 
+// 查询
+import S_Basic from './pages/search/basic'
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -30,6 +33,8 @@ const routes = [
   {path: '/stata_basic', component: Basic},
   {path: '/stata_history', component: History},
   {path: '/stata_cure', component: Cure},
+
+  {path: '/search_basic', component: S_Basic},
 
   {path: '/record_1', component: RecordPage1},
   {path: '/record_2', component: RecordPage2},

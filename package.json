@@ -11,7 +11,7 @@
   "dependencies": {
     "element-theme": "^0.2.0",
     "element-theme-default": "^1.4.1",
-    "element-ui": "^1.4.1",
+    "element-ui": "^1.4.2",
     "vue": "^2.4.2",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.1",
