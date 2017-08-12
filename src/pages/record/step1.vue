@@ -16,7 +16,7 @@
         <el-row>
           <el-col :span="7">
             <el-form-item label="诊疗卡号:" prop="card_id">
-              <el-input v-model="jbxxForm.card_id"></el-input>
+              <el-input v-model="jbxxForm.card_id"  placeholder="输入卡号"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;
@@ -25,7 +25,7 @@
           </el-col>
           <el-col :span="7">
             <el-form-item label="姓名:" prop="name">
-              <el-input v-model="jbxxForm.name"></el-input>
+              <el-input v-model="jbxxForm.name" placeholder="输入姓名"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
@@ -47,7 +47,7 @@
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
             <el-form-item label="年龄:" prop="age">
-              <el-input v-model="jbxxForm.age"></el-input>
+              <el-input v-model="jbxxForm.age" placeholder="输入年龄"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
@@ -60,13 +60,21 @@
         <el-row>
           <el-col :span="7">
             <el-form-item label="联系电话:" prop="mobile">
-              <el-input v-model="jbxxForm.mobile"></el-input>
+              <el-input v-model="jbxxForm.mobile" placeholder="输入电话"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
-          <el-col :span="15">
-            <el-form-item label="住址:" prop="addr">
-              <el-input v-model="jbxxForm.addr"></el-input>
+          <el-col :span="5">
+            <el-form-item label="住址:" prop="province">
+              <el-select v-model="jbxxForm.province" placeholder="选择省份">
+                <el-option v-for="item in province_list" :label="item.name" :value="item.name"
+                           :key="item.name"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="10">
+            <el-form-item label="" prop="addr">
+             <el-input v-model="jbxxForm.addr"  placeholder="详细地址"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -124,6 +132,110 @@
       };
       return {
         baseData: '',
+        province_list: [
+          {
+            "name": "北京",
+          },
+          {
+            "name": "天津",
+          },
+          {
+            "name": "上海",
+          },
+          {
+            "name": "重庆",
+          },
+          {
+            "name": "河北",
+          },
+          {
+            "name": "河南",
+          },
+          {
+            "name": "云南",
+          },
+          {
+            "name": "辽宁",
+          },
+          {
+            "name": "黑龙江",
+          },
+          {
+            "name": "湖南",
+          },
+          {
+            "name": "安徽",
+          },
+          {
+            "name": "山东",
+          },
+          {
+            "name": "新疆",
+          },
+          {
+            "name": "江苏",
+          },
+          {
+            "name": "浙江",
+          },
+          {
+            "name": "江西",
+          },
+          {
+            "name": "湖北",
+          },
+          {
+            "name": "广西",
+          },
+          {
+            "name": "甘肃",
+          },
+          {
+            "name": "山西",
+          },
+          {
+            "name": "内蒙古",
+          },
+          {
+            "name": "陕西",
+          },
+          {
+            "name": "吉林",
+          },
+          {
+            "name": "福建",
+          },
+          {
+            "name": "贵州",
+          },
+          {
+            "name": "广东",
+          },
+          {
+            "name": "青海",
+          },
+          {
+            "name": "西藏",
+          },
+          {
+            "name": "四川",
+          },
+          {
+            "name": "宁夏",
+          },
+          {
+            "name": "海南",
+          },
+          {
+            "name": "台湾",
+          },
+          {
+            "name": "香港",
+          },
+          {
+            "name": "澳门",
+          }
+        ],
         sexOptions: [
           {value: "male", label: "男"},
           {value: "female", label: "女"}
@@ -140,7 +252,8 @@
           sick_type: {
             type: 'jm',
             sick: ''
-          }
+          },
+          province:''
         },
         rules: {
           card_id: [
@@ -154,6 +267,9 @@
           ],
           sex: [
             {required: true, message: '请选择性别', trigger: 'blur'}
+          ],
+          province: [
+            {required: true, message: '请选择省份', trigger: 'blur'}
           ],
           age: [
             {required: true, message: '请输入年龄', trigger: 'blur'},
@@ -206,6 +322,7 @@
         this.jbxxForm.birthday = new Date(info.birthday)
         this.jbxxForm.mobile = info.mobile
         this.jbxxForm.addr = info.addr
+        this.jbxxForm.province = info.province
         this.writeFlag = true
         this.jbxxForm.sick_type.type = info.sick_type.type
         this.jbxxForm.sick_type.sick = info.sick_type.sick
@@ -248,6 +365,7 @@
           birthday: '',
           mobile: '',
           addr: '',
+          province: '',
           sick_type: {
             type: 'jm',
             sick: ''

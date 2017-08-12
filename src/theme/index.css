@@ -500,7 +500,9 @@
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-
+.el-date-editor.el-input{
+  width: auto;
+}
 .el-textarea {
 }
 
@@ -6750,7 +6752,12 @@
   line-height: 36px;
   padding: 0 10px;
 }
-
+.el-submenu .el-menu-item{
+  min-width: 160px;
+}
+.el-scrollbar__wrap{
+  overflow:inherit;
+}
 .el-menu--horizontal .el-submenu .el-submenu__icon-arrow {
   position: static;
   vertical-align: middle;

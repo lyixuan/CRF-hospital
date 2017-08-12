@@ -22,7 +22,7 @@
           <el-col :span="6">
             患者性别：
             <el-select v-model="form.sex" placeholder="选择性别">
-              <el-option label="不限" value="0"></el-option>
+              <el-option label="" value=""></el-option>
               <el-option label="男" value="male"></el-option>
               <el-option label="女" value="female"></el-option>
             </el-select>
@@ -38,7 +38,8 @@
           <el-col :span="6">
             所在省份：
             <el-select v-model="form.province" placeholder="选择省份">
-              <el-option v-for="item in province_list" :label="item.name" :value="item.name" :key="item.name"></el-option>
+              <el-option v-for="item in province_list" :label="item.name" :value="item.name"
+                         :key="item.name"></el-option>
             </el-select>
           </el-col>
           <el-col :span="6">
@@ -51,38 +52,40 @@
           </el-col>
         </el-row>
       </div>
-      <!--<div class="cont">-->
-      <!--<el-table-->
-      <!--:data="tableData" border style="width: 100%" stripe empty-text>-->
-      <!--<el-table-column prop="name" label="姓名" min-width="100" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="card_id" label="诊疗卡号" min-width="100" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="visit_date" label="就诊日期" min-width="110" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="sex" label="性别" min-width="70" :formatter="sexFormat"-->
-      <!--show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="age" label="年龄" min-width="70" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="birthday" label="出生日期" min-width="110" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="mobile" label="联系电话" min-width="120" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="addr" label="住址" min-width="120" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="create_date" label="录入日期" min-width="110" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="sick_type" label="疾病分类" min-width="100" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column prop="sick_name" label="疾病名称" min-width="100" show-overflow-tooltip></el-table-column>-->
-      <!--<el-table-column label="操作" width="90">-->
-      <!--<template scope="scope">-->
-      <!--<el-button type="text" size="small">详情</el-button>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-      <!--</el-table>-->
-      <!--</div>-->
-      <div class="pagination">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          @size-change="handleSizeChange"
-          :current-page="current_page"
-          :page-size="page_size"
-          :page-sizes="[10, 20, 30]"
-          layout="total,sizes, prev, pager, next"
-          :total="total">
-        </el-pagination>
+      <el-button type="primary" @click="search">开始检索</el-button>
+      <div class="result">
+        <el-table
+          :data="table_data" style="width: 100%" border empty-text>
+          <el-table-column prop="card_id" label="诊疗卡号"   show-overflow-tooltip></el-table-column>
+          <el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="sex" label="性别" :formatter="sexFormat" min-width="60"
+                           show-overflow-tooltip></el-table-column>
+          <el-table-column prop="age" label="年龄"  min-width="60" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="birthday" label="出生日期"   show-overflow-tooltip></el-table-column>
+          <el-table-column prop="mobile" label="联系电话"  show-overflow-tooltip></el-table-column>
+          <el-table-column prop="province" label="省份" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="addr" label="住址" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="sick_type" label="疾病类型"  show-overflow-tooltip></el-table-column>
+          <el-table-column prop="sick_name" label="疾病名称" show-overflow-tooltip></el-table-column>
+          <el-table-column prop="visit_date" label="就诊日期"   show-overflow-tooltip></el-table-column>
+          <el-table-column prop="create_date" label="录入日期"   show-overflow-tooltip></el-table-column>
+          <el-table-column label="操作" width="90">
+            <template scope="scope">
+              <el-button type="text" size="small">详情</el-button>
+            </template>
+          </el-table-column>
+        </el-table>
+        <div class="pagination">
+          <el-pagination
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+            :current-page="current_page"
+            :page-size="page_size"
+            :page-sizes="[10, 20, 30]"
+            layout="total,sizes, prev, pager, next"
+            :total="total">
+          </el-pagination>
+        </div>
       </div>
     </div>
   </div>
@@ -98,14 +101,14 @@
           name: '',
           age: '',
           sex: '',
-          sick: [],
+          sick: '',
           province: '',
           birthday: '',
-          visit_date: '',
+          visit_date: ''
         },
         province_list: [
           {
-            "name": "全部",
+            "name": "",
           },
           {
             "name": "北京",
@@ -210,17 +213,27 @@
             "name": "澳门",
           }
         ],
-        sick_list:[{key:0,name:"全部"}],
+        sick_list: [{key: '', name: ""}],
+        table_data:[],
         current_page: 1,
         page_size: 10,
         total: 0
       }
     },
     mounted () {
-//      this.search()
+      this.search()
       this.getInfo()
     },
     methods: {
+      sexFormat(row, col){
+        let result = ''
+        if (row.sex == 'male') {
+          result = '男'
+        } else if (row.sex == 'female') {
+          result = '女'
+        }
+        return result
+      },
       getInfo(){
         this.$resource(PATH_RECORD + 'jbxx').get().then((response) => {
           if (response.status == 200) {
@@ -235,18 +248,26 @@
           }
         })
       },
-      search(){
-        let params = {
-          start_date: this.date_range[0] ? this.formatDate(new Date(this.date_range[0])) : null,
-          end_date: this.date_range[1] ? this.formatDate(new Date(this.date_range[1])) : null,
-          card_id: this.card_id,
-          current_page: this.current_page,
-          page_size: this.page_size
+      search(type){
+        this.form.birthday =new Date(this.form.birthday).Format("yyyy-MM-dd")
+        this.form.visit_date =new Date(this.form.visit_date).Format("yyyy-MM-dd")
+        let params = this.form
+        if (type == 1) {
+          // 点击分页
+          params.page_size = this.page_size
+          params.current_page = this.current_page
+        } else {
+          // 点击查询
+          params.page_size = this.page_size = 10
+          params.current_page = this.current_page = 1
         }
-        this.$resource(PATH_SEARCH + 'list').get(params).then((response) => {
-          if (response.status == 200 && response.body.code == 200) {
-            this.tableData = response.body.data
-            this.total = response.body.total
+        this.requestData(params)
+      },
+      requestData(params){
+        this.$resource(PATH_SEARCH + 'basic').save({},params).then((response) => {
+          if (response.body.code == 200) {
+            this.table_data = response.body.data
+            this.paging(response.body.pagination)
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -254,12 +275,14 @@
       },
       handleCurrentChange(val){
         this.current_page = val;
-        this.search()
+        this.search(1)
       },
       handleSizeChange(val){
-        this.current_page = 1;
         this.page_size = val;
-        this.search()
+        this.search(1)
+      },
+      paging(p){
+        this.total = p.total;
       }
     }
   }
@@ -271,6 +294,14 @@
   .search {
     background: #fff;
     padding: 0 10px;
+  }
+
+  .result {
+    margin-top: 10px;
+    background: #fff;
+    padding: 10px;
+    overflow: hidden;
+    min-height: 500px;
   }
 
   .row {
@@ -303,6 +334,7 @@
 
   .el-input {
     display: inline-block;
+    width: auto;
   }
 
   .el-select {
@@ -312,6 +344,7 @@
 
   .el-cascader {
     display: inline-block;
+    width: auto;
   }
 
   .el-button--primary {
