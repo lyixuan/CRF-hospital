@@ -14,8 +14,6 @@ import RecordPage9 from './pages/record/step9'
 import RecordPage10 from './pages/record/step10'
 import RecordPage11 from './pages/record/step11'
 
-import SearchIndex from './pages/search/index'
-import SearchDetail from './pages/search/detail'
 // 统计
 import Survey from './pages/stata/survey'
 import Basic from './pages/stata/basic'
@@ -24,6 +22,9 @@ import Cure from './pages/stata/cure'
 
 // 查询
 import S_Basic from './pages/search/basic'
+import S_History from './pages/search/history'
+import S_Previous from './pages/search/previous'
+import S_Detail from './pages/search/detail'
 
 Vue.use(VueRouter);
 
@@ -35,6 +36,9 @@ const routes = [
   {path: '/stata_cure', component: Cure},
 
   {path: '/search_basic', component: S_Basic},
+  {path: '/search_history', component: S_History},
+  {path: '/search_previous', component: S_Previous},
+  {path: '/search_detail', component: S_Detail},
 
   {path: '/record_1', component: RecordPage1},
   {path: '/record_2', component: RecordPage2},
@@ -48,8 +52,6 @@ const routes = [
   {path: '/record_preview', component: RecordPage10},
   {path: '/record_11', component: RecordPage11},
 
-  {path: '/search', component: SearchIndex},
-  {path: '/search/detail/:id', component: SearchDetail}
 ];
 
 

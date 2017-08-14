@@ -14,7 +14,8 @@
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-search"></i>信息检索</template>
             <el-menu-item index="search_basic"><i class="el-icon-menu"></i>基本信息</el-menu-item>
-            <el-menu-item index="2-2"><i class="el-icon-menu"></i>病史</el-menu-item>
+            <el-menu-item index="search_history"><i class="el-icon-menu"></i>病史</el-menu-item>
+            <el-menu-item index="search_previous"><i class="el-icon-menu"></i>既往史</el-menu-item>
             <el-menu-item index="2-3"><i class="el-icon-menu"></i>检验</el-menu-item>
             <el-menu-item index="2-4"><i class="el-icon-menu"></i>影像学检验</el-menu-item>
             <el-menu-item index="2-5"><i class="el-icon-menu"></i>治疗方案</el-menu-item>

@@ -26,7 +26,7 @@
           <div class="table-box" v-show="'xcg' == checkedTab">
             <h1>{{jyForm.xcg.name}}</h1>
             <span class="span1">
-          <el-date-picker v-model="jyForm.xcg.date" align="right" type="date"
+          <el-date-picker v-model="jyForm.xcg.date" format="yyyy-MM-dd" align="right" type="date"
                           placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xcg')">清空</el-button></span>
@@ -405,8 +405,6 @@
         // 信息回显,value值在json转为vue的obj时,总是丢失,未找到原因,用下面方式暂时可以解决
         for (let key in info) {
           this.tabList.push({key: key, name: info[key].name})
-          this.jyForm[key].name = info[key].name
-          this.jyForm[key].date = info[key].date
           for (var i = 0; i < info[key].items.length; i++) {
             this.jyForm[key].items[i] = {}
             this.jyForm[key].items[i].No = info[key].items[i].No
@@ -417,6 +415,8 @@
             this.jyForm[key].items[i].std_high = info[key].items[i].std_high
             this.jyForm[key].items[i].std_low = info[key].items[i].std_low
           }
+          this.jyForm[key].name = info[key].name
+          this.jyForm[key].date = info[key].date
         }
         // 初始化选中tab
         this.checkedTab = this.tabList[0].key
@@ -424,7 +424,7 @@
       },
       storage() {
         for (let key in this.jyForm) {
-          this.jyForm[key].date ? this.jyForm[key].date = this.formatDate(new Date(this.jyForm[key].date)) : ""
+          this.jyForm[key].date =this.jyForm[key].date ?  (new Date(this.jyForm[key].date)).Format("yyyy-MM-dd") : ""
         }
         window.sessionStorage.setItem('x_step4_jy', JSON.stringify(this.jyForm))
       },
