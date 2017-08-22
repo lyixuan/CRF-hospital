@@ -116,8 +116,7 @@
               frequency: "",
               usage: "",
             }
-          }
-          ,
+          },
           jyy: {
             name: "",
             types: [],

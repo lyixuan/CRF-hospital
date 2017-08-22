@@ -1,14 +1,13 @@
 <template>
   <div class="search-previous">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/search_basic' }">信息检索</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/search_previous' }">信息检索</el-breadcrumb-item>
       <el-breadcrumb-item>既往史</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="wrap-10">
       <div class="search">
-        <el-button id="fzs" size="mini" @click="writeConfig">添加条件</el-button>
         <div class="wrap-line">
-          <p>检索条件：</p>
+          <p>检索条件： <el-button id="fzs" type="text" size="mini" @click="writeConfig">定制条件</el-button></p>
           <p v-if="jwsForm.gxy.type!=2">高血压：
             <span v-if="jwsForm.gxy.type==1">是
               <span>最高：{{jwsForm.gxy.info.zg_date}}年 （{{jwsForm.gxy.info.xy_zg_high?jwsForm.gxy.info.xy_zg_high:"空缺"}} / {{jwsForm.gxy.info.xy_zg_low?jwsForm.gxy.info.xy_zg_low:"空缺"}} mmHg）</span>
@@ -51,9 +50,9 @@
             <span v-if="jwsForm.xy.type==1">是</span>
             <span v-if="jwsForm.xy.type==0">否</span>
           </p>
-          <p v-if="jwsForm.xy.type!=2">饮酒：
-            <span v-if="jwsForm.xy.type==1">是</span>
-            <span v-if="jwsForm.xy.type==0">否</span>
+          <p v-if="jwsForm.yj.type!=2">饮酒：
+            <span v-if="jwsForm.yj.type==1">是</span>
+            <span v-if="jwsForm.yj.type==0">否</span>
           </p>
           <p v-if="jwsForm.zls.type!=2">肿瘤史：
             <span v-if="jwsForm.zls.type==1">是
@@ -63,6 +62,7 @@
           </p>
         </div>
       </div>
+      <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
@@ -326,7 +326,7 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="actDialog = false">取 消</el-button>
-        <el-button type="primary" @click="saveConfig">检 索</el-button>
+        <el-button type="primary" @click="saveConfig">确  定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -406,7 +406,6 @@
     },
     methods: {
       myFormat(row, col){
-          console.log(col.property)
         let result = ''
           for(let key in row){
             if(col.property==key){
@@ -451,7 +450,6 @@
         this.jwsForm.tnb.info.date = (new Date(this.jwsForm.tnb.info.date)).Format("yyyy")
         this.jwsForm.gxb.info.date = (new Date(this.jwsForm.gxb.info.date)).Format("yyyy")
         window.sessionStorage.setItem('form_jws', JSON.stringify(this.jwsForm))
-        this.search()
         this.actDialog = false
       },
       handleCurrentChange(val){

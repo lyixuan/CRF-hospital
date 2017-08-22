@@ -18,7 +18,12 @@
     name: 'app',
     components: {
       VHeader, VSidebar
-    }
+    },
+    watch: {
+      $route() {
+        window.scrollTo(0, 0);
+      },
+    },
   }
 </script>
 

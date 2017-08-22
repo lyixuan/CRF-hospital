@@ -24,6 +24,9 @@ import Cure from './pages/stata/cure'
 import S_Basic from './pages/search/basic'
 import S_History from './pages/search/history'
 import S_Previous from './pages/search/previous'
+import S_Check from './pages/search/check'
+import S_Image from './pages/search/image'
+import S_Cure from './pages/search/cure'
 import S_Detail from './pages/search/detail'
 
 Vue.use(VueRouter);
@@ -38,6 +41,9 @@ const routes = [
   {path: '/search_basic', component: S_Basic},
   {path: '/search_history', component: S_History},
   {path: '/search_previous', component: S_Previous},
+  {path: '/search_check', component: S_Check},
+  {path: '/search_image', component: S_Image},
+  {path: '/search_cure', component: S_Cure},
   {path: '/search_detail', component: S_Detail},
 
   {path: '/record_1', component: RecordPage1},
