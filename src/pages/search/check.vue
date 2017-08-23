@@ -33,7 +33,11 @@
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="100"></el-table-column>
+          <el-table-column label="姓名" width="100">
+            <template scope="scope">
+              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="cmCfydb" label="超敏C反应蛋白"></el-table-column>
           <el-table-column prop="dbCS" label="蛋白C+S"></el-table-column>
           <el-table-column prop="knxmIII" label="抗凝血酶III"></el-table-column>
@@ -46,7 +50,7 @@
           <el-table-column prop="xxbjjsy" label="血小板聚集试验"></el-table-column>
           <el-table-column label="操作" width="90">
             <template scope="scope">
-              <el-button type="text" size="small">详情</el-button>
+              <span class="action" @click="addComparison(scope.row)">+加对比</span>
             </template>
           </el-table-column>
         </el-table>

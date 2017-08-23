@@ -28,6 +28,7 @@ import S_Check from './pages/search/check'
 import S_Image from './pages/search/image'
 import S_Cure from './pages/search/cure'
 import S_Detail from './pages/search/detail'
+import S_Comp from './pages/search/comparison'
 
 Vue.use(VueRouter);
 
@@ -45,6 +46,7 @@ const routes = [
   {path: '/search_image', component: S_Image},
   {path: '/search_cure', component: S_Cure},
   {path: '/search_detail', component: S_Detail},
+  {path: '/search_comp', component: S_Comp},
 
   {path: '/record_1', component: RecordPage1},
   {path: '/record_2', component: RecordPage2},

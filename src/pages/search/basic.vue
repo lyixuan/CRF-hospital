@@ -57,7 +57,11 @@
         <el-table
           :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="诊疗卡号"   show-overflow-tooltip></el-table-column>
-          <el-table-column prop="name" label="姓名" show-overflow-tooltip></el-table-column>
+          <el-table-column label="姓名" width="100">
+            <template scope="scope">
+              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="sex" label="性别" :formatter="sexFormat" min-width="60"
                            show-overflow-tooltip></el-table-column>
           <el-table-column prop="age" label="年龄"  min-width="60" show-overflow-tooltip></el-table-column>
@@ -69,9 +73,9 @@
           <el-table-column prop="sick_name" label="疾病名称" show-overflow-tooltip></el-table-column>
           <el-table-column prop="visit_date" label="就诊日期"   show-overflow-tooltip></el-table-column>
           <el-table-column prop="create_date" label="录入日期"   show-overflow-tooltip></el-table-column>
-          <el-table-column label="操作" width="90">
+          <el-table-column label="操作" width="80">
             <template scope="scope">
-              <el-button type="text" size="small">详情</el-button>
+              <span class="action" @click="addComparison(scope.row)">+加对比</span>
             </template>
           </el-table-column>
         </el-table>
@@ -273,6 +277,7 @@
           }
         })
       },
+
       handleCurrentChange(val){
         this.current_page = val;
         this.search(1)

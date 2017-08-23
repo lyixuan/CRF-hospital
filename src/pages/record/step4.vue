@@ -56,7 +56,7 @@
             <h1>{{jyForm.xsh.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.xsh.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xsh')">清空</el-button></span>
             <table>
@@ -85,7 +85,7 @@
             <h1>{{jyForm.nxsx.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.nxsx.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('nxsx')">清空</el-button></span>
             <table>
@@ -114,7 +114,7 @@
             <h1>{{jyForm.txbpas.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.txbpas.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('txbpas')">清空</el-button></span>
             <table>
@@ -143,7 +143,7 @@
             <h1>{{jyForm.cmCfydb.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.cmCfydb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini"
                                            @click="clearTable('cmCfydb')">清空</el-button></span>
@@ -173,7 +173,7 @@
             <h1>{{jyForm.xlb.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.xlb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('xlb')">清空</el-button></span>
             <table>
@@ -202,7 +202,7 @@
             <h1>{{jyForm.thxhdb.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.thxhdb.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini"
                                            @click="clearTable('thxhdb')">清空</el-button></span>
@@ -232,7 +232,7 @@
             <h1>{{jyForm.xxbjjsy.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.xxbjjsy.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini"
                                            @click="clearTable('xxbjjsy')">清空</el-button></span>
@@ -262,7 +262,7 @@
             <h1>{{jyForm.dbCS.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.dbCS.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini" @click="clearTable('dbCS')">清空</el-button></span>
             <table>
@@ -291,7 +291,7 @@
             <h1>{{jyForm.knxmIII.name}}</h1>
             <span class="span1">
           <el-date-picker v-model="jyForm.knxmIII.date" align="right" type="date"
-                          placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker></span>
+                          placeholder="选择日期"  :clearable="false"></el-date-picker></span>
             <span class="span2">日期:</span>
             <span class="span3"><el-button icon="delete" size="mini"
                                            @click="clearTable('knxmIII')">清空</el-button></span>
@@ -335,52 +335,52 @@
           xcg: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xsh: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           nxsx: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           txbpas: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           cmCfydb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xlb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           dbCS: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           thxhdb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xxbjjsy: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           knxmIII: {
             items: [],
             name: "",
-            date: null
+            date: ""
           }
         },
         tabList: [],
@@ -417,10 +417,12 @@
           }
           this.jyForm[key].name = info[key].name
           this.jyForm[key].date = info[key].date
+          console.log(this.jyForm[key].date)
         }
         // 初始化选中tab
         this.checkedTab = this.tabList[0].key
-        this.jyForm = JSON.parse(JSON.stringify(info));
+//        this.jyForm = JSON.parse(JSON.stringify(info));
+        console.log(this.jyForm)
       },
       storage() {
         for (let key in this.jyForm) {
@@ -441,7 +443,7 @@
       validate(pTab) {
         // 校验,信息要么全填,要么全不填,emptyFlag和fullFlag如果都为1了,说明有空也有填的,校验不通过
         let emptyFlag = 0, fullFlag = 0;
-        if (this.jyForm[pTab].date == null || this.jyForm[pTab].date == '') {
+        if (this.jyForm[pTab].date == "" || this.jyForm[pTab].date == '') {
           emptyFlag = 1
         } else {
           fullFlag = 1;
@@ -466,7 +468,7 @@
         }
       },
       clearTable(tab) {
-        this.jyForm[tab].date = null
+        this.jyForm[tab].date = ""
         for (var i = 0; i < this.jyForm[tab].items.length; i++) {
           this.$set(this.jyForm[tab].items[i], 'value', null);
         }

@@ -59,7 +59,7 @@
     left: 0;
     right: 0;
     height: 50px;
-    z-index: 100;
+    z-index: 1000;
   }
 
   .header span {

@@ -12,4 +12,10 @@
   background: #F5F5F5;
   overflow: hidden;
 }
-
+.action{
+  color: #41C4DA;
+  cursor: pointer;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}

@@ -123,7 +123,7 @@
             <td>无</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.xcg.date == null ? false : true">
+        <table v-show="x_step4_jy.xcg.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.xcg.name}} [{{x_step4_jy.xcg.date}}]</td>
           </tr>
@@ -145,7 +145,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.xsh.date == null ? false : true">
+        <table v-show="x_step4_jy.xsh.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.xsh.name}} [{{x_step4_jy.xsh.date}}]</td>
           </tr>
@@ -167,7 +167,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.nxsx.date == null ? false : true">
+        <table v-show="x_step4_jy.nxsx.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.nxsx.name}} [{{x_step4_jy.nxsx.date}}]</td>
           </tr>
@@ -189,7 +189,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.txbpas.date == null ? false : true">
+        <table v-show="x_step4_jy.txbpas.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.txbpas.name}} [{{x_step4_jy.txbpas.date}}]</td>
           </tr>
@@ -211,7 +211,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.cmCfydb.date == null ? false : true">
+        <table v-show="x_step4_jy.cmCfydb.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.cmCfydb.name}} [{{x_step4_jy.cmCfydb.date}}]</td>
           </tr>
@@ -233,7 +233,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.xlb.date == null ? false : true">
+        <table v-show="x_step4_jy.xlb.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.xlb.name}} [{{x_step4_jy.xlb.date}}]</td>
           </tr>
@@ -255,7 +255,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.thxhdb.date == null ? false : true">
+        <table v-show="x_step4_jy.thxhdb.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.thxhdb.name}} [{{x_step4_jy.thxhdb.date}}]</td>
           </tr>
@@ -277,7 +277,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.xxbjjsy.date == null ? false : true">
+        <table v-show="x_step4_jy.xxbjjsy.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.xxbjjsy.name}} [{{x_step4_jy.xxbjjsy.date}}]</td>
           </tr>
@@ -299,7 +299,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.dbCS.date == null ? false : true">
+        <table v-show="x_step4_jy.dbCS.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.dbCS.name}} [{{x_step4_jy.dbCS.date}}]</td>
           </tr>
@@ -321,7 +321,7 @@
             <td>{{item.std_low +" - "+ item.std_high}}</td>
           </tr>
         </table>
-        <table v-show="x_step4_jy.knxmIII.date == null ? false : true">
+        <table v-show="x_step4_jy.knxmIII.date == '' ? false : true">
           <tr>
             <td colspan="5">{{x_step4_jy.knxmIII.name}} [{{x_step4_jy.knxmIII.date}}]</td>
           </tr>
@@ -971,52 +971,52 @@
           xcg: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xsh: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           nxsx: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           txbpas: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           cmCfydb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xlb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           dbCS: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           thxhdb: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           xxbjjsy: {
             items: [],
             name: "",
-            date: null
+            date: ""
           },
           knxmIII: {
             items: [],
             name: "",
-            date: null
+            date: ""
           }
         },
         x_step5_yx: [],
@@ -1179,7 +1179,7 @@
       },
       sStep4(){
         this.submitList.jy = {}
-        // 只提交有内容的检验,即date不为null
+        // 只提交有内容的检验,即date不为""
         let x_step4_jy = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
         for (let key in x_step4_jy) {
           if (x_step4_jy[key].date) {

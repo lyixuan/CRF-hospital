@@ -1,6 +1,6 @@
-
 import Vue from 'vue'
 import router from './router'
+import bus from './bus';
 
 // Vue.http.options.root = 'http://192.168.43.7:80'
 
@@ -57,3 +57,33 @@ Vue.http.interceptors.push((request, next) => {
     }
   });
 });
+
+
+Vue.prototype.openDetail = function () {
+  this.$router.push({path: 'search_detail'})
+}
+Vue.prototype.addComparison = function (row) {
+  let comparison = JSON.parse(window.sessionStorage.getItem('crf_comparison'))
+  if (comparison) {
+    if (comparison.length < 5) {
+      for (let i = 0; i < comparison.length; i++) {
+        if (comparison[i].card_id == row.card_id) {
+          this.alertMsg("warning", "已存在")
+          bus.$emit('COMP');
+          return
+        }
+      }
+      comparison.push({card_id: row.card_id, name: row.name})
+      window.sessionStorage.setItem('crf_comparison', JSON.stringify(comparison))
+      this.alertMsg("success", "已添加")
+    } else {
+      this.alertMsg("warning", "最多填加5条对比")
+    }
+  } else {
+    let arr = [];
+    arr.push({card_id: row.card_id, name: row.name})
+    window.sessionStorage.setItem('crf_comparison', JSON.stringify(arr))
+    this.alertMsg("success", "已添加")
+  }
+  bus.$emit('COMP');
+}

@@ -67,7 +67,11 @@
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="100"></el-table-column>
+          <el-table-column label="姓名" width="100">
+            <template scope="scope">
+              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="gxy" label="高血压" :formatter="myFormat"></el-table-column>
           <el-table-column prop="tnb" label="糖尿病" :formatter="myFormat"></el-table-column>
           <el-table-column prop="gxb" label="冠心病" :formatter="myFormat"></el-table-column>
@@ -81,7 +85,7 @@
           <el-table-column prop="zls" label="肿瘤史" :formatter="myFormat"></el-table-column>
           <el-table-column label="操作" width="90">
             <template scope="scope">
-              <el-button type="text" size="small">详情</el-button>
+              <span class="action" @click="addComparison(scope.row)">+加对比</span>
             </template>
           </el-table-column>
         </el-table>

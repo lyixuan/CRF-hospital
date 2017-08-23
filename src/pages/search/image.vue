@@ -1,5 +1,5 @@
 <template>
-  <div class="search-check">
+  <div class="search-image">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/search_image' }">信息检索</el-breadcrumb-item>
       <el-breadcrumb-item>影响学检验</el-breadcrumb-item>
@@ -30,14 +30,18 @@
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="100"></el-table-column>
+          <el-table-column label="姓名" width="100">
+            <template scope="scope">
+              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="date" label="检查日期"></el-table-column>
           <el-table-column prop="yx_name" label="检查项目"></el-table-column>
           <el-table-column prop="ms" label="描述"></el-table-column>
           <el-table-column prop="jl" label="结论"></el-table-column>
           <el-table-column label="操作" width="90">
             <template scope="scope">
-              <el-button type="text" size="small">详情</el-button>
+              <span class="action" @click="addComparison(scope.row)">+加对比</span>
             </template>
           </el-table-column>
         </el-table>
@@ -59,7 +63,7 @@
 
 <script>
   export default {
-    name: 'search-check',
+    name: 'search-image',
     data () {
       return {
         current_page: 1,

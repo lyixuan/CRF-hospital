@@ -1,5 +1,5 @@
 <template>
-  <div class="search-check">
+  <div class="search-cure">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/search_cure' }">信息检索</el-breadcrumb-item>
       <el-breadcrumb-item>治疗方案</el-breadcrumb-item>
@@ -82,7 +82,11 @@
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="100"></el-table-column>
+          <el-table-column label="姓名" width="100">
+            <template scope="scope">
+              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="date" label="方案日期" width="150"></el-table-column>
           <el-table-column label="方案">
             <template scope="scope">
@@ -91,7 +95,7 @@
           </el-table-column>
           <el-table-column label="操作" width="90">
             <template scope="scope">
-              <el-button type="text" size="small">详情</el-button>
+              <span class="action" @click="addComparison(scope.row)">+加对比</span>
             </template>
           </el-table-column>
         </el-table>
@@ -113,7 +117,7 @@
 
 <script>
   export default {
-    name: 'search-check',
+    name: 'search-cure',
     data () {
       return {
         current_page: 1,
