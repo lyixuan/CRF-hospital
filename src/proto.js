@@ -65,7 +65,7 @@ Vue.prototype.openDetail = function () {
 Vue.prototype.addComparison = function (row) {
   let comparison = JSON.parse(window.sessionStorage.getItem('crf_comparison'))
   if (comparison) {
-    if (comparison.length < 5) {
+    if (comparison.length < 4) {
       for (let i = 0; i < comparison.length; i++) {
         if (comparison[i].card_id == row.card_id) {
           this.alertMsg("warning", "已存在")
@@ -77,7 +77,7 @@ Vue.prototype.addComparison = function (row) {
       window.sessionStorage.setItem('crf_comparison', JSON.stringify(comparison))
       this.alertMsg("success", "已添加")
     } else {
-      this.alertMsg("warning", "最多填加5条对比")
+      this.alertMsg("warning", "最多填加4条对比")
     }
   } else {
     let arr = [];

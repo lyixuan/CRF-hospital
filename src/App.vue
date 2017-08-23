@@ -73,7 +73,7 @@
         this.init()
       },
       jumpComp(){
-        this.$router.push({path: 'comparison'})
+        this.$router.push({path: 'search_comp'})
       },
       close(){
         this.isShow = true;//显示
