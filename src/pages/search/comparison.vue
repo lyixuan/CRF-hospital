@@ -5,53 +5,189 @@
     </el-breadcrumb>
     <div class="wrap-10">
       <div class="inner">
-        <div class="base mtable">
-          <p class="lable">基本信息</p>
-          <p class="value">
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-          </p>
-          <p class="value">
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-          </p>
-          <p class="value">
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-          </p>
-          <p class="value">
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-            <span>姓名：abc</span>
-          </p>
+        <div class="base table-box mtable">
+          <div class="tt"><span>妲己</span>和<span>大桥</span>和<span>诸葛亮</span>和<span>赵子龙</span>对比</div>
+          <table border="1" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>基本信息</td>
+              <td>
+                <p>姓名：妲己</p>
+                <p>性别：女</p>
+                <p>年龄：67</p>
+                <p>疾病类型：静脉疾病</p>
+              </td>
+              <td>
+                <p>姓名：大桥</p>
+                <p>性别：女</p>
+                <p>年龄：47</p>
+                <p>疾病类型：动脉疾病</p>
+              </td>
+              <td>
+                <p>姓名：诸葛亮</p>
+                <p>性别：男</p>
+                <p>年龄：57</p>
+                <p>疾病类型：静脉疾病</p>
+              </td>
+              <td>
+                <p>姓名：赵子龙</p>
+                <p>性别：男</p>
+                <p>年龄：67</p>
+                <p>疾病类型：静脉疾病</p>
+              </td>
+            </tr>
+            <tr>
+              <td>病史</td>
+              <td>
+                <p><span>主诉：</span>主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...</p>
+                <p><span>现病史：</span>现病史内容...现病史内容...现病史内容...现病史内容...现病史内容...</p>
+                <p><span>查体：</span>查体...查体...查体...查体...查体...</p>
+                <p><span>诊断：</span>诊断...诊断...诊断...诊断...诊断...</p>
+              </td>
+              <td>
+                <p><span>主诉：</span>主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...</p>
+                <p><span>现病史：</span>现病史内容...现病史内容...现病史内容...现病史内容...现病史内容...</p>
+                <p><span>查体：</span>查体...查体...查体...查体...查体...</p>
+                <p><span>诊断：</span>诊断...诊断...诊断...诊断...诊断...</p>
+              </td>
+              <td>
+                <p><span>主诉：</span>主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...</p>
+                <p><span>现病史：</span>现病史内容...现病史内容...现病史内容...现病史内容...现病史内容...</p>
+                <p><span>查体：</span>查体...查体...查体...查体...查体...</p>
+                <p><span>诊断：</span>诊断...诊断...诊断...诊断...诊断...</p>
+              </td>
+              <td>
+                <p><span>主诉：</span>主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...主诉内容...</p>
+                <p><span>现病史：</span>现病史内容...现病史内容...现病史内容...现病史内容...现病史内容...</p>
+                <p><span>查体：</span>查体...查体...查体...查体...查体...</p>
+                <p><span>诊断：</span>诊断...诊断...诊断...诊断...诊断...</p>
+              </td>
+            </tr>
+            <tr>
+              <td>既往史</td>
+              <td>
+                <p><span>高血压：</span>是</p>
+                <p><span>糖尿病：</span>否</p>
+                <p><span>冠心病：</span>是</p>
+                <p><span>高脂血症：</span>是</p>
+                <p><span>房颤：</span>是</p>
+                <p><span>TIA：</span>是</p>
+                <p><span>脑梗：</span>是</p>
+                <p><span>颈椎病：</span>不祥</p>
+              </td>
+              <td>
+                <p><span>高血压：</span>是</p>
+                <p><span>糖尿病：</span>否</p>
+                <p><span>冠心病：</span>是</p>
+                <p><span>高脂血症：</span>是</p>
+                <p><span>房颤：</span>是</p>
+                <p><span>TIA：</span>是</p>
+                <p><span>脑梗：</span>是</p>
+                <p><span>颈椎病：</span>不祥</p>
+              </td>
+              <td>
+                <p><span>高血压：</span>是</p>
+                <p><span>糖尿病：</span>否</p>
+                <p><span>冠心病：</span>是</p>
+                <p><span>高脂血症：</span>是</p>
+                <p><span>房颤：</span>是</p>
+                <p><span>TIA：</span>是</p>
+                <p><span>脑梗：</span>是</p>
+                <p><span>颈椎病：</span>不祥</p>
+              </td>
+              <td>
+                <p><span>高血压：</span>是</p>
+                <p><span>糖尿病：</span>否</p>
+                <p><span>冠心病：</span>是</p>
+                <p><span>高脂血症：</span>是</p>
+                <p><span>房颤：</span>是</p>
+                <p><span>TIA：</span>是</p>
+                <p><span>脑梗：</span>是</p>
+                <p><span>颈椎病：</span>不祥</p>
+              </td>
+            </tr>
+            <tr>
+              <td>影像学检查</td>
+              <td>
+                <p><span>头CT：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRI+DWI：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头颈CTV：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头SDA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>TCD：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+              </td>
+              <td>
+                <p><span>头CT：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRI+DWI：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头颈CTV：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头SDA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>TCD：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+              </td>
+              <td>
+                <p><span>头CT：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRI+DWI：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头颈CTV：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头SDA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>TCD：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+              </td>
+              <td>
+                <p><span>头CT：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRI+DWI：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头颈CTV：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头MRA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>头SDA：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+                <p><span>TCD：</span>日期：2015-09-09 描述：描述...  结论：结论...</p>
+              </td>
+            </tr>
+            <tr>
+              <td>治疗方案</td>
+              <td>
+                <p><span>抗凝：</span>种类：种类1，种类2</p>
+                <p><span>降压药：</span>种类：种类3，种类4</p>
+              </td>
+              <td>
+                <p><span>RIC：</span>种类：种类1，种类2</p>
+                <p><span>降压药：</span>种类：种类3，种类4</p>
+              </td>
+              <td>
+                <p><span>RIC：</span>种类：种类1，种类2</p>
+                <p><span>降压药：</span>种类：种类3，种类4</p>
+              </td>
+              <td>
+                <p><span>抗血小板药：</span>种类：种类1，种类2</p>
+                <p><span>降压药：</span>种类：种类3，种类4</p>
+              </td>
+            </tr>
+            <tr>
+              <td>评分</td>
+              <td>
+                <p><span>ABCD2：</span>3</p>
+                <p><span>NIHSS：</span>6</p>
+                <p><span>mRS：</span>4</p>
+                <p><span>MMSE：</span>8</p>
+              </td>
+              <td>
+                <p><span>ABCD2：</span>3</p>
+                <p><span>NIHSS：</span>6</p>
+                <p><span>mRS：</span>4</p>
+                <p><span>MMSE：</span>8</p>
+              </td>
+              <td>
+                <p><span>ABCD2：</span>3</p>
+                <p><span>NIHSS：</span>6</p>
+                <p><span>mRS：</span>4</p>
+                <p><span>MMSE：</span>8</p>
+              </td>
+              <td>
+                <p><span>ABCD2：</span>3</p>
+                <p><span>NIHSS：</span>6</p>
+                <p><span>mRS：</span>4</p>
+                <p><span>MMSE：</span>8</p>
+              </td>
+            </tr>
+          </table>
         </div>
-        <div style="clear: both"></div>
-        <el-collapse v-model="activeNames" @change="handleChange">
-          <el-collapse-item title="一致性 Consistency" name="1">
-            <div>与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；</div>
-            <div>在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。</div>
-          </el-collapse-item>
-          <el-collapse-item title="反馈 Feedback" name="2">
-            <div>控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；</div>
-            <div>页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。</div>
-          </el-collapse-item>
-          <el-collapse-item title="效率 Efficiency" name="3">
-            <div>简化流程：设计简洁直观的操作流程；</div>
-            <div>清晰明确：语言表达清晰且表意明确，让用户快速理解进而作出决策；</div>
-            <div>帮助用户识别：界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。</div>
-          </el-collapse-item>
-          <el-collapse-item title="可控 Controllability" name="4">
-            <div>用户决策：根据场景可给予用户操作建议或安全提示，但不能代替用户进行决策；</div>
-            <div>结果可控：用户可以自由的进行操作，包括撤销、回退和终止当前操作等。</div>
-          </el-collapse-item>
-        </el-collapse>
       </div>
     </div>
   </div>
@@ -62,7 +198,7 @@
     name: 'search-comp',
     data () {
       return {
-        activeNames:["1"]
+        activeNames: ["1"]
       }
     },
     mounted () {
@@ -73,27 +209,56 @@
 
 <style scoped>
   @import "../../style/stata.css";
-  .inner{
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .inner {
     width: 100%;
     min-height: 500px;
     background: #fff;
     border-top: 2px solid #4595E6;
+    padding: 10px;
   }
-  .mtable{
-    width: 100%;
+
+  .base {
+    margin-top: 20px;
+  }
+
+  .table-box td, .table-box th {
     border: 1px solid #DFE6EC;
+  }
+
+  .mtable {
+    width: 100%;
     overflow: hidden;
   }
-  .mtable>p.lable{
+
+  .table-box caption {
+    font-size: 14px;
+    font-weight: bold;
+  }
+
+  .table-box table tr td:nth-child(1) {
     width: 16%;
-    float: left;
   }
-  .mtable>p.value{
-    width: 21%;
-    float: left;
-    border-left: 1px solid #DFE6EC;
+
+  table{
+    margin-top: 10px;
   }
-  .base{
-    margin-top: 20px;
+  .table-box table tr p > span {
+    font-weight: bold;
+  }
+  .tt{
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .tt>span{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 16px;
   }
 </style>
