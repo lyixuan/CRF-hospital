@@ -56,8 +56,13 @@
         let clientheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         let o = document.getElementById('chart-c1');
         let o1 = document.getElementById('chart-c2');
-        o.style.height = clientheight * 0.6 + 'px';
-        o1.style.height = clientheight * 0.6 + 'px';
+        if (window.innerHeight > 700) {
+          o.style.height = clientheight * 0.5 - 50+ 'px';
+          o1.style.height = clientheight * 0.5 - 50+ 'px';
+        } else {
+          o.style.height = clientheight * 0.6 + 'px';
+          o1.style.height = clientheight * 0.6 + 'px';
+        }
       },
       c1(){
         let myChart = echarts.init(document.getElementById('chart-c1'));

@@ -98,8 +98,13 @@
         let o = document.getElementById('chart-h1');
         let o1 = document.getElementById('chart-h2');
         let o2 = document.getElementById('chart-h2-dz');
-        o.style.height = clientheight * 0.6 + 'px';
-        o1.style.height = o2.style.height = clientheight * 0.55 + 'px';
+        if (window.innerHeight > 700) {
+          o.style.height = clientheight * 0.5-50 + 'px';
+          o1.style.height = o2.style.height = clientheight * 0.5-50 + 'px';
+        } else {
+          o.style.height = clientheight * 0.6 + 'px';
+          o1.style.height = o2.style.height = clientheight * 0.55 + 'px';
+        }
       },
       c1(){
         let myChart = echarts.init(document.getElementById('chart-h1'));

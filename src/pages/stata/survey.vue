@@ -83,13 +83,25 @@
         let o1 = document.getElementById('chart-pie-out');
         let o2 = document.getElementById('chart-sex');
         let o3 = document.getElementById('chart-bar');
-        o.style.height = clientheight * 0.8 + 'px';
-        o1.style.height = clientheight * 0.5 - 10 + 'px';
-        o2.style.height = clientheight * 0.3 + 'px';
-        o3.style.height = clientheight * 0.4 + 'px';
-        let pie = document.getElementById('chart-pie');
-        pie.style.height = o1.offsetHeight - 50 - 20 + 'px'
-        pie.style.width = o1.offsetWidth - 20 + 'px'
+
+        if (window.innerHeight > 700) {
+          o.style.height = clientheight * 0.5 + 'px';
+          o1.style.height = clientheight * 0.3 - 10 + 'px';
+          o2.style.height = clientheight * 0.2 + 'px';
+          o3.style.height = clientheight * 0.4 + 'px';
+          let pie = document.getElementById('chart-pie');
+          pie.style.height = o1.offsetHeight - 50 - 20 + 'px'
+          pie.style.width = o1.offsetWidth - 20 + 'px'
+        } else {
+          o.style.height = clientheight * 0.8 + 'px';
+          o1.style.height = clientheight * 0.5 - 10 + 'px';
+          o2.style.height = clientheight * 0.3 + 'px';
+          o3.style.height = clientheight * 0.4 + 'px';
+          let pie = document.getElementById('chart-pie');
+          pie.style.height = o1.offsetHeight - 50 - 20 + 'px'
+          pie.style.width = o1.offsetWidth - 20 + 'px'
+
+        }
       },
       geo(){
         this.$resource('static/china.json').get().then((response) => {

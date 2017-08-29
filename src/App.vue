@@ -8,7 +8,7 @@
       </transition>
     </div>
     <div id="comp" :class="{compShow:isShow}">
-      <div class="comp-title">[{{count}}/5]对比栏 <span @click="close">x</span></div>
+      <div class="comp-title">[{{count}}/4]对比栏 <span @click="close">x</span></div>
       <div class="comp-com" v-for="item in comp">
         <span class="close" @click="clear(item.card_id)">x</span>
         <p>卡号：{{item.card_id}}</p>

@@ -56,8 +56,13 @@
         let o1 = document.getElementById('chart-2');
         let o2 = document.getElementById('chart-3');
         let o3 = document.getElementById('chart-4');
-        o.style.height = o1.style.height = clientheight * 0.6 + 'px';
-        o2.style.height = o3.style.height = clientheight * 0.6 + 'px';
+        if (window.innerHeight > 700) {
+          o.style.height = o1.style.height = clientheight * 0.5 - 50 + 'px';
+          o2.style.height = o3.style.height = clientheight * 0.5 - 60 + 'px';
+        } else {
+          o.style.height = o1.style.height = clientheight * 0.6 + 'px';
+          o2.style.height = o3.style.height = clientheight * 0.6 + 'px';
+        }
       },
       c1(){
         let myChart = echarts.init(document.getElementById('chart-1'));
