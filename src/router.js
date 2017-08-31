@@ -30,6 +30,10 @@ import S_Cure from './pages/search/cure'
 import S_Detail from './pages/search/detail'
 import S_Comp from './pages/search/comparison'
 
+// 设置
+import O_Log from './pages/setting/log'
+import O_Medicine from './pages/setting/medicine'
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -59,6 +63,9 @@ const routes = [
   {path: '/record_end', component: RecordPage9},
   {path: '/record_preview', component: RecordPage10},
   {path: '/record_11', component: RecordPage11},
+
+  {path: '/setting_log', component: O_Log},
+  {path: '/setting_medicine_input', component: O_Medicine},
 
 ];
 
