@@ -27,7 +27,7 @@
           <el-submenu index="4">
             <template slot="title"><i class="el-icon-setting"></i>设置</template>
             <el-menu-item index="/setting_medicine_input"><i class="el-icon-menu"></i>药品录入</el-menu-item>
-            <el-menu-item index="4-2"><i class="el-icon-menu"></i>权限管理</el-menu-item>
+            <el-menu-item index="/setting_priviledge"><i class="el-icon-menu"></i>权限管理</el-menu-item>
             <el-menu-item index="/setting_log"><i class="el-icon-menu"></i>操作日志</el-menu-item>
           </el-submenu>
         </el-menu>
