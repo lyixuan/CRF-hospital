@@ -33,6 +33,7 @@ import S_Comp from './pages/search/comparison'
 // 设置
 import O_Log from './pages/setting/log'
 import O_Medicine from './pages/setting/medicine'
+import O_Account from './pages/setting/account'
 import O_Priviledge from './pages/setting/priviledge'
 
 Vue.use(VueRouter);
@@ -67,6 +68,7 @@ const routes = [
 
   {path: '/setting_log', component: O_Log},
   {path: '/setting_medicine_input', component: O_Medicine},
+  {path: '/setting_account', component: O_Account},
   {path: '/setting_priviledge', component: O_Priviledge},
 
 ];

@@ -26,11 +26,11 @@
       getSession(){
         let uusessions = JSON.parse(window.sessionStorage.getItem('uusessions'))
         if (uusessions) {
-          this.uusessions_name = uusessions.user_name
+          this.uusessions_name = uusessions.data.user_des
         } else {
           sessionStorage.removeItem('uusessions')
           var url = window.location.href.substring(0, window.location.href.indexOf(window.location.pathname) + 1) + "login.php";
-//          window.location.href = url;
+          window.location.href = url;
         }
       },
       handleSelect(key, keyPath) {
@@ -63,12 +63,12 @@
   }
 
   .header span {
-    width: 160px;
+    width: 190px;
     height: 100%;
     color: #fff;
     line-height: 50px;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     letter-spacing: 2px;
     cursor: pointer;
   }

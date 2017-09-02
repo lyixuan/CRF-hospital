@@ -107,7 +107,7 @@
 
   #view-wrap {
     width: 100%;
-    padding: 50px 0px 0px 160px;
+    padding: 50px 0px 0px 190px;
 
   }
 

@@ -2,11 +2,13 @@ if (navigator.userAgent.toLocaleLowerCase().indexOf('msie') !== -1 && !+[1,]) {
   //ie8检测
   alert('您的浏览器版本过低,请升级浏览器或更换他浏览器再试！');
 }
+// window.LOGIN_URL = '/login/login.php'
+window.LOGIN_URL = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
 
 var loginObj = {
   loginSubmit: function () {
     var postData = {
-      user_name: document.getElementById("account").value,
+      user_code: document.getElementById("account").value,
       password: document.getElementById("password").value
     }
     if (postData.user_name == '') {
@@ -14,8 +16,7 @@ var loginObj = {
       return
     }
     var params = JSON.stringify(postData);
-    //var  postUrl = '/login/login.php'
-    var postUrl = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
+    var postUrl = window.LOGIN_URL
     var xhr = null;
     if (window.XMLHttpRequest) {
       xhr = new XMLHttpRequest();
@@ -24,6 +25,7 @@ var loginObj = {
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
+        console.log(xhr.response)
         sessionStorage.setItem("uusessions", xhr.response);
         var res = JSON.parse(xhr.response)
         if (xhr.status === 200 && res.code == 200) {

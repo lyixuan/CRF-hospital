@@ -7,28 +7,8 @@
     <div class="wrap-10">
       <div style="width: 100%;height: 100%;">
         <div class="condition">
-          <div class="bg-blue">账号管理</div>
-          <div class="condition0">
-            <div class="accontMg tt">
-              <span>登录账号</span>
-              <span>姓名</span>
-              <span>备注</span>
-              <span>操作</span>
-              <span>操作</span>
-            </div>
-            <div class="accontMg" v-for="item in accounts" :keys="item.user_code">
-              <span>{{item.user_code}}</span>
-              <span>{{item.user_des}}</span>
-              <span>{{item.status==0?'停用':'开启'}}</span>
-              <span class="set" @click="openAccountEdit(item)">编辑</span>
-              <span class="set" @click="accountResetPWD(item)">重置密码</span>
-            </div>
-            <div class="addnew" @click="openAccountAdd()">
-              + 新增账号
-            </div>
-          </div>
 
-          <div class="bg-blue" style="margin-top: 20px;">角色管理</div>
+          <div class="bg-blue">角色管理</div>
           <div class="condition0">
             <div class="left_card1" style="position: relative">
               <div class="r_tt">角 色 列 表</div>
@@ -47,7 +27,7 @@
               </div>
             </div>
             <div class="right_card right_card1" style="position: relative">
-              <div class="r_tt"> 菜 单 列 表</div>
+              <div class="r_tt"> 菜 单 权 限</div>
               <el-button size="mini" type="primary" style="position:absolute;right: 20px; top:14px;z-index: 100"
                          @click="saveRights()"><i class="el-icon-check
 "></i> 保 存
@@ -85,60 +65,6 @@
         </div>
       </div>
     </div>
-    <!--编辑dialog-->
-    <el-dialog class="actEdit" title="编辑" :visible.sync="actEditDialog">
-      <el-form :model="actEditForm">
-        <el-form-item label="登录账号" :label-width="formLabelWidth">
-          <el-input v-model="actEditForm.user_code" :disabled="true"></el-input>
-        </el-form-item>
-        <el-form-item label="姓名" :label-width="formLabelWidth">
-          <el-input v-model="actEditForm.user_des"></el-input>
-        </el-form-item>
-        <el-form-item label="状态" :label-width="formLabelWidth">
-          <el-select v-model="actEditForm.status" placeholder="请选择状态">
-            <el-option label="开启" value="1"></el-option>
-            <el-option label="停用" value="0"></el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="actEditDialog = false">取 消</el-button>
-        <el-button type="primary" @click="saveAccountEdit()">确 定</el-button>
-      </div>
-    </el-dialog>
-
-    <!--新增dialog-->
-    <el-dialog class="actEdit" title="新建账号" :visible.sync="actAddDialog">
-      <el-form :model="actAddForm">
-        <el-form-item label="登录账号" :label-width="formLabelWidth" required>
-          <el-input v-model="actAddForm.user_code"></el-input>
-        </el-form-item>
-        <el-form-item label="姓名" :label-width="formLabelWidth">
-          <el-input v-model="actAddForm.user_des"></el-input>
-        </el-form-item>
-        <el-form-item label="状态" :label-width="formLabelWidth">
-          <el-select v-model="actAddForm.status" placeholder="请选择状态">
-            <el-option label="开启" value="1"></el-option>
-            <el-option label="停用" value="0"></el-option>
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <div style="font-size: 12px;text-align: center">新增用户初始密码均为:123456。管理员分配账号后，请用户及时更改密码。</div>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="actAddDialog = false">取 消</el-button>
-        <el-button type="primary" @click="saveAccountAdd()">确 定</el-button>
-      </div>
-    </el-dialog>
-
-    <!--重置密码dialog-->
-    <el-dialog class="actEdit" title="重置密码" :visible.sync="actResetDialog">
-      <div style="text-align: left;margin-left: 40px;">密码重置后将设置为初始密码123456。确定要为 {{resetName}} 重置密码吗？</div>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="actResetDialog = false">取 消</el-button>
-        <el-button type="primary" @click="saveReset()">确 定</el-button>
-      </div>
-    </el-dialog>
-
     <!--编辑角色-->
     <el-dialog class="actEdit" title="新增角色" :visible.sync="addRoleDialog">
       <el-form :model="roleAddForm">
@@ -189,21 +115,6 @@
         accounts: [],
         menus: [],
         formLabelWidth: '120px',
-        actEditDialog: false,
-        actEditForm: {
-          user_des: '',
-          user_code: '',
-          status: ''
-        },
-        actAddDialog: false,
-        actAddForm: {
-          user_des: '',
-          user_code: '',
-          status: '1'
-        },
-        actResetDialog: false,
-        resetId: '',
-        resetName: '',
         user_roles: '',
         loading: false,
         loading1: false,
@@ -266,6 +177,36 @@
           }
         })
       },
+      getRights(item){
+        this.loading1 = true;
+        this.checkedRoleId = item.role_id;
+        this.$resource(PATH_PRIVILEGE + 'role_rights').get({role_id: item.role_id}).then((response) => {
+          if (response.body.code == 200) {
+            this.role_rights = response.body.data
+          } else {
+            this.alertMsg("warning", '获取角色权限信息有误')
+          }
+          this.loading1 = false
+        })
+      },
+      saveRights(){
+        let param = {
+          role_id: this.checkedRoleId,
+          rights: this.role_rights
+        };
+        let _this = this;
+        this.$resource(PATH_PRIVILEGE + 'update_role_rights').save({}, param).then((response) => {
+          if (response.body.code == 200) {
+            _this.alertMsg("success", '角色权限保存成功');
+          } else {
+            _this.alertMsg("error", response.body.msg ? response.body.msg : '服务器端错误')
+          }
+          this.getRights({role_id: this.checkedRoleId})
+        }, (response) => {
+          this.getRights({role_id: this.checkedRoleId})
+          console.log(response.body)
+        })
+      },
       openRoleEdit(item){
         this.editRoleDialog = true;
         this.roleEditForm = {
@@ -318,102 +259,6 @@
             this.addRoleDialog = false;
           } else {
             this.alertMsg("warning", '服务器错误')
-          }
-        })
-      },
-      getRights(item){
-        this.loading1 = true;
-        this.checkedRoleId = item.role_id;
-        this.$resource(PATH_PRIVILEGE + 'role_rights').get({role_id: item.role_id}).then((response) => {
-          if (response.body.code == 200) {
-            this.role_rights = response.body.data
-          } else {
-            this.alertMsg("warning", '获取角色权限信息有误')
-          }
-          this.loading1 = false
-        })
-      },
-      saveRights(){
-        let param = {
-          role_id: this.checkedRoleId,
-          rights: this.role_rights
-        };
-        let _this = this;
-        this.$resource(PATH_PRIVILEGE + 'update_role_rights').save({}, param).then((response) => {
-          if (response.body.code == 200) {
-            _this.alertMsg("success", '角色权限保存成功');
-          } else {
-            _this.alertMsg("error", response.body.msg ? response.body.msg : '服务器端错误')
-          }
-          this.getRights({role_id: this.checkedRoleId})
-        }, (response) => {
-          this.getRights({role_id: this.checkedRoleId})
-          console.log(response.body)
-        })
-      },
-      openAccountEdit(item){
-        this.actEditForm = {
-          user_des: item.user_des,
-          user_code: item.user_code,
-          status: item.status
-        };
-        this.actEditDialog = true
-      },
-      saveAccountEdit(){
-        let _this = this;
-        let param = this.actEditForm
-        this.$resource(PATH_PRIVILEGE + 'edit_accounts').save({}, param).then((response) => {
-          if (response.body.code == 200) {
-            _this.alertMsg("success", '修改成功');
-            _this.actEditDialog = false;
-            _this.getAccounts()
-
-          } else {
-            _this.alertMsg("error", response.body.msg ? response.body.msg : '服务器端错误')
-          }
-        }, (response) => {
-          console.log(response.body)
-        })
-      },
-      openAccountAdd(){
-        this.actAddForm = {
-          user_des: '',
-          user_code: '',
-          status: '1'
-        };
-        this.actAddDialog = true
-      },
-      saveAccountAdd(){
-        if (!this.actAddForm.user_code) {
-          this.alertMsg("warning", '请填写登录账号')
-          return
-        }
-        let param = this.actAddForm;
-        let _this = this;
-        this.$resource(PATH_PRIVILEGE + 'add_accounts').save({}, param).then((response) => {
-          if (response.body.code == 200) {
-            _this.alertMsg("success", '添加成功');
-            _this.actAddDialog = false;
-            _this.getAccounts()
-          } else {
-            _this.alertMsg("error", response.body.msg ? response.body.msg : '服务器端错误')
-          }
-        }, (response) => {
-          _this.alertMsg("error", response.body.msg ? response.body.msg : '服务器端错误')
-        })
-      },
-      accountResetPWD(item){
-        this.resetName = item.user_des;
-        this.resetId = item.user_code;
-        this.actResetDialog = true
-      },
-      saveReset(){
-        this.$resource(P_OPTIONS + 'reset_pwd').get({user_code: this.resetId}).then((response) => {
-          if (response.body.code == 200) {
-            this.alertMsg("success", '重置成功');
-            this.actResetDialog = false
-          } else {
-            this.alertMsg("warning", '重置失败')
           }
         })
       },
@@ -481,37 +326,6 @@
 
   }
 
-  .accontMg {
-    overflow: hidden;
-    height: 30px;
-    line-height: 30px;
-  }
-
-  .tt {
-    font-weight: bold;
-  }
-
-  .set {
-    color: #1c8de0;
-    cursor: pointer;
-  }
-
-  .set:hover {
-    color: #000080;
-  }
-
-  .addnew {
-    box-sizing: border-box;
-    text-align: center;
-    border: 1px solid #1c8de0;
-    color: #1c8de0;
-    cursor: pointer;
-  }
-
-  .addnew:hover {
-    background: #1c8de0;
-    color: #fff;
-  }
 
   .accontMg > span {
     display: inline-block;

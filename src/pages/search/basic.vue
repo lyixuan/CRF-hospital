@@ -7,48 +7,50 @@
     <div class="wrap-10">
       <div class="search">
         <el-row :gutter="10" class="row">
+          <el-col :span="24">
+            <el-radio class="radio" v-model="form.type" label="2">组合查找</el-radio>
+            <el-radio class="radio" v-model="form.type" label="1">精确查找</el-radio>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10" class="row" v-if="form.type == 1" >
+          <el-col :span="24">
+            查询条件：
+            <el-input style="width: 250px;" v-model="form.card_id" placeholder="输入卡号或姓名或身份证号"></el-input>
+          </el-col>
+        </el-row>
+        <el-row :gutter="10" class="row" v-if="form.type == 2">
           <el-col :span="6">
-            就诊卡号：
-            <el-input v-model="form.card_id" placeholder="输入卡号"></el-input>
+            年龄：
+            <el-select v-model="form.age_range" placeholder="选择年龄范围" clearable>
+              <el-option label="<=18" value="<=18"></el-option>
+              <el-option label="19~30" value="19~30"></el-option>
+              <el-option label="31~40" value="31~40"></el-option>
+              <el-option label="41~50" value="41~50"></el-option>
+              <el-option label="51~60" value="51~60"></el-option>
+              <el-option label="61~70" value="61~70"></el-option>
+              <el-option label="71~80" value="71~80"></el-option>
+              <el-option label=">80" value=">80"></el-option>
+            </el-select>
           </el-col>
           <el-col :span="6">
-            患者姓名：
-            <el-input v-model="form.name" placeholder="输入姓名"></el-input>
-          </el-col>
-          <el-col :span="6">
-            患者年龄：
-            <el-input v-model="form.age" placeholder="输入年龄"></el-input>
-          </el-col>
-          <el-col :span="6">
-            患者性别：
-            <el-select v-model="form.sex" placeholder="选择性别">
-              <el-option label="" value=""></el-option>
+            性别：
+            <el-select v-model="form.sex" placeholder="选择性别" clearable>
               <el-option label="男" value="male"></el-option>
               <el-option label="女" value="female"></el-option>
             </el-select>
           </el-col>
-        </el-row>
-        <el-row :gutter="10" class="row">
           <el-col :span="6">
-            疾病名称：
-            <el-select v-model="form.sick" placeholder="选择疾病">
+            疾病：
+            <el-select v-model="form.sick" placeholder="选择疾病" clearable>
               <el-option v-for="item in sick_list" :label="item.name" :value="item.key" :key="item.name"></el-option>
             </el-select>
           </el-col>
           <el-col :span="6">
-            所在省份：
-            <el-select v-model="form.province" placeholder="选择省份">
+            省份：
+            <el-select v-model="form.province" placeholder="选择省份" clearable>
               <el-option v-for="item in province_list" :label="item.name" :value="item.name"
                          :key="item.name"></el-option>
             </el-select>
-          </el-col>
-          <el-col :span="6">
-            出生日期：
-            <el-date-picker v-model="form.birthday" type="date" placeholder="选择日期"></el-date-picker>
-          </el-col>
-          <el-col :span="6">
-            就诊日期：
-            <el-date-picker v-model="form.visit_date" type="date" placeholder="选择日期"></el-date-picker>
           </el-col>
         </el-row>
       </div>
@@ -101,19 +103,14 @@
     data () {
       return {
         form: {
-          card_id: '',
-          name: '',
-          age: '',
+          type: '2',
+          age_range:'',
           sex: '',
           sick: '',
           province: '',
-          birthday: '',
-          visit_date: ''
+          card_id: ''
         },
         province_list: [
-          {
-            "name": "",
-          },
           {
             "name": "北京",
           },
@@ -217,7 +214,7 @@
             "name": "澳门",
           }
         ],
-        sick_list: [{key: '', name: ""}],
+        sick_list: [],
         table_data:[],
         current_page: 1,
         page_size: 10,
@@ -253,8 +250,6 @@
         })
       },
       search(type){
-        this.form.birthday =new Date(this.form.birthday).Format("yyyy-MM-dd")
-        this.form.visit_date =new Date(this.form.visit_date).Format("yyyy-MM-dd")
         let params = this.form
         if (type == 1) {
           // 点击分页

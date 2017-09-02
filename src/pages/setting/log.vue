@@ -7,7 +7,7 @@
     <div class="wrap-10">
       <div class="search">
         <el-row :gutter="10" class="row">
-          <el-col :span="6">
+          <el-col :span="24">
             日期范围：
             <el-date-picker v-model="date_range" type="daterange" placeholder="选择日期范围"></el-date-picker>
           </el-col>
@@ -77,7 +77,7 @@
         this.requestData(params)
       },
       requestData(params){
-        this.$resource(PATH_OPTION + 'log').save({},params).then((response) => {
+        this.$resource(PATH_SETTING + 'log').save({},params).then((response) => {
           if (response.body.code == 200) {
             this.table_data = response.body.data
             this.paging(response.body.pagination)
@@ -128,10 +128,9 @@
     float: right;
   }
 
-  .el-date-editor {
-    width: auto;
+  .el-date-editor.el-input{
+    width: 220px;
   }
-
   .el-button--primary {
     padding: 6px 12px;
   }

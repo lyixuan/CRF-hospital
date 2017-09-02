@@ -7,6 +7,7 @@ window.PATH_STATA = 'http://rap.taobao.org/mockjsdata/23744/api/stata/'
 window.PATH_SETTING = 'http://rap.taobao.org/mockjsdata/12461/api/setting/'
 window.PATH_PRIVILEGE = 'http://rap.taobao.org/mockjsdata/12461/api/privilege/'
 
+
 // window.PATH_LOGIN = 'api/'
 // window.PATH_RECORD = 'api/stata/'
 // window.PATH_RECORD = 'api/record/'

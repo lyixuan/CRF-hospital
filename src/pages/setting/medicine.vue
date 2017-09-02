@@ -20,7 +20,7 @@
             :label="item.name"
             :name="item.key">
             <el-tag
-              :key="tag"
+              :key="tag.key"
               v-for="tag in item.content"
               :closable="true"
               :close-transition="false"
@@ -130,9 +130,6 @@
       },
       showInput() {
         this.inputVisible = true;
-        this.$nextTick(_ => {
-          this.$refs.saveTagInput.$refs.input.focus();
-        });
       },
       handleInputConfirm(item) {
         let inputValue = this.inputValue;
@@ -166,10 +163,10 @@
   }
 
   .el-tabs--border-card{
-    min-width: 1000px;
+    min-width: 100%;
   }
   .el-tabs--border-card .el-tabs__content{
-    min-width: 1000px;
+    min-width: 100%;
   }
   .el-tag{
     margin-right: 15px;
