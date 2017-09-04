@@ -8,7 +8,7 @@
         <div class="base table-box mtable">
           <div class="tt"><span>【妲己】</span><span>【大桥】</span><span>【诸葛亮】</span><span>【赵子龙】</span>对比</div>
           <el-button class="m-el-button"  @click="back">返回</el-button>
-          <table border="1" cellspacing="0" cellpadding="0">
+          <table border="1" cellspacing="0" cellpadding="0" bordercolor="#f5f5f5">
             <tr>
               <td>基本信息</td>
               <td  v-for="item in data">
@@ -175,5 +175,12 @@
     margin-right: 10px;
     margin-left: 10px;
     font-size: 16px;
+  }
+
+  tr>td:first-child{
+    background: #83bff6;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
   }
 </style>

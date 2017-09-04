@@ -24,7 +24,7 @@
               class="js-line2"></span></span>
           </el-col>
           <el-col :span="7">
-            <el-form-item label="姓名:" prop="name">
+            <el-form-item label="患者姓名:" prop="name">
               <el-input v-model="jbxxForm.name" placeholder="输入姓名"></el-input>
             </el-form-item>
           </el-col>
@@ -37,7 +37,7 @@
         </el-row>
         <el-row>
           <el-col :span="7">
-            <el-form-item label="性别:" prop="sex">
+            <el-form-item label="患者性别:" prop="sex">
               <el-select v-model="jbxxForm.sex" placeholder="请选择">
                 <el-option v-for="item in sexOptions" :label="item.label" :value="item.value">
                 </el-option>
@@ -46,7 +46,7 @@
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
-            <el-form-item label="年龄:" prop="age">
+            <el-form-item label="患者年龄:" prop="age">
               <el-input v-model="jbxxForm.age" placeholder="输入年龄"></el-input>
             </el-form-item>
           </el-col>
@@ -64,17 +64,24 @@
             </el-form-item>
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
-          <el-col :span="5">
-            <el-form-item label="住址:" prop="province">
-              <el-select v-model="jbxxForm.province" placeholder="选择省份">
+          <el-col :span="7">
+            <el-form-item label="身份证号:" prop="identity">
+              <el-input v-model="jbxxForm.identity" placeholder="输入身份证号"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row>
+          <el-col :span="7">
+            <el-form-item label="家庭住址:" prop="province">
+              <el-select v-model="jbxxForm.province" style="width: 100%;" placeholder="选择省份">
                 <el-option v-for="item in province_list" :label="item.name" :value="item.name"
                            :key="item.name"></el-option>
               </el-select>
             </el-form-item>
           </el-col>
-          <el-col :span="10">
+          <el-col :span="16">
             <el-form-item label="" prop="addr">
-             <el-input v-model="jbxxForm.addr"  placeholder="详细地址"></el-input>
+              <el-input v-model="jbxxForm.addr"  placeholder="详细地址"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -243,6 +250,7 @@
         jbxxForm: {
           card_id: '',
           name: '',
+          identity:'',
           visit_date: '',
           sex: 'male',
           age: '',

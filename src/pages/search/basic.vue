@@ -8,8 +8,8 @@
       <div class="search">
         <el-row :gutter="10" class="row">
           <el-col :span="24">
-            <el-radio class="radio" v-model="form.type" label="2">组合查找</el-radio>
             <el-radio class="radio" v-model="form.type" label="1">精确查找</el-radio>
+            <el-radio class="radio" v-model="form.type" label="2">组合查找</el-radio>
           </el-col>
         </el-row>
         <el-row :gutter="10" class="row" v-if="form.type == 1" >
@@ -103,7 +103,7 @@
     data () {
       return {
         form: {
-          type: '2',
+          type: '1',
           age_range:'',
           sex: '',
           sick: '',

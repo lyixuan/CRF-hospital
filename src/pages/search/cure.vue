@@ -49,27 +49,6 @@
                         </el-select>
                       </el-form-item>
                     </el-col>
-                    <el-col :span="5">
-                      <el-form-item label="用量:">
-                        <el-select v-model="zlfaForm[item][key].dosage" placeholder="请选择">
-                          <el-option v-for="item in dosageList" :label="item.name" :value="item.id"></el-option>
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="5">
-                      <el-form-item label="次数:">
-                        <el-select v-model="zlfaForm[item][key].frequency" placeholder="请选择">
-                          <el-option v-for="item in frequencyList" :label="item.name" :value="item.id"></el-option>
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
-                    <el-col :span="5">
-                      <el-form-item label="服用方式:">
-                        <el-select v-model="zlfaForm[item][key].usage" placeholder="请选择">
-                          <el-option v-for="item in usageList" :label="item.name" :value="item.id"></el-option>
-                        </el-select>
-                      </el-form-item>
-                    </el-col>
                   </el-row>
                 </el-col>
               </el-row>
@@ -231,14 +210,14 @@
                   if (key == key1) {
                     this.zlfaForm[key1].name = result_items[key].name
                     this.zlfaForm[key1].types = result_items[key].items
-                    this.zlfaForm[key1].flag = "z1"
+                    this.zlfaForm[key1].flag = 'z1'
                   }
                 }
               }
             } else {
-              this.alertMsg("error", response.status + " - " + response.url)
+              this.alertMsg('error', response.status + ' - ' + response.url)
             }
-          }
+          },
         )
       },
       search(type){

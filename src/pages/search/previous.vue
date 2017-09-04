@@ -10,18 +10,18 @@
           <p>检索条件： <el-button id="fzs" type="text" size="mini" @click="writeConfig">定制条件</el-button></p>
           <p v-if="jwsForm.gxy.type!=2">高血压：
             <span v-if="jwsForm.gxy.type==1">是
-              <span>最高：{{jwsForm.gxy.info.zg_date}}年 （{{jwsForm.gxy.info.xy_zg_high?jwsForm.gxy.info.xy_zg_high:"空缺"}} / {{jwsForm.gxy.info.xy_zg_low?jwsForm.gxy.info.xy_zg_low:"空缺"}} mmHg）</span>
-              <span>现在：{{jwsForm.gxy.info.now_date}}年 （{{jwsForm.gxy.info.xy_now_high?jwsForm.gxy.info.xy_now_high:"空缺"}} / {{jwsForm.gxy.info.xy_now_low?jwsForm.gxy.info.xy_now_low:"空缺"}} mmHg）</span></span>
+              <span>最高： 收缩压（{{jwsForm.gxy.info.ss_zg_low?jwsForm.gxy.info.ss_zg_low:"空缺"}} ~ {{jwsForm.gxy.info.ss_zg_high?jwsForm.gxy.info.ss_zg_high:"空缺"}} mmHg）</span> 舒张压（{{jwsForm.gxy.info.sz_zg_low?jwsForm.gxy.info.sz_zg_low:"空缺"}} ~ {{jwsForm.gxy.info.sz_zg_high?jwsForm.gxy.info.sz_zg_high:"空缺"}} mmHg）
+              <span>现在：收缩压（{{jwsForm.gxy.info.ss_now_low?jwsForm.gxy.info.ss_now_low:"空缺"}} ~ {{jwsForm.gxy.info.ss_now_high?jwsForm.gxy.info.ss_now_high:"空缺"}} mmHg）</span>收缩压（{{jwsForm.gxy.info.sz_now_low?jwsForm.gxy.info.sz_now_low:"空缺"}} ~ {{jwsForm.gxy.info.sz_now_high?jwsForm.gxy.info.sz_now_high:"空缺"}} mmHg）
+            </span>
             <span v-if="jwsForm.gxy.type==0">否</span>
           </p>
           <p v-if="jwsForm.tnb.type!=2">糖尿病：
             <span v-if="jwsForm.tnb.type==1">是
-              <span>年份：{{jwsForm.tnb.info.date}}  , 空腹血糖：{{jwsForm.tnb.info.xt_data?jwsForm.tnb.info.xt_data:"空缺"}} mmol/L</span></span>
+              <span>空腹血糖：{{jwsForm.tnb.info.xt_low?jwsForm.tnb.info.xt_low:"空缺"}} ~ {{jwsForm.tnb.info.xt_high?jwsForm.tnb.info.xt_high:"空缺"}} mmol/L</span></span>
             <span v-if="jwsForm.tnb.type==0">否</span>
           </p>
           <p v-if="jwsForm.gxb.type!=2">冠心病：
-            <span v-if="jwsForm.gxb.type==1">是
-              <span>年份：{{jwsForm.gxb.info.date}}</span></span>
+            <span v-if="jwsForm.gxb.type==1">是</span>
             <span v-if="jwsForm.gxb.type==0">否</span>
           </p>
           <p v-if="jwsForm.gzxz.type!=2">高脂血症：
@@ -38,7 +38,6 @@
           </p>
           <p v-if="jwsForm.ng.type!=2">脑梗：
             <span v-if="jwsForm.ng.type==1">是
-            <span>后遗症：{{jwsForm.ng.info.hyz?jwsForm.ng.info.hyz:"空缺"}}</span>
             </span>
             <span v-if="jwsForm.ng.type==0">否</span>
           </p>
@@ -56,7 +55,6 @@
           </p>
           <p v-if="jwsForm.zls.type!=2">肿瘤史：
             <span v-if="jwsForm.zls.type==1">是
-            <span>后遗症：{{jwsForm.zls.info.ms?jwsForm.zls.info.ms:"空缺"}}</span>
             </span>
             <span v-if="jwsForm.zls.type==0">否</span>
           </p>
@@ -117,43 +115,27 @@
           </el-col>
           <el-col :span="17" v-if="jwsForm.gxy.type == 1">
             <el-row :gutter="10">
-              <el-col :span="6">
+              <el-col :span="24">
                 <el-form-item label="最高:">
-                  <el-date-picker v-model="jwsForm.gxy.info.zg_date" align="right" type="year" :editable="false"
-                                  :clearable="false"
-                                  placeholder="选择年"></el-date-picker>
+                  <el-col :span="12">
+                    收缩压 <el-input style="width: 80px;" v-model="jwsForm.gxy.info.ss_zg_low"></el-input> ~  <el-input style="width: 80px;"  v-model="jwsForm.gxy.info.ss_zg_high"></el-input> mmHg
+                  </el-col>
+                  <el-col :span="12">
+                    舒张压 <el-input style="width: 80px;" v-model="jwsForm.gxy.info.sz_zg_low"></el-input> ~  <el-input style="width: 80px;"  v-model="jwsForm.gxy.info.sz_zg_high"></el-input> mmHg
+                  </el-col>
                 </el-form-item>
               </el-col>
-              <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_zg_high" placeholder="收缩压"></el-input>
-              </el-col>
-              <el-col :span="1" class="m-label">
-                /
-              </el-col>
-              <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_zg_low" placeholder="舒张压"></el-input>
-              </el-col>
-              <el-col :span="1" class="m-label">
-                mmHg
-              </el-col>
-              <el-col :span="6">
+            </el-row>
+            <el-row :gutter="10">
+              <el-col :span="24">
                 <el-form-item label="现在:">
-                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year" :editable="false"
-                                  :clearable="false"
-                                  placeholder="选择年"></el-date-picker>
+                  <el-col :span="12">
+                    收缩压 <el-input style="width: 80px;" v-model="jwsForm.gxy.info.ss_now_low"></el-input> ~  <el-input style="width: 80px;"  v-model="jwsForm.gxy.info.ss_now_high"></el-input> mmHg
+                  </el-col>
+                  <el-col :span="12">
+                    舒张压 <el-input style="width: 80px;" v-model="jwsForm.gxy.info.sz_now_low"></el-input> ~  <el-input style="width: 80px;"  v-model="jwsForm.gxy.info.sz_now_high"></el-input> mmHg
+                  </el-col>
                 </el-form-item>
-              </el-col>
-              <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_now_high" placeholder="收缩压"></el-input>
-              </el-col>
-              <el-col :span="1" class="m-label">
-                /
-              </el-col>
-              <el-col :span="2">
-                <el-input v-model="jwsForm.gxy.info.xy_now_low" placeholder="舒张压"></el-input>
-              </el-col>
-              <el-col :span="1" class="m-label">
-                mmHg
               </el-col>
             </el-row>
           </el-col>
@@ -171,18 +153,17 @@
           </el-col>
           <el-col :span="17" v-if="jwsForm.tnb.type == 1">
             <el-row>
-              <el-col :span="12">
-                <el-form-item label="年份:">
-                  <el-date-picker v-model="jwsForm.tnb.info.date"  type="year" :editable="false"
-                                  :clearable="false"
-                                  placeholder="选择年"></el-date-picker>
-                </el-form-item>
-              </el-col>
               <el-col :span="3" class="m-label">
                 空腹血糖:
               </el-col>
               <el-col :span="3">
-                <el-input v-model="jwsForm.tnb.info.xt_data"></el-input>
+                <el-input v-model="jwsForm.tnb.info.xt_low"></el-input>
+              </el-col>
+              <el-col :span="1" class="m-label">
+                ~
+              </el-col>
+              <el-col :span="3">
+                <el-input v-model="jwsForm.tnb.info.xt_high"></el-input>
               </el-col>
               <el-col :span="2" class="m-label">
                 mmol/L
@@ -200,17 +181,6 @@
                 <el-radio label="2">不选</el-radio>
               </el-radio-group>
             </el-form-item>
-          </el-col>
-          <el-col :span="17" v-if="jwsForm.gxb.type == 1">
-            <el-row>
-              <el-col :span="12">
-                <el-form-item label="年份:">
-                  <el-date-picker v-model="jwsForm.gxb.info.date"  type="year" :editable="false"
-                                  :clearable="false"
-                                  placeholder="选择年"></el-date-picker>
-                </el-form-item>
-              </el-col>
-            </el-row>
           </el-col>
         </el-row>
         <div class="row-line"></div>
@@ -260,15 +230,6 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="17" v-if="jwsForm.ng.type == 1">
-            <el-row>
-              <el-col :span="23">
-                <el-form-item label="后遗症:">
-                  <el-input v-model="jwsForm.ng.info.hyz"></el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-col>
         </el-row>
         <div class="row-line"></div>
         <el-row>
@@ -317,15 +278,6 @@
               </el-radio-group>
             </el-form-item>
           </el-col>
-          <el-col :span="17" v-if="jwsForm.zls.type == 1">
-            <el-row>
-              <el-col :span="23">
-                <el-form-item label="描述:">
-                  <el-input v-model="jwsForm.zls.info.ms"></el-input>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-col>
         </el-row>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -350,26 +302,25 @@
           gxy: {
             type: "2",
             info: {
-              now_date: new Date(),
-              xy_now_high: "",
-              xy_now_low: "",
-              zg_date: new Date(),
-              xy_zg_high: "",
-              xy_zg_low: ""
+              ss_now_high: "",
+              ss_now_low: "",
+              sz_now_high: "",
+              sz_now_low: "",
+              ss_zg_high: "",
+              ss_zg_low: "",
+              sz_zg_high: "",
+              sz_zg_low: ""
             }
           },
           tnb: {
             type: "2",
             info: {
-              date: new Date(),
-              xt_data: ""
+              xt_low: "",
+              xt_high:""
             }
           },
           gxb: {
             type: "2",
-            info: {
-              date: new Date()
-            }
           },
           gzxz: {
             type: "2"
@@ -381,10 +332,7 @@
             type: "2"
           },
           ng: {
-            type: "2",
-            info: {
-              hyz: ""
-            }
+            type: "2"
           },
           jzb: {
             type: "2"
@@ -396,10 +344,7 @@
             type: "2"
           },
           zls: {
-            type: "2",
-            info: {
-              ms: ""
-            }
+            type: "2"
           }
         }
       }
@@ -449,10 +394,6 @@
         }
       },
       saveConfig(){
-        this.jwsForm.gxy.info.zg_date = (new Date(this.jwsForm.gxy.info.zg_date)).Format("yyyy")
-        this.jwsForm.gxy.info.now_date = (new Date(this.jwsForm.gxy.info.now_date)).Format("yyyy")
-        this.jwsForm.tnb.info.date = (new Date(this.jwsForm.tnb.info.date)).Format("yyyy")
-        this.jwsForm.gxb.info.date = (new Date(this.jwsForm.gxb.info.date)).Format("yyyy")
         window.sessionStorage.setItem('form_jws', JSON.stringify(this.jwsForm))
         this.actDialog = false
       },

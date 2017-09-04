@@ -415,7 +415,7 @@
     text-align: center;
     color: #3497E8;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 24px;
   }
 
   #chart-sex {
