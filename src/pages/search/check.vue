@@ -38,16 +38,112 @@
               <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
             </template>
           </el-table-column>
-          <el-table-column prop="cmCfydb" label="超敏C反应蛋白"></el-table-column>
-          <el-table-column prop="dbCS" label="蛋白C+S"></el-table-column>
-          <el-table-column prop="knxmIII" label="抗凝血酶III"></el-table-column>
-          <el-table-column prop="nxsx" label="凝血四项"></el-table-column>
-          <el-table-column prop="thxhdb" label="糖化血红蛋白"></el-table-column>
-          <el-table-column prop="txbpas" label="同型半胱氨酸"></el-table-column>
-          <el-table-column prop="xcg" label="血常规"></el-table-column>
-          <el-table-column prop="xlb" label="血流变"></el-table-column>
-          <el-table-column prop="xsh" label="血生化"></el-table-column>
-          <el-table-column prop="xxbjjsy" label="血小板聚集试验"></el-table-column>
+          <el-table-column v-if="showItem == 'xcg'" label="血常规">
+            <el-table-column prop="WBC" label="白细胞计数"></el-table-column>
+            <el-table-column prop="NEUT#" label="中性粒细胞计数"></el-table-column>
+            <el-table-column prop="LYMPH#" label="淋巴细胞计数"></el-table-column>
+            <el-table-column prop="MONO#" label="单核细胞计数"></el-table-column>
+            <el-table-column prop="EOS#" label="嗜酸性粒细胞计数"></el-table-column>
+            <el-table-column prop="BASO#" label="嗜酸性粒细胞计数"></el-table-column>
+            <el-table-column prop="ENEUT%" label="中性粒细胞百分率"></el-table-column>
+            <el-table-column prop="LYMPH%" label="淋巴细胞百分率"></el-table-column>
+            <el-table-column prop="MONO%" label="单核细胞百分率"></el-table-column>
+            <el-table-column prop="EOS%" label="嗜酸性粒细胞比率"></el-table-column>
+            <el-table-column prop="BASO%" label="嗜碱性粒细胞比率"></el-table-column>
+            <el-table-column prop="RBC" label="红细胞计数"></el-table-column>
+            <el-table-column prop="HGB" label="血红蛋白测定"></el-table-column>
+            <el-table-column prop="HCT" label="红细胞压积"></el-table-column>
+            <el-table-column prop="MCV" label="红细胞平均体积"></el-table-column>
+            <el-table-column prop="MCH" label="平均红细胞血红蛋白含量"></el-table-column>
+            <el-table-column prop="MCHC" label="平均红细胞血红蛋白浓度"></el-table-column>
+            <el-table-column prop="RDW" label="红细胞体积分布宽度"></el-table-column>
+            <el-table-column prop="PLT" label="血小板计数"></el-table-column>
+            <el-table-column prop="PCT" label="血小板积压"></el-table-column>
+            <el-table-column prop="MPV" label="血小板平均体积"></el-table-column>
+            <el-table-column prop="PDW" label="血小板体积分布宽度"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'xsh'"  label="血生化">
+            <el-table-column prop="ALT" label="丙氨酸氨基转移酶"></el-table-column>
+            <el-table-column prop="TBIL" label="总胆红素"></el-table-column>
+            <el-table-column prop="DBIL" label="直接胆红素"></el-table-column>
+            <el-table-column prop="IBIL" label="间接胆红素"></el-table-column>
+            <el-table-column prop="TP" label="总蛋白"></el-table-column>
+            <el-table-column prop="ALB" label="白蛋白"></el-table-column>
+            <el-table-column prop="G" label="球蛋白"></el-table-column>
+            <el-table-column prop="A/G" label="白/球比例"></el-table-column>
+            <el-table-column prop="PAB" label="前白蛋白"></el-table-column>
+            <el-table-column prop="ALP" label="碱性磷酸酶"></el-table-column>
+            <el-table-column prop="GGT" label="γ-谷氨酰转肽酶"></el-table-column>
+            <el-table-column prop="AST" label="天冬氨酸氨基转移酶"></el-table-column>
+            <el-table-column prop="TBA" label="总胆汁酸"></el-table-column>
+            <el-table-column prop="CK" label="肌酸激酶"></el-table-column>
+            <el-table-column prop="LDH" label="乳酸脱氢酶"></el-table-column>
+            <el-table-column prop="HBDH" label="α-羟基丁酸脱氢酶"></el-table-column>
+            <el-table-column prop="CREA" label="肌酐"></el-table-column>
+            <el-table-column prop="Urea" label="尿素"></el-table-column>
+            <el-table-column prop="GLU" label="葡萄糖"></el-table-column>
+            <el-table-column prop="UA" label="尿酸"></el-table-column>
+            <el-table-column prop="TG" label="甘油三酶"></el-table-column>
+            <el-table-column prop="TCH" label="总胆固醇"></el-table-column>
+            <el-table-column prop="HDL-C" label="高密度脂蛋白"></el-table-column>
+            <el-table-column prop="LDL-C" label="低密度脂蛋白"></el-table-column>
+            <el-table-column prop="APOAI" label="载脂蛋白-AI"></el-table-column>
+            <el-table-column prop="APOB" label="载脂蛋白-B"></el-table-column>
+            <el-table-column prop="K" label="钾"></el-table-column>
+            <el-table-column prop="Na" label="钠"></el-table-column>
+            <el-table-column prop="CL" label="氯"></el-table-column>
+            <el-table-column prop="Ca" label="钙"></el-table-column>
+            <el-table-column prop="P" label="磷"></el-table-column>
+            <el-table-column prop="HCY" label="同型半胱氨酸"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'nxsx'"  label="凝血四项">
+            <el-table-column prop="PT%" label="凝血酶原时间活动度"></el-table-column>
+            <el-table-column prop="PT-INR" label="国际标准化比值"></el-table-column>
+            <el-table-column prop="PI_SEC" label="凝血酶原时间"></el-table-column>
+            <el-table-column prop="TT_sec" label="凝血酶时间"></el-table-column>
+            <el-table-column prop="APTT" label="活化部分凝血活酶时间"></el-table-column>
+            <el-table-column prop="Fib" label="纤维蛋白原"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'txbpas'"  label="同型半胱氨酸">
+            <el-table-column prop="HCY" label="同型半胱氨酸"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'cmCfydb'"  label="超敏C反应蛋白">
+            <el-table-column prop="HSCRP" label="超敏c反应蛋白"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'xlb'"  label="血流变">
+            <el-table-column prop="xjnd" label="血浆粘度"></el-table-column>
+            <el-table-column prop="qxnd1" label="全血粘度:1.0(1/S)"></el-table-column>
+            <el-table-column prop="qxnd3" label="全血粘度:3.0(1/S)"></el-table-column>
+            <el-table-column prop="qxnd5" label="全血粘度:5.0(1/S)"></el-table-column>
+            <el-table-column prop="qxnd10" label="全血粘度:10(1/S)"></el-table-column>
+            <el-table-column prop="qxnd50" label="全血粘度:50(1/S)"></el-table-column>
+            <el-table-column prop="qxnd100" label="全血粘度:100(1/S)"></el-table-column>
+            <el-table-column prop="qxnd180" label="全血粘度:180(1/S)"></el-table-column>
+            <el-table-column prop="qxnd200" label="全血粘度:200(1/S)"></el-table-column>
+            <el-table-column prop="qxdqhynd" label="全血低切还原粘度"></el-table-column>
+            <el-table-column prop="qxgqhynd" label="全血高切还原粘度"></el-table-column>
+            <el-table-column prop="dthxbcjl" label="动态红细胞沉降率"></el-table-column>
+            <el-table-column prop="hxbyj" label="红细胞压积"></el-table-column>
+            <el-table-column prop="xwdby" label="纤维蛋白原"></el-table-column>
+            <el-table-column prop="hxbjjzs" label="红细胞聚集指数"></el-table-column>
+            <el-table-column prop="xxbjjzs" label="血小板聚集指数"></el-table-column>
+            <el-table-column prop="hxbjjzs" label="红细胞聚集指数"></el-table-column>
+            <el-table-column prop="hxbgxzs" label="红细胞刚性指数"></el-table-column>
+            <el-table-column prop="xcfcKz" label="血沉方程K值"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'dbCS'"  label="蛋白C+S">
+            <el-table-column prop="PC" label="蛋白C"></el-table-column>
+            <el-table-column prop="Ps" label="蛋白S"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'thxhdb'"  label="糖化血红蛋白">
+            <el-table-column prop="HbAlc" label="糖化血红蛋白"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'xxbjjsy'"  label="血小板聚集试验">
+            <el-table-column prop="ADP-Pagt" label="ADP诱导的血小板聚集实验"></el-table-column>
+          </el-table-column>
+          <el-table-column v-if="showItem == 'knxmIII'"  label="抗凝血酶III">
+            <el-table-column prop="ATIII" label="抗凝血酶III"></el-table-column>
+          </el-table-column>
           <el-table-column label="操作" width="90">
             <template scope="scope">
               <span class="action" @click="addComparison(scope.row)">+加对比</span>
@@ -398,7 +494,9 @@
           key: "",
           start_date: "",
           end_date: ""
-        }
+        },
+        showItem:'',
+
       }
     },
     mounted () {
@@ -467,7 +565,8 @@
       requestData(params){
         this.$resource(PATH_SEARCH + 'check').save({}, params).then((response) => {
           if (response.body.code == 200) {
-            this.table_data = response.body.data
+            this.table_data = response.body.data.items;
+            this.showItem =  response.body.data.key;
             this.paging(response.body.pagination)
           } else {
             this.alertMsg("error", response.status + " - " + response.url)

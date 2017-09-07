@@ -5,6 +5,7 @@
     <el-menu theme="dark" class="el-menu-demo" mode="horizontal" @select="handleSelect">
       <el-submenu index="1">
         <template slot="title">{{uusessions_name}}</template>
+        <el-menu-item index="changepwd" @click="toChange">修改密码</el-menu-item>
         <el-menu-item index="logout">退出</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -45,7 +46,10 @@
             }
           })
         }
-      }
+      },
+      toChange() {
+        this.$router.push({path:'/change_pwd'})
+      },
     }
   }
 </script>
