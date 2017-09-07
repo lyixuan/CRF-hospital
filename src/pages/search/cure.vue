@@ -58,6 +58,7 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
+        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
@@ -283,6 +284,27 @@
       },
       paging(p){
         this.total = p.total;
+      },
+      exportExcel(){
+        let params = {}
+        if (this.date_range.length > 0 && this.date_range[0] && this.date_range[1]) {
+          params.start_date = (new Date(this.date_range[0])).Format("yyyy-MM-dd")
+          params.end_date = (new Date(this.date_range[1])).Format("yyyy-MM-dd")
+        }
+        for (let key in this.zlfaForm) {
+          params[key] = {}
+          for (let key2 in this.zlfaForm[key]) {
+            if (key2 != "name" && key2 != "types" && key2 != "flag") {
+              params[key][key2] = this.zlfaForm[key][key2]
+            }
+          }
+        }
+        this.$resource(PATH_SEARCH + 'cure_excel').save({}, params).then((response) => {
+          if (response.body.code == 200) {
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
       },
     },
   }

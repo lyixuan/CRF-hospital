@@ -27,6 +27,7 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
+        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
         <el-table id="table"
           :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
@@ -99,10 +100,6 @@
         this.$resource(PATH_SEARCH + 'history').save({}, params).then((response) => {
           if (response.body.code == 200) {
             this.table_data = response.body.data
-//            for (let i = 0; i < this.table_data.length; i++) {
-//              this.form.zs &&
-//              (this.table_data[i].zs = (this.table_data[i].zs).replace(new RegExp(this.form.zs, "g"), '<span color="red">' + this.form.zs + '</span>'))
-//            }
             this.paging(response.body.pagination)
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
@@ -119,7 +116,16 @@
       },
       paging(p){
         this.total = p.total;
-      }
+      },
+      exportExcel(){
+        let params = this.form
+        this.$resource(PATH_SEARCH + 'history_excel').save({}, params).then((response) => {
+          if (response.body.code == 200) {
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
     }
   }
 </script>

@@ -62,6 +62,7 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
+        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
@@ -407,7 +408,17 @@
       },
       paging(p){
         this.total = p.total;
-      }
+      },
+      exportExcel(){
+        let params = this.jwsForm
+
+        this.$resource(PATH_SEARCH + 'previous_excel').save({}, params).then((response) => {
+          if (response.body.code == 200) {
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
     }
   }
 </script>

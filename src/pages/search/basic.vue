@@ -56,6 +56,7 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
+        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
         <el-table
           :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="诊疗卡号"   show-overflow-tooltip></el-table-column>
@@ -272,7 +273,15 @@
           }
         })
       },
-
+      exportExcel(){
+        let params = this.form
+        this.$resource(PATH_SEARCH + 'basic_excel').save({},params).then((response) => {
+          if (response.body.code == 200) {
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
       handleCurrentChange(val){
         this.current_page = val;
         this.search(1)

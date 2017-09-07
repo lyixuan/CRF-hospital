@@ -30,6 +30,7 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
+        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
         <el-table id="table"
                   :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
@@ -586,7 +587,22 @@
       },
       changeTab(){
         this.searchParam.items = []
-      }
+      },
+      exportExcel(){
+        if (this.date_range.length > 0 && this.date_range[0] && this.date_range[1]) {
+          this.searchParam.start_date = (new Date(this.date_range[0])).Format("yyyy-MM-dd")
+          this.searchParam.end_date = (new Date(this.date_range[1])).Format("yyyy-MM-dd")
+        }
+        this.searchParam.key = this.checked_item
+
+        let params = this.searchParam
+        this.$resource(PATH_SEARCH + 'check_excel').save({}, params).then((response) => {
+          if (response.body.code == 200) {
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
     },
     watch: {
       "checked_item": 'changeTab'
