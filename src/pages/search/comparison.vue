@@ -6,7 +6,7 @@
     <div class="wrap-10">
       <div class="inner">
         <div class="base table-box mtable">
-          <div class="tt"><span>【妲己】</span><span>【大桥】</span><span>【诸葛亮】</span><span>【赵子龙】</span>对比</div>
+          <div class="tt"><span v-for="item in data">【{{item.jbxx.name}}】</span>对比</div>
           <el-button class="m-el-button"  @click="back">返回</el-button>
           <table border="1" cellspacing="0" cellpadding="0" bordercolor="#f5f5f5">
             <tr>

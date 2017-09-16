@@ -330,6 +330,7 @@
         this.jbxxForm.birthday = new Date(info.birthday)
         this.jbxxForm.mobile = info.mobile
         this.jbxxForm.addr = info.addr
+        this.jbxxForm.identity = info.identity
         this.jbxxForm.province = info.province
         this.writeFlag = true
         this.jbxxForm.sick_type.type = info.sick_type.type

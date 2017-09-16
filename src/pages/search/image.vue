@@ -2,7 +2,7 @@
   <div class="search-image">
     <el-breadcrumb separator="/">
       <el-breadcrumb-item :to="{ path: '/search_image' }">信息检索</el-breadcrumb-item>
-      <el-breadcrumb-item>影响学检验</el-breadcrumb-item>
+      <el-breadcrumb-item>影响学检查</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="wrap-10">
       <div class="search">

@@ -22,14 +22,14 @@
           <el-col :span="6">
             年龄：
             <el-select v-model="form.age_range" placeholder="选择年龄范围" clearable>
-              <el-option label="<=18" value="<=18"></el-option>
-              <el-option label="19~30" value="19~30"></el-option>
-              <el-option label="31~40" value="31~40"></el-option>
-              <el-option label="41~50" value="41~50"></el-option>
-              <el-option label="51~60" value="51~60"></el-option>
-              <el-option label="61~70" value="61~70"></el-option>
-              <el-option label="71~80" value="71~80"></el-option>
-              <el-option label=">80" value=">80"></el-option>
+              <el-option label="<=18" value="0,18"></el-option>
+              <el-option label="19~30" value="19,30"></el-option>
+              <el-option label="31~40" value="31,40"></el-option>
+              <el-option label="41~50" value="41,50"></el-option>
+              <el-option label="51~60" value="51,60"></el-option>
+              <el-option label="61~70" value="61,70"></el-option>
+              <el-option label="71~80" value="71,80"></el-option>
+              <el-option label=">80" value="80,200"></el-option>
             </el-select>
           </el-col>
           <el-col :span="6">
@@ -72,10 +72,12 @@
           <el-table-column prop="mobile" label="联系电话"  show-overflow-tooltip></el-table-column>
           <el-table-column prop="province" label="省份" show-overflow-tooltip></el-table-column>
           <el-table-column prop="addr" label="住址" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="sick_type" label="疾病类型"  show-overflow-tooltip></el-table-column>
+          <el-table-column prop="sick_type_name" label="疾病类型"  show-overflow-tooltip></el-table-column>
           <el-table-column prop="sick_name" label="疾病名称" show-overflow-tooltip></el-table-column>
           <el-table-column prop="visit_date" label="就诊日期"   show-overflow-tooltip></el-table-column>
           <el-table-column prop="create_date" label="录入日期"   show-overflow-tooltip></el-table-column>
+          <el-table-column prop="create_people" label="录入人员"   show-overflow-tooltip></el-table-column>
+          <el-table-column prop="create_time" label="第几次录入"   show-overflow-tooltip></el-table-column>
           <el-table-column label="操作" width="80">
             <template scope="scope">
               <span class="action" @click="addComparison(scope.row)">+加对比</span>

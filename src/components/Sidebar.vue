@@ -17,7 +17,7 @@
             <el-menu-item index="/search_history"  v-for="item in checkMenuList" v-if="item == 'js_bs'" :key="item"><i class="el-icon-menu"></i>病史</el-menu-item>
             <el-menu-item index="/search_previous"  v-for="item in checkMenuList" v-if="item == 'js_jws'" :key="item"><i class="el-icon-menu"></i>既往史</el-menu-item>
             <el-menu-item index="/search_check"  v-for="item in checkMenuList" v-if="item == 'js_jy'" :key="item"><i class="el-icon-menu"></i>检验</el-menu-item>
-            <el-menu-item index="/search_image"  v-for="item in checkMenuList" v-if="item == 'js_yxxjy'" :key="item"><i class="el-icon-menu"></i>影像学检验</el-menu-item>
+            <el-menu-item index="/search_image"  v-for="item in checkMenuList" v-if="item == 'js_yxxjy'" :key="item"><i class="el-icon-menu"></i>影像学检查</el-menu-item>
             <el-menu-item index="/search_cure"  v-for="item in checkMenuList" v-if="item == 'js_zlfa'" :key="item"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
           </el-submenu>
           <el-submenu index="3" v-for="(v,k) in menuList" v-if="k == 'lr' &&v == 1">

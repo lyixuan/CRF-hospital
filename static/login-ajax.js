@@ -2,8 +2,8 @@ if (navigator.userAgent.toLocaleLowerCase().indexOf('msie') !== -1 && !+[1,]) {
   //ie8检测
   alert('您的浏览器版本过低,请升级浏览器或更换他浏览器再试！');
 }
-// window.LOGIN_URL = '/login/login.php'
-window.LOGIN_URL = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
+window.LOGIN_URL = '/api/login.php'
+// window.LOGIN_URL = 'http://rap.taobao.org/mockjsdata/12461/api/login.php'
 
 var loginObj = {
   loginSubmit: function () {
