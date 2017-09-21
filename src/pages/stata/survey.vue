@@ -84,11 +84,11 @@
         let o2 = document.getElementById('chart-sex');
         let o3 = document.getElementById('chart-bar');
 
-        if (window.innerHeight > 700) {
+        if (window.innerHeight > 780) {
           o.style.height = clientheight * 0.5 + 'px';
           o1.style.height = clientheight * 0.3 - 10 + 'px';
           o2.style.height = clientheight * 0.2 + 'px';
-          o3.style.height = clientheight * 0.4 + 'px';
+          o3.style.height = clientheight * 0.4 - 15 + 'px';
           let pie = document.getElementById('chart-pie');
           pie.style.height = o1.offsetHeight - 50 - 20 + 'px'
           pie.style.width = o1.offsetWidth - 20 + 'px'
@@ -96,7 +96,7 @@
           o.style.height = clientheight * 0.8 + 'px';
           o1.style.height = clientheight * 0.5 - 10 + 'px';
           o2.style.height = clientheight * 0.3 + 'px';
-          o3.style.height = clientheight * 0.4 + 'px';
+          o3.style.height = clientheight * 0.4 - 10 + 'px';
           let pie = document.getElementById('chart-pie');
           pie.style.height = o1.offsetHeight - 50 - 20 + 'px'
           pie.style.width = o1.offsetWidth - 20 + 'px'
@@ -367,6 +367,7 @@
     border-radius: 6px;
     background: #fff;
     padding: 10px;
+    border: 1px solid #c5c5c5;
   }
 
   #chart-geo {
@@ -376,7 +377,7 @@
   #chart-pie-out {
     height: 350px;
     border-radius: 0;
-    border: 2px solid #F2F2F2;
+    border: 1px solid #c5c5c5;
     position: relative;
   }
 
@@ -422,7 +423,7 @@
     margin-top: 10px;
     height: 220px;
     border-radius: 0;
-    border: 2px solid #F2F2F2;
+    border: 1px solid #c5c5c5;
     position: relative;
   }
 

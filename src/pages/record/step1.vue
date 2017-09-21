@@ -19,7 +19,7 @@
               <el-input v-model="jbxxForm.card_id"  placeholder="输入卡号"></el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="1">&nbsp;
+          <el-col :span="1">
             <span class="js-text" @click="checkout">检索<span class="js-line1"></span><span
               class="js-line2"></span></span>
           </el-col>
@@ -427,7 +427,8 @@
     color: #fff;
     text-align: center;
     padding: 5px;
-    margin-top: 1px;
+    margin-top: 0px;
+    margin-left: 5px;
     display: inline-block;
     cursor: pointer;
   }
@@ -447,11 +448,11 @@
 
   .js-line1 {
     border-bottom: none;
-    top: -10px;
+    top: -8px;
   }
 
   .js-line2 {
     border-top: none;
-    top: 28px;
+    top: 30px;
   }
 </style>

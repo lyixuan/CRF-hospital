@@ -1063,8 +1063,9 @@
       }
     },
     mounted(){
+      let pid = this.$route.params.patient_id
       this.loading = true;
-      this.$resource(PATH_SEARCH + 'detailByCardId').get({card_id: '1'}).then((response) => {
+      this.$resource(PATH_SEARCH + 'detailByPatientId').get({patient_id: pid}).then((response) => {
         this.loading = false;
         if (response.status == 200) {
           this.x_step1_jbxx = response.body.data.jbxx

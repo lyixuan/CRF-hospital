@@ -33,6 +33,7 @@
   margin: 15px;
   padding: 20px 10px;
   position: relative;
+  min-height: 600px;
 }
 .x-content .tabs span {
   padding: 5px;

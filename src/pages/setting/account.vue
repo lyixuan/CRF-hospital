@@ -125,7 +125,6 @@
                 this.accounts.splice(i, 1)
               }
             }
-            this.getUserRoles(this.accounts[0])
           } else {
             this.alertMsg("warning", '获取账号信息有误')
           }
@@ -222,6 +221,8 @@
     line-height: 25px;
     padding-left: 5px;
     width: 100%;
+    font-size: 14px;
+    font-weight: bold;
   }
 
   .condition0 {
@@ -255,6 +256,7 @@
     border: 1px solid #1c8de0;
     color: #1c8de0;
     cursor: pointer;
+    font-size: 14px;
   }
 
   .addnew:hover {

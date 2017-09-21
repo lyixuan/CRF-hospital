@@ -27,13 +27,13 @@
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
-        <el-button style="border: none;float: right;" @click="exportExcel">导出Excel</el-button>
+        <div class="bar bar2">查询结果<el-button class="excel" @click="exportExcel">导出Excel</el-button></div>
         <el-table id="table"
           :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="卡号" width="100"></el-table-column>
           <el-table-column label="姓名" width="100">
             <template scope="scope">
-              <span class="action" @click="openDetail(scope.row.card_id)">{{scope.row.name}}</span>
+              <span class="action" @click="openDetail(scope.row.patient_id)">{{scope.row.name}}</span>
             </template>
           </el-table-column>
           <el-table-column prop="zs" label="主诉"></el-table-column>
@@ -79,7 +79,7 @@
         total: 0
       }
     },
-    mounted () {
+    created () {
       this.search()
     },
     methods: {
@@ -136,8 +136,27 @@
   .search {
     background: #fff;
     padding: 0 10px;
+    border: 1px solid #2195CB;
+  }
+  .bar {
+    height: 25px;
+    line-height: 25px;
+    background: #E7F4FA;
+    margin-top: 10px;
+    padding: 0 5px;
+    font-size: 14px;
+    color: #2195CB;
   }
 
+  .bar2 {
+    margin-bottom: 10px;
+  }
+  .excel {
+    border: none;
+    float: right;
+    background: transparent;
+    color: #2195CB;
+  }
   .result {
     margin-top: 10px;
     background: #fff;

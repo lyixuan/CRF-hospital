@@ -58,9 +58,8 @@ Vue.http.interceptors.push((request, next) => {
   });
 });
 
-
-Vue.prototype.openDetail = function () {
-  this.$router.push({path: 'search_detail'})
+Vue.prototype.openDetail = function (cid) {
+  this.$router.push({path: 'search_detail/'+cid})
 }
 Vue.prototype.addComparison = function (row) {
   let comparison = JSON.parse(window.sessionStorage.getItem('crf_comparison'))
@@ -73,7 +72,7 @@ Vue.prototype.addComparison = function (row) {
           return
         }
       }
-      comparison.push({card_id: row.card_id, name: row.name})
+      comparison.push({card_id: row.card_id, name: row.name, patient_id:row.patient_id})
       window.sessionStorage.setItem('crf_comparison', JSON.stringify(comparison))
       this.alertMsg("success", "已添加")
     } else {
@@ -81,7 +80,7 @@ Vue.prototype.addComparison = function (row) {
     }
   } else {
     let arr = [];
-    arr.push({card_id: row.card_id, name: row.name})
+    arr.push({card_id: row.card_id, name: row.name, patient_id:row.patient_id})
     window.sessionStorage.setItem('crf_comparison', JSON.stringify(arr))
     this.alertMsg("success", "已添加")
   }

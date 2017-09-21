@@ -19,3 +19,19 @@
   width: 100%;
   height: 100%;
 }
+
+.option-medicine-input .el-tag .el-icon-close{
+  visibility: hidden;
+}
+
+.el-tag:hover  .el-icon-close{
+  visibility: visible;
+}
+
+.option-medicine-input .el-tabs__header  .is-closable .el-icon-close{
+  visibility: hidden;
+}
+
+.option-medicine-input .el-tabs__header   .is-closable:hover .el-icon-close{
+  visibility: visible;
+}

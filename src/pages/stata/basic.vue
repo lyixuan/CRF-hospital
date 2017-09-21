@@ -56,7 +56,7 @@
         let o1 = document.getElementById('chart-2');
         let o2 = document.getElementById('chart-3');
         let o3 = document.getElementById('chart-4');
-        if (window.innerHeight > 700) {
+        if (window.innerHeight > 780) {
           o.style.height = o1.style.height = clientheight * 0.5 - 50 + 'px';
           o2.style.height = o3.style.height = clientheight * 0.5 - 60 + 'px';
         } else {
@@ -412,6 +412,7 @@
     border-radius: 6px;
     background: #fff;
     padding: 10px;
+    border: 1px solid #c5c5c5;
   }
 
   #chart-1 {

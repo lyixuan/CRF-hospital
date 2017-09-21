@@ -89,7 +89,7 @@
 
 <style>
   * {
-    font-size: 12px;
+    font-size: 13px;
     box-sizing: border-box;
   }
 
@@ -98,7 +98,7 @@
   }
 
   body {
-    background: #fff;
+    background: #F4F3F3;
     margin: 0;
     padding: 0;
     text-rendering: optimizeLegibility;

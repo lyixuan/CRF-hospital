@@ -23,7 +23,7 @@
               <div style="text-align: center;font-weight: 600;font-size: 18px;color:#333;margin-bottom: 20px;">
                 治疗方案详情统计
               </div>
-              <table id="table" border="1" bordercolor="#fff" width="100%" cellspacing="0" cellpadding="5">
+              <table id="table" border="1" bordercolor="#E0E6ED" width="100%" cellspacing="0" cellpadding="5">
               </table>
             </div>
           </el-col>
@@ -56,7 +56,7 @@
         let clientheight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         let o = document.getElementById('chart-c1');
         let o1 = document.getElementById('chart-c2');
-        if (window.innerHeight > 700) {
+        if (window.innerHeight > 780) {
           o.style.height = clientheight * 0.5 - 50+ 'px';
           o1.style.height = clientheight * 0.5 - 50+ 'px';
         } else {
@@ -164,7 +164,7 @@
                   interval: 0,
                   rotate: 90,
                   textStyle: {
-                    color: '#fff'
+                    color: '#000'
                   }
                 },
                 axisTick: {
@@ -273,14 +273,14 @@
         this.$resource(PATH_STATA + 'cure_detail').get().then((response) => {
           if (response.body.code == 200) {
             let rst = response.body.data;
-            let str = '<tr style="background: #83bff6;color: #fff;"> <th>治疗方案</th> <th>药物名称</th> <th>使用次数</th> </tr>';
+            let str = '<tr style="background: #EFF2F7;color: #444;height: 50px;"> <th>治疗方案</th> <th>药物名称</th> <th>使用次数</th> </tr>';
             for (let i = 0; i < rst.length; i++) {
               for (let j = 0; j < rst[i].drugs.length; j++) {
                 if (j == 0) {
-                  str += '<tr> <td style="background: #F5F5F5;color: #1D8CE0" rowspan=' + rst[i].drugs.length + '>' + rst[i].type + '</td>'
-                  str += '<td style="background: #F5F5F5;">' + rst[i].drugs[j].name + '</td><td style="background: #F5F5F5;">' + rst[i].drugs[j].value + '</td> </tr>'
+                  str += '<tr> <td style="color: #1D8CE0" rowspan=' + rst[i].drugs.length + '>' + rst[i].type + '</td>'
+                  str += '<td>' + rst[i].drugs[j].name + '</td><td style="">' + rst[i].drugs[j].value + '</td> </tr>'
                 } else {
-                  str += '<tr> <td style="background: #F5F5F5;">' + rst[i].drugs[j].name + '</td><td style="background: #F5F5F5;">' + rst[i].drugs[j].value + '</td> </tr>'
+                  str += '<tr> <td>' + rst[i].drugs[j].name + '</td><td style="">' + rst[i].drugs[j].value + '</td> </tr>'
                 }
               }
             }
@@ -302,6 +302,7 @@
     border-radius: 6px;
     background: #fff;
     padding: 10px;
+    border: 1px solid #c5c5c5;
   }
 
   .line2 {

@@ -98,9 +98,9 @@
         let o = document.getElementById('chart-h1');
         let o1 = document.getElementById('chart-h2');
         let o2 = document.getElementById('chart-h2-dz');
-        if (window.innerHeight > 700) {
+        if (window.innerHeight > 780) {
           o.style.height = clientheight * 0.5-50 + 'px';
-          o1.style.height = o2.style.height = clientheight * 0.5-50 + 'px';
+          o1.style.height = o2.style.height = clientheight * 0.5-60 + 'px';
         } else {
           o.style.height = clientheight * 0.6 + 'px';
           o1.style.height = o2.style.height = clientheight * 0.55 + 'px';
@@ -277,6 +277,7 @@
     border-radius: 6px;
     background: #fff;
     padding: 10px;
+    border: 1px solid #c5c5c5;
   }
 
   .line2 {

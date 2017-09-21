@@ -97,7 +97,7 @@
       let comparison = JSON.parse(window.sessionStorage.getItem('crf_comparison'))
       for (var i = 0; i < comparison.length; i++) {
         (function (arg) {
-          _this.$resource(PATH_SEARCH + 'detailByCardId').get({role_id: comparison[arg].card_id}).then((response) => {
+          _this.$resource(PATH_SEARCH + 'detailByPatientId').get({patient_id: comparison[arg].patient_id}).then((response) => {
             if (response.body.code == 200) {
               _this.data.push(response.body.data)
             } else {

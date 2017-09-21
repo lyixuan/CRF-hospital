@@ -52,7 +52,7 @@ const routes = [
   {path: '/search_check', component: S_Check},
   {path: '/search_image', component: S_Image},
   {path: '/search_cure', component: S_Cure},
-  {path: '/search_detail', component: S_Detail},
+  {path: '/search_detail/:patient_id', component: S_Detail},
   {path: '/search_comp', component: S_Comp},
 
   {path: '/record_1', component: RecordPage1},

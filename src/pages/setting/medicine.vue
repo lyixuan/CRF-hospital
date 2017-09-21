@@ -6,6 +6,7 @@
     </el-breadcrumb>
     <div class="wrap-10">
       <div class="inner">
+        <div class="bar">治疗方案和药品管理</div>
         <div class="btn">
           <el-button
             size="small"
@@ -27,16 +28,7 @@
               @close="handleClose(item,tag)">
               {{tag.name}}
             </el-tag>
-            <el-input
-              class="input-new-tag"
-              v-if="inputVisible"
-              v-model="inputValue"
-              ref="saveTagInput"
-              size="mini"
-              @keyup.enter.native="handleInputConfirm(item)"
-              @blur="handleInputConfirm(item)">
-            </el-input>
-            <el-button v-else class="button-new-tag" size="small" @click="showInput">+ 添加药品</el-button>
+            <el-button class="button-new-tag" size="small" @click="showInput(item)">+ 添加药品</el-button>
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -100,45 +92,89 @@
         })
       },
       removeTab(targetName) {
-        this.$resource(PATH_SETTING + 'del_cure').save({},{cure_key:targetName}).then((response) => {
-          if (response.body.code == 200) {
-            let tabs = this.editableTabs;
-            let activeName = this.editableTabsValue;
-            tabs.forEach((tab, index) => {
-              if (tab.key == targetName) {
-                let nextTab = tabs[index + 1] || tabs[index - 1]
-                if (nextTab) {
-                  activeName = nextTab.key
+        let this_ = this;
+        this.$confirm('此操作将永久删除该治疗方案, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this_.$resource(PATH_SETTING + 'del_cure').save({},{cure_key:targetName}).then((response) => {
+            if (response.body.code == 200) {
+              let tabs = this_.editableTabs;
+              let activeName = this_.editableTabsValue;
+              tabs.forEach((tab, index) => {
+                if (tab.key == targetName) {
+                  let nextTab = tabs[index + 1] || tabs[index - 1]
+                  if (nextTab) {
+                    activeName = nextTab.key
+                  }
                 }
-              }
-            })
-            this.editableTabsValue = activeName;
-            this.editableTabs = tabs.filter(tab => tab.key !== targetName);
-          } else {
-            this.alertMsg("error: ", response.status + " - " + response.url)
-          }
-        })
+              })
+              this_.editableTabsValue = activeName;
+              this_.editableTabs = tabs.filter(tab => tab.key !== targetName);
+              this_.$message({
+                type: 'info',
+                message: '删除成功'
+              });
+            } else {
+              this_.alertMsg("error: ", response.status + " - " + response.url)
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
       },
       handleClose(item,tag) {
-        this.$resource(PATH_SETTING + 'del_cure_drug').save({},{cure_key:tag.key,drug_key:item.key}).then((response) => {
-          if (response.body.code == 200) {
-            item.content.splice(item.content.indexOf(tag), 1);
-          } else {
-            this.alertMsg("error: ", response.status + " - " + response.url)
-          }
+        let  this_ = this;
+        this.$confirm('此操作将永久删除该药品, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this_.$resource(PATH_SETTING + 'del_cure_drug').save({},{cure_key:tag.key,drug_key:item.key}).then((response) => {
+            if (response.body.code == 200) {
+              item.content.splice(item.content.indexOf(tag), 1);
+              this_.$message({
+                type: 'success',
+                message: '删除成功!'
+              });
+            } else {
+              this_.alertMsg("error: ", response.status + " - " + response.url)
+            }
+          })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+      },
+      showInput(item) {
+        this.$prompt(`请输入${item.name}方案下的药品名`, '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消'
+        }).then(({value}) => {
+          this.handleInputConfirm(item, value);
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入',
+          })
         })
       },
-      showInput() {
-        this.inputVisible = true;
-      },
-      handleInputConfirm(item) {
-        let inputValue = this.inputValue;
+      handleInputConfirm(item, value) {
+        let inputValue = value;
         if (inputValue) {
           this.$resource(PATH_SETTING + 'add_cure_drug').save({}, {drug_name: inputValue, cure_key: item.key}).then((response) => {
             if (response.body.code == 200) {
               item.content.push({key: response.body.data.key, name: inputValue})
-              this.inputVisible = false;
-              this.inputValue = '';
+              this.$message({
+                type: 'success',
+                message: '你添加了药品: ' + inputValue,
+              })
             } else {
               this.alertMsg('error: ', response.status + ' - ' + response.url)
             }
@@ -152,10 +188,25 @@
 <style scoped>
   @import "../../style/stata.css";
 
+  .wrap-10 {
+    padding: 10px;
+    overflow: hidden;
+  }
+
   .inner {
     background: #fff;
     padding: 10px;
     min-height: 500px;
+  }
+
+  .bar {
+    height: 25px;
+    line-height: 25px;
+    background: #E7F4FA;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #2195CB;
   }
 
   .btn {

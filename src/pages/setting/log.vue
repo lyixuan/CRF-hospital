@@ -108,6 +108,7 @@
   .search {
     background: #fff;
     padding: 0 10px;
+    border: 1px solid #2195CB;
   }
 
   .result {
