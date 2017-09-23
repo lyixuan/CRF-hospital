@@ -50,7 +50,11 @@ Vue.http.interceptors.push((request, next) => {
    *
    * 现有位置1. step8.vue
    */
-  request.url = request.url + '.php'
+  if(request.url.indexOf('china')>0){
+
+  } else {
+    request.url = request.url + '.php'
+  }
   next((response) => {
     if (response.status != 200) {
       Vue.prototype.alertMsg("error", response.status + " - " + response.url)

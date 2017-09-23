@@ -23,7 +23,7 @@
               <div style="text-align: center;font-weight: 600;font-size: 18px;color:#333;margin-bottom: 20px;">
                 治疗方案详情统计
               </div>
-              <table id="table" border="1" bordercolor="#E0E6ED" width="100%" cellspacing="0" cellpadding="5">
+              <table id="table" border="1" bordercolor="#E0E6ED" width="100%" cellpadding="5" style="border-collapse: collapse">
               </table>
             </div>
           </el-col>
@@ -273,14 +273,38 @@
         this.$resource(PATH_STATA + 'cure_detail').get().then((response) => {
           if (response.body.code == 200) {
             let rst = response.body.data;
-            let str = '<tr style="background: #EFF2F7;color: #444;height: 50px;"> <th>治疗方案</th> <th>药物名称</th> <th>使用次数</th> </tr>';
+            let str = '<tr style="background: #EFF2F7;height: 50px;"> <th>治疗方案</th> <th style="text-align:left;padding-left:10px;">药物名称</th> <th style="text-align:left;padding-left:10px;">使用次数</th> </tr>';
             for (let i = 0; i < rst.length; i++) {
               for (let j = 0; j < rst[i].drugs.length; j++) {
                 if (j == 0) {
-                  str += '<tr> <td style="color: #1D8CE0" rowspan=' + rst[i].drugs.length + '>' + rst[i].type + '</td>'
-                  str += '<td>' + rst[i].drugs[j].name + '</td><td style="">' + rst[i].drugs[j].value + '</td> </tr>'
+                  str += '<tr> <td style="font-size: 16px;color:#666;width: 50%;'
+                  if(i%2==0){
+                    str += 'background: #E2F0E4;'
+                  }  else {
+                    str += 'background: #C9E5F5;'
+                  }
+                  str += '"rowspan=' + rst[i].drugs.length + '>' + rst[i].type + '</td>'
+                  str += '<td'
+                  if(i%2==0){
+                    str += ' style="background: #E2F0E4;text-align:left;padding-left:10px;color:#666"'
+                  } else {
+                    str += ' style="background: #C9E5F5;text-align:left;padding-left:10px;color:#666"'
+                  }
+                  str +=  '>' + rst[i].drugs[j].name + '</td><td'
+                  if(i%2==0){
+                    str += ' style="background: #E2F0E4;text-align:left;padding-left:10px;color:#666"'
+                  } else {
+                    str += ' style="background: #C9E5F5;text-align:left;padding-left:10px;color:#666"'
+                  }
+                  str += '>' + rst[i].drugs[j].value + '</td> </tr>'
                 } else {
-                  str += '<tr> <td>' + rst[i].drugs[j].name + '</td><td style="">' + rst[i].drugs[j].value + '</td> </tr>'
+                  str += '<tr'
+                  if(i%2==0){
+                    str += ' style="background: #E2F0E4;text-align:left;"'
+                  } else {
+                    str += ' style="background: #C9E5F5;text-align:left;"'
+                  }
+                  str += '> <td style="padding-left: 10px;color:#666">' + rst[i].drugs[j].name + '</td><td style="padding-left: 10px;color:#666">' + rst[i].drugs[j].value + '</td> </tr>'
                 }
               }
             }
@@ -313,6 +337,9 @@
     text-align: center;
   }
 
+  table td:hover{
+    background: #ccc;
+  }
 
 
 </style>

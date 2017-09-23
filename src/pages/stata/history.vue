@@ -214,6 +214,16 @@
       },
       c2(){
         let myChart = echarts.init(document.getElementById('chart-h2'));
+        const myColor = [
+          '#BBDCA9',
+          '#8AC93D',
+          '#00A93D',
+          '#FAFF00',
+          '#256AAD',
+          '#D87A80',
+          '#CC2A28',
+          '#CC2A28',
+        ]
         this.$resource(PATH_STATA + 'hypertension_dist').get().then((response) => {
           if (response.body.code == 200) {
            let option = {
@@ -222,7 +232,7 @@
                 x: 'center'
               },
              color:[
-               '#D87A80'
+               '#CC2A28',
              ],
              toolbox: {
                show: true,
@@ -256,6 +266,15 @@
               series: [{
                 name: '人数',
                 type: 'bar',
+                itemStyle: {
+                  normal: {
+                    // callback,设定每一bar颜色,配置项color顶axis一组bars颜色
+                    color: function(params) {
+                      var num=myColor.length;
+                      return myColor[params.dataIndex%num]
+                    }
+                  }
+                },
                 data: response.body.data.value
               }]
             };

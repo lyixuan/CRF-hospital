@@ -319,7 +319,6 @@
     padding-left: 5px;
     width: 100%;
     font-size: 14px;
-    font-weight: bold;
   }
 
   .condition0 {
@@ -373,7 +372,8 @@
   }
 
   .itableactive  span:nth-child(2){
-    background: #E7F4FA !important;
+    background: #3499CF !important;
+    color: #fff;
   }
 
   .itable > span {

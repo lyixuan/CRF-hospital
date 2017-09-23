@@ -222,7 +222,6 @@
     padding-left: 5px;
     width: 100%;
     font-size: 14px;
-    font-weight: bold;
   }
 
   .condition0 {
