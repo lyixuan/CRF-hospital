@@ -32,7 +32,8 @@ Vue.prototype.clearStorage = function () {
   sessionStorage.removeItem("x_step6_zlfa_usageList");
   sessionStorage.removeItem("x_step7_pflb");
   sessionStorage.removeItem("x_step7_pflb_tabList");
-  sessionStorage.removeItem("x_step8_img");
+  sessionStorage.removeItem("x_step8_sf");
+  sessionStorage.removeItem("x_step9_img");
 };
 
 Vue.prototype.formatDate = function (date) {
@@ -62,8 +63,8 @@ Vue.http.interceptors.push((request, next) => {
   });
 });
 
-Vue.prototype.openDetail = function (cid) {
-  this.$router.push({path: 'search_detail/'+cid})
+Vue.prototype.openDetail = function (cid,followId) {
+  this.$router.push({path: 'search_detail/'+cid+'/'+followId})
 }
 Vue.prototype.addComparison = function (row) {
   let comparison = JSON.parse(window.sessionStorage.getItem('crf_comparison'))

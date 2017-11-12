@@ -69,22 +69,22 @@
           zd: ''
         },
         rules: {
-          zs: [
-            {required: true, message: '请输入主诉内容', trigger: 'blur'}
-          ],
-          xbs: [
-            {required: true, message: '请输入现病史内容', trigger: 'blur'}
-          ],
-          ct: [
-            {required: true, message: '请输入查体内容', trigger: 'blur'}
-          ],
-          zd: [
-            {required: true, message: '请输入诊断内容', trigger: 'blur'}
-          ]
+//          zs: [
+//            {required: true, message: '请输入主诉内容', trigger: 'blur'}
+//          ],
+//          xbs: [
+//            {required: true, message: '请输入现病史内容', trigger: 'blur'}
+//          ],
+//          ct: [
+//            {required: true, message: '请输入查体内容', trigger: 'blur'}
+//          ],
+//          zd: [
+//            {required: true, message: '请输入诊断内容', trigger: 'blur'}
+//          ]
         }
       }
     },
-    mounted(){
+    created(){
       let info;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))

@@ -22,9 +22,12 @@
       <div class="tab-content">
         <el-form ref="yxForm" :model="yxForm" label-width="60px">
           <transition-group name="fade-list">
-            <el-row class="line-out" v-for="item in checkedList" v-bind:key="item">
+            <el-row class="line-out" v-for="item in checkedList" :key="item">
               <el-col :span="3">
                 <el-button type="info">{{yxForm[item].name}}</el-button>
+              </el-col>
+              <el-col :span="3" style="text-align: center">
+                <el-checkbox v-model="yxForm[item].unknow">不祥</el-checkbox>
               </el-col>
               <el-col :span="5">
                 <el-form-item label="日期:">
@@ -32,14 +35,14 @@
                                   placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker>
                 </el-form-item>
               </el-col>
-              <el-col :span="8">
+              <el-col :span="7">
                 <el-form-item label="描述:">
                   <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制512字内"
                             v-model=yxForm[item].ms
                             :maxlength="512"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="8">
+              <el-col :span="6">
                 <el-form-item label="结论:">
                   <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 3}" placeholder="限制256字内"
                             v-model=yxForm[item].jl
@@ -70,69 +73,81 @@
             name: "",
             ms: "",
             jl: "",
-            date: ""
+            date: "",
+            unknow: false,
           },
           tMRIDWI: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           tjCTA: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           tjCTV: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           tMRA: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           tjMRVortMRV: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           tDSA: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           jdmcs: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           TCD: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           jjmcs: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           nSPECT: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
             date: ""
           },
           nPET: {
+            unknow: false,
             name: "",
             ms: "",
             jl: "",
@@ -183,7 +198,7 @@
       validate() {
         // 勾选的项目必填
         for (let i = 0; i < this.checkedList.length; i++) {
-          if (this.yxForm[this.checkedList[i]].date == '' || this.yxForm[this.checkedList[i]].ms == '' || this.yxForm[this.checkedList[i]].jl == '') {
+          if (!this.yxForm[this.checkedList[i]].unknow && (this.yxForm[this.checkedList[i]].date == '' || this.yxForm[this.checkedList[i]].ms == '' || this.yxForm[this.checkedList[i]].jl == '')) {
             this.alertMsg("warning", '请将 "' + this.yxForm[this.checkedList[i]].name + '" 信息填写完整')
             return false
           }

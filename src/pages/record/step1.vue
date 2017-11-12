@@ -97,13 +97,14 @@
               <el-radio-group v-model="jbxxForm.sick_type.type">
                 <el-radio label="jm">静脉</el-radio>
                 <el-radio label="dm">动脉</el-radio>
+                <el-radio label="qt">其他</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="23">
-            <el-form-item label="疾病名称:" prop="sick_type.sick">
+            <el-form-item label="疾病信息:" prop="sick_type.sick">
               <el-radio-group v-model="jbxxForm.sick_type.sick">
                 <el-radio :label=item.key v-for="item in baseData.jm" v-if="jbxxForm.sick_type.type == 'jm'">
                   {{item.name}}
@@ -111,6 +112,7 @@
                 <el-radio :label=item.key v-for="item in baseData.dm" v-if="jbxxForm.sick_type.type == 'dm'">
                   {{item.name}}
                 </el-radio>
+                <el-input  v-if="jbxxForm.sick_type.type == 'qt'" size="small" v-model="jbxxForm.sick_type.sick" placeholder="请输入内容"></el-input>
               </el-radio-group>
             </el-form-item>
           </el-col>
@@ -266,7 +268,8 @@
           addr: '',
           sick_type: {
             type: 'jm',
-            sick: ''
+            sick: '',
+            sickName: '',
           },
           province:''
         },
@@ -277,32 +280,32 @@
           name: [
             {required: true, message: '请输入姓名', trigger: 'blur'}
           ],
-          visit_date: [
-            {type: 'date', required: true, message: '请选择就诊日期', trigger: 'change'}
-          ],
-          sex: [
-            {required: true, message: '请选择性别', trigger: 'blur'}
-          ],
-          province: [
-            {required: true, message: '请选择省份', trigger: 'blur'}
-          ],
-          age: [
-            {required: true, message: '请输入年龄', trigger: 'blur'},
-            {validator: validateAge, trigger: 'blur'}
-          ],
-          birthday: [
-            {type: 'date', required: true, message: '请选择出生日期', trigger: 'change'}
-          ],
-          mobile: [
-            {required: true, message: '请输入联系电话', trigger: 'blur'},
-            {validator: validateMobile, trigger: 'blur'}
-          ],
-          addr: [
-            {required: true, message: '请输入地址', trigger: 'blur'}
-          ],
-          'sick_type.sick': [
-            {required: true, message: '请选择疾病', trigger: 'blur'}
-          ]
+//          visit_date: [
+//            {type: 'date', required: true, message: '请选择就诊日期', trigger: 'change'}
+//          ],
+//          sex: [
+//            {required: true, message: '请选择性别', trigger: 'blur'}
+//          ],
+//          province: [
+//            {required: true, message: '请选择省份', trigger: 'blur'}
+//          ],
+//          age: [
+//            {required: true, message: '请输入年龄', trigger: 'blur'},
+//            {validator: validateAge, trigger: 'blur'}
+//          ],
+//          birthday: [
+//            {type: 'date', required: true, message: '请选择出生日期', trigger: 'change'}
+//          ],
+//          mobile: [
+//            {required: true, message: '请输入联系电话', trigger: 'blur'},
+//            {validator: validateMobile, trigger: 'blur'}
+//          ],
+//          addr: [
+//            {required: true, message: '请输入地址', trigger: 'blur'}
+//          ],
+//          'sick_type.sick': [
+//            {required: true, message: '请选择疾病', trigger: 'blur'}
+//          ]
         },
         writeFlag: false
       }
@@ -337,10 +340,24 @@
         this.writeFlag = true
         this.jbxxForm.sick_type.type = info.sick_type.type
         this.jbxxForm.sick_type.sick = info.sick_type.sick
+        this.jbxxForm.sick_type.sickName = info.sick_type.sickName
       },
       storage() {
-        this.jbxxForm.visit_date = this.formatDate(new Date(this.jbxxForm.visit_date))
-        this.jbxxForm.birthday = this.formatDate(new Date(this.jbxxForm.birthday))
+        for (let i = 0; i < this.baseData.jm.length; i++) {
+          if (this.jbxxForm.sick_type.sick == this.baseData.jm[i].key) {
+            this.jbxxForm.sick_type.sickName = '静脉: ' + this.baseData.jm[i].name
+          }
+        }
+        for (let i = 0; i < this.baseData.dm.length; i++) {
+          if (this.jbxxForm.sick_type.sick == this.baseData.dm[i].key) {
+            this.jbxxForm.sick_type.sickName = '动脉: ' + this.baseData.dm[i].name
+          }
+        }
+        if (this.jbxxForm.type == 'qt' ) {
+          this.jbxxForm.sick_type.sickName = '其他: ' + this.jbxxForm.sick_type.sick
+        }
+        this.jbxxForm.visit_date = this.jbxxForm.visit_date?this.formatDate(new Date(this.jbxxForm.visit_date)):''
+        this.jbxxForm.birthday = this.jbxxForm.birthday?this.formatDate(new Date(this.jbxxForm.birthday)):''
         window.sessionStorage.setItem('x_step1_jbxx', JSON.stringify(this.jbxxForm))
       },
       saveAndStepTo(num) {
@@ -379,7 +396,8 @@
           province: '',
           sick_type: {
             type: 'jm',
-            sick: ''
+            sick: '',
+            sickName: ''
           }
         }
         this.$refs['jbxxForm'].resetFields();

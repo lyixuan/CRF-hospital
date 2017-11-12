@@ -8,6 +8,7 @@
       <el-step title="影像学检查"></el-step>
       <el-step title="治疗方案"></el-step>
       <el-step title="评分量表"></el-step>
+      <el-step title="随访"></el-step>
       <el-step title="图片上传"></el-step>
       <el-step title="完成"></el-step>
     </el-steps>

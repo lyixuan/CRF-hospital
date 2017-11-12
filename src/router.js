@@ -12,7 +12,7 @@ import RecordPage7 from './pages/record/step7'
 import RecordPage8 from './pages/record/step8'
 import RecordPage9 from './pages/record/step9'
 import RecordPage10 from './pages/record/step10'
-import RecordPage11 from './pages/record/step11'
+import RecordPage12 from './pages/record/step12'
 
 // 统计
 import Survey from './pages/stata/survey'
@@ -29,6 +29,9 @@ import S_Image from './pages/search/image'
 import S_Cure from './pages/search/cure'
 import S_Detail from './pages/search/detail'
 import S_Comp from './pages/search/comparison'
+
+// 随访
+import SfIndex from './pages/sf/index'
 
 // 设置
 import O_Log from './pages/setting/log'
@@ -52,7 +55,7 @@ const routes = [
   {path: '/search_check', component: S_Check},
   {path: '/search_image', component: S_Image},
   {path: '/search_cure', component: S_Cure},
-  {path: '/search_detail/:patient_id', component: S_Detail},
+  {path: '/search_detail/:patient_id/:followId', component: S_Detail},
   {path: '/search_comp', component: S_Comp},
 
   {path: '/record_1', component: RecordPage1},
@@ -63,9 +66,9 @@ const routes = [
   {path: '/record_6', component: RecordPage6},
   {path: '/record_7', component: RecordPage7},
   {path: '/record_8', component: RecordPage8},
-  {path: '/record_end', component: RecordPage9},
+  {path: '/record_9', component: RecordPage9},
+  {path: '/record_end', component: RecordPage12},
   {path: '/record_preview', component: RecordPage10},
-  {path: '/record_11', component: RecordPage11},
 
   {path: '/setting_log', component: O_Log},
   {path: '/setting_medicine_input', component: O_Medicine},
@@ -73,6 +76,7 @@ const routes = [
   {path: '/setting_priviledge', component: O_Priviledge},
 
   {path: '/change_pwd', component: O_ChangePwd},
+  {path: '/follow', component: SfIndex},
 
 ];
 

@@ -4,6 +4,10 @@
 
       <el-col :span="24">
         <el-menu :default-active="$route.path" mode="vertical" :router="true" :unique-opened="true"  theme="dark">
+          <el-submenu index="3" v-for="(v,k) in menuList" v-if="k == 'lr' &&v == 1">
+            <template slot="title"><img class="m-img" src="../assets/lr.png" width="16" alt="">病案录入</template>
+            <el-menu-item index="/record_1" v-for="item in checkMenuList" v-if="item == 'lr_lr'" :key="item"><i class="el-icon-menu"></i>录入</el-menu-item>
+          </el-submenu>
           <el-submenu index="1" v-for="(v,k) in menuList" v-if="k == 'tj' &&v == 1">
             <template slot="title" class="el-icon-menu"><img class="m-img" src="../assets/tj.png" width="16" alt="">统计分析</template>
             <el-menu-item index="/stata_survey"  v-for="item in checkMenuList" v-if="item == 'tj_gl'" :key="item"><i class="el-icon-menu"></i>概览</el-menu-item>
@@ -20,9 +24,9 @@
             <el-menu-item index="/search_image"  v-for="item in checkMenuList" v-if="item == 'js_yxxjy'" :key="item"><i class="el-icon-menu"></i>影像学检查</el-menu-item>
             <el-menu-item index="/search_cure"  v-for="item in checkMenuList" v-if="item == 'js_zlfa'" :key="item"><i class="el-icon-menu"></i>治疗方案</el-menu-item>
           </el-submenu>
-          <el-submenu index="3" v-for="(v,k) in menuList" v-if="k == 'lr' &&v == 1">
-            <template slot="title"><img class="m-img" src="../assets/lr.png" width="16" alt="">病案录入</template>
-            <el-menu-item index="/record_1" v-for="item in checkMenuList" v-if="item == 'lr_lr'" :key="item"><i class="el-icon-menu"></i>录入</el-menu-item>
+          <el-submenu index="6" v-for="(v,k) in menuList" v-if="k == 'sf' &&v == 1">
+            <template slot="title"><img class="m-img" src="../assets/lr.png" width="16" alt="">人员随访</template>
+            <el-menu-item index="/follow" v-for="item in checkMenuList" v-if="item == 'sf_sfxx'" :key="item"><i class="el-icon-menu"></i>随访信息</el-menu-item>
           </el-submenu>
           <el-submenu index="4" v-for="(v,k) in menuList" v-if="k == 'pz' &&v == 1">
             <template slot="title"><img class="m-img" src="../assets/pz.png" width="16" alt="">平台配置</template>

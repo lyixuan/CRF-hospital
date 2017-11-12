@@ -45,7 +45,7 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="现在:">
-                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year" :editable="false" :clearable="false"
+                  <el-date-picker v-model="jwsForm.gxy.info.now_date" align="right" type="year":clearable="false"
                                   placeholder="选择年"></el-date-picker>
                 </el-form-item>
               </el-col>
@@ -231,6 +231,27 @@
             </el-row>
           </el-col>
         </el-row>
+        <div class="row-line"></div>
+        <el-row>
+          <el-col :span="7">
+            <el-form-item label="其他:" required>
+              <el-radio-group v-model="jwsForm.qt.type">
+                <el-radio label="1">是</el-radio>
+                <el-radio label="0">否</el-radio>
+                <el-radio label="2">不祥</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+          <el-col :span="17" v-if="jwsForm.qt.type == 1">
+            <el-row>
+              <el-col :span="23">
+                <el-form-item label="描述:">
+                  <el-input v-model="jwsForm.qt.info"></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
       </el-form>
     </div>
   </div>
@@ -299,6 +320,10 @@
             info: {
               ms: ""
             }
+          },
+          qt: {
+            type: "1",
+            info: "",
           }
         },
         rules: {}
@@ -320,10 +345,10 @@
         this.jwsForm = info
       },
       storage() {
-        this.jwsForm.gxy.info.zg_date = this.formatDate(new Date(this.jwsForm.gxy.info.zg_date))
-        this.jwsForm.gxy.info.now_date  = new Date(this.jwsForm.gxy.info.now_date)?this.formatDate(new Date(this.jwsForm.gxy.info.now_date)):null
-        this.jwsForm.tnb.info.date = this.formatDate(new Date(this.jwsForm.tnb.info.date))
-        this.jwsForm.gxb.info.date = this.formatDate(new Date(this.jwsForm.gxb.info.date))
+        this.jwsForm.gxy.info.zg_date =this.jwsForm.gxy.info.zg_date != 'NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxy.info.zg_date)): '';
+        this.jwsForm.gxy.info.now_date  = this.jwsForm.gxy.info.now_date !='NaN-NaN-NaN' ?this.formatDate(new Date(this.jwsForm.gxy.info.now_date)):''
+        this.jwsForm.tnb.info.date =this.jwsForm.tnb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.tnb.info.date)):'';
+        this.jwsForm.gxb.info.date = this.jwsForm.gxb.info.date !='NaN-NaN-NaN' ? this.formatDate(new Date(this.jwsForm.gxb.info.date)):'';
         window.sessionStorage.setItem('x_step3_jws', JSON.stringify(this.jwsForm))
       },
       saveAndStepTo(num) {

@@ -35,10 +35,12 @@
               <el-col :span="3">
                 <el-button type="info">{{zlfaForm[item].name}}</el-button>
               </el-col>
-              <el-col :span="21">
-                <el-row :gutter="10" v-for="(value,key) in zlfaForm[item]" v-if="key != 'name' && key != 'types' && key != 'flag'">
+              <el-col :span="2" style="text-align: center">
+                <el-checkbox v-model="zlfaForm[item].unknow">不祥</el-checkbox>
+              </el-col>
+              <el-col :span="19">
+                <el-row :gutter="10" v-for="(value,key) in zlfaForm[item]" v-if="key != 'name' && key != 'types' && key != 'flag' && key != 'unknow'">
                   <el-col :span="2" class="add-btn">
-                    &nbsp;
                     <el-button type="info" @click="addType(item,key)" v-if="key == zlfaForm[item].flag">+</el-button>
                     <el-button type="danger" @click="delType(item,key)" v-if="key != 'z1' && key == zlfaForm[item].flag">-</el-button>
                   </el-col>
@@ -98,6 +100,7 @@
         zlfaForm: {
           date: '',
           RIC: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -108,6 +111,7 @@
             }
           },
           jty: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -118,6 +122,7 @@
             }
           },
           jyy: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -128,6 +133,7 @@
             }
           },
           jzy: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -138,6 +144,7 @@
             }
           },
           kn: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -148,6 +155,7 @@
             }
           },
           kxxby: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -158,6 +166,7 @@
             }
           },
           other: {
+            unknow: false,
             name: "",
             types: [],
             z1: {
@@ -223,15 +232,15 @@
         // 勾选的项目必填
         for (let i = 0; i < this.checkedList.length; i++) {
           for(let k in this.zlfaForm[this.checkedList[i]]){
-            if(k != 'name' && k != 'types'){
-              if (this.zlfaForm[this.checkedList[i]][k].type == ''
-                || this.zlfaForm[this.checkedList[i]][k].dosage == ''
-                || this.zlfaForm[this.checkedList[i]][k].frequency == ''
-                || this.zlfaForm[this.checkedList[i]][k].usage == '') {
-                this.alertMsg("warning", '请将 "' + this.zlfaForm[this.checkedList[i]].name + '" 信息填写完整')
-                return false
+              if(k != 'name' && k != 'types' && k != 'unknow' && !this.zlfaForm[this.checkedList[i]].unknow){
+                if (this.zlfaForm[this.checkedList[i]][k].type == ''
+                  || this.zlfaForm[this.checkedList[i]][k].dosage == ''
+                  || this.zlfaForm[this.checkedList[i]][k].frequency == ''
+                  || this.zlfaForm[this.checkedList[i]][k].usage == '') {
+                  this.alertMsg("warning", '请将 "' + this.zlfaForm[this.checkedList[i]].name + '" 信息填写完整')
+                  return false
+                }
               }
-            }
           }
           if (this.zlfaForm.date == '') {
             this.alertMsg("warning", '请选择治疗方案日期')

@@ -440,21 +440,34 @@
       },
       validate(pTab) {
         // 校验,信息要么全填,要么全不填,emptyFlag和fullFlag如果都为1了,说明有空也有填的,校验不通过
+
+//        暂时不检验每一项必填
         let emptyFlag = 0, fullFlag = 0;
-        if (this.jyForm[pTab].date == "" || this.jyForm[pTab].date == '') {
-          emptyFlag = 1
-        } else {
-          fullFlag = 1;
-        }
+//        if (this.jyForm[pTab].date == "") {
+//          emptyFlag = 1
+//        } else {
+//          fullFlag = 1;
+//        }
+//
+//        for (var i = 0; i < this.jyForm[pTab].items.length; i++) {
+//          if (this.jyForm[pTab].items[i].value == '' || this.jyForm[pTab].items[i].value == null) {
+//            emptyFlag = 1;
+//          } else {
+//            fullFlag = 1;
+//          }
+//        }
+//        if (emptyFlag == 1) {
+//          this.alertMsg("warning", '请将 "' + this.jyForm[pTab].name + '" 信息填写完整,或清空不填')
+//          return false
+//        }
+
         for (var i = 0; i < this.jyForm[pTab].items.length; i++) {
-          if (this.jyForm[pTab].items[i].value == '' || this.jyForm[pTab].items[i].value == null) {
-            emptyFlag = 1;
-          } else {
-            fullFlag = 1;
+          if (this.jyForm[pTab].items[i].value) {
+            fullFlag  = 1;
           }
         }
-        if (emptyFlag == 1 && fullFlag == 1) {
-          this.alertMsg("warning", '请将 "' + this.jyForm[pTab].name + '" 信息填写完整,或清空不填')
+        if (this.jyForm[pTab].date == "" && fullFlag  == 1) {
+          this.alertMsg("warning", '请将填写日期')
           return false
         }
         return true

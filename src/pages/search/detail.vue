@@ -14,12 +14,14 @@
           </tr>
           <tr>
             <td>电话: {{x_step1_jbxx.mobile}}</td>
+            <td>电话2: {{x_step1_jbxx.mobile2}}</td>
             <td>出生年月: {{x_step1_jbxx.birthday}}</td>
-            <td colspan="3">住址: {{x_step1_jbxx.addr}}</td>
+            <td colspan="3">住址: {{x_step1_jbxx.province + x_step1_jbxx.addr}}</td>
           </tr>
           <tr>
             <td>病史分类</td>
-            <td colspan="4">{{x_step1_jbxx.sick_type ? x_step1_jbxx.sick_type.sick:''}}</td>
+            <td>身份证号: {{x_step1_jbxx.identity}}</td>
+            <td colspan="4">病史名称：{{x_step1_jbxx.sick_type ? x_step1_jbxx.sick_type.sickName:''}}</td>
           </tr>
         </table>
         <div class="t-header">二、病史</div>
@@ -114,6 +116,13 @@
             <td v-show="x_step3_jws.zls.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.zls.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.zls.type == 2?true:false">不祥</td>
+          </tr>
+          <tr v-if="x_step3_jws.qt">
+            <td>其他</td>
+            <td v-show="x_step3_jws.qt.type == 1?true:false">{{x_step3_jws.qt.info? x_step3_jws.qt.info: ''}}
+            </td>
+            <td v-show="x_step3_jws.qt.type == 0?true:false">否</td>
+            <td v-show="x_step3_jws.qt.type == 2?true:false">不祥</td>
           </tr>
         </table>
         <div class="t-header">四、检验</div>
@@ -352,7 +361,7 @@
         <table>
           <tr v-for="item in x_step5_yx">
             <td width="9%">{{item.name}}</td>
-            <td width="9%">{{item.date}}</td>
+            <td width="9%">{{item.unknow ? '信息不祥':item.date}}</td>
             <td width="40%">描述: {{item.ms}}</td>
             <td width="40%">结论: {{item.jl}}</td>
           </tr>
@@ -923,11 +932,40 @@
             </td>
           </tr>
         </table>
+        <div class="t-header">八、随访</div>
+        <table>
+          <tr>
+            <td width="200px" style="font-weight: bold">随访日期</td>
+            <td style="font-weight: bold">随访内容</td>
+          </tr>
+          <tr v-for="item in x_step9_sf">
+            <td width="200px">{{item.date}}</td>
+            <td>{{item.content}}</td>
+          </tr>
+        </table>
       </div>
       <el-row class="view-boot">
-        <el-col :span="24">&nbsp;<el-button class="m-el-button" type="primary" @click="back">返回</el-button></el-col>
+        <el-col :span="12">&nbsp<el-button class="m-el-button" type="primary" @click="back">返回</el-button><el-button v-if="fid" type="primary" @click="openFollow">添加随访</el-button></el-col>
       </el-row>
     </div>
+  <el-dialog
+    title="添加随访"
+    :visible.sync="dialogVisible"
+    width="30%">
+    <el-form :model="followParam" label-width="90px">
+      <el-form-item label="随访日期:">
+        <el-date-picker v-model="followParam.date" align="right" type="date"
+                        placeholder="选择日期" :editable="false" :clearable="false"></el-date-picker>
+      </el-form-item>
+      <el-form-item label="随访内容:">
+        <el-input type="textarea"  :autosize="{ minRows: 2, maxRows: 4}" v-model="followParam.content" placeholder="输入内容"></el-input>
+      </el-form-item>
+    </el-form>
+    <span slot="footer" class="dialog-footer">
+    <el-button @click="dialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="addFollow">保 存</el-button>
+  </span>
+  </el-dialog>
   </div>
 </template>
 
@@ -949,7 +987,8 @@
           jzb: {},
           xy: {},
           yj: {},
-          zls: {}
+          zls: {},
+          qt: {}
         },
         x_step4_jy: {
           xcg: {
@@ -1059,36 +1098,79 @@
             "total": 0
           }
         },
+        x_step9_sf: [],
         loading: true,
+        fid: false,
+        pid: '',
+        dialogVisible:false,
+        followParam: {
+          date:'',
+          content:'',
+        }
       }
     },
-    mounted(){
-      let pid = this.$route.params.patient_id
-      this.loading = true;
-      this.$resource(PATH_SEARCH + 'detailByPatientId').get({patient_id: pid}).then((response) => {
-        this.loading = false;
-        if (response.status == 200) {
-          this.x_step1_jbxx = response.body.data.jbxx
-          this.x_step2_bs = response.body.data.bs
-          this.x_step3_jws = response.body.data.jws
-          for (let key in response.body.data.jy) {
-            this.x_step4_jy[key] = response.body.data.jy[key]
-          }
-          this.x_step5_yx = response.body.data.yx
-          this.x_step6_zlfa = response.body.data.zlfa.items;
-          this.x_step6_zlfa_date = response.body.data.zlfa.date
-          for (let key in response.body.data.pflb) {
-            this.x_step7_pflb[key] = response.body.data.pflb[key]
-          }
-        } else {
-          this.alertMsg("error", response.status + " - " + response.url)
-        }
-      })
+    created(){
+      let fid = this.$route.params.followId
+      this.pid = this.$route.params.patient_id
+      if (fid == '1') {
+        this.fid = true;
+      }
+      this.init();
     },
     methods: {
+      init() {
+        this.loading = true;
+        this.$resource(PATH_SEARCH + 'detailByPatientId').get({patient_id: this.pid}).then((response) => {
+          this.loading = false;
+          if (response.status == 200) {
+            this.x_step1_jbxx = response.body.data.jbxx
+            this.x_step2_bs = response.body.data.bs
+            this.x_step3_jws = response.body.data.jws
+            for (let key in response.body.data.jy) {
+              this.x_step4_jy[key] = response.body.data.jy[key]
+            }
+            this.x_step5_yx = response.body.data.yx
+            this.x_step9_sf = response.body.data.sf
+            this.x_step6_zlfa = response.body.data.zlfa.items;
+            this.x_step6_zlfa_date = response.body.data.zlfa.date
+            for (let key in response.body.data.pflb) {
+              this.x_step7_pflb[key] = response.body.data.pflb[key]
+            }
+          } else {
+            this.alertMsg("error", response.status + " - " + response.url)
+          }
+        })
+      },
       back(){
         window.history.go(-1)
-      }
+      },
+      openFollow() {
+        this.dialogVisible = true;
+      },
+      addFollow() {
+        this.followParam.patient_id = this.pid;
+        if(this.followParam.date) {
+          this.followParam.date = this.formatDate(new Date(this.followParam.date));
+        } else {
+          this.alertMsg("warning", '请选择日期');
+          return
+        }
+        var resource = this.$resource(PATH_FOLLOW + 'add')
+        resource.save({},this.followParam).then((response) => {
+          if (response.status == 200) {
+            this.dialogVisible = false;
+            this.followParam.date = '';
+            this.followParam.content = '';
+            this.alertMsg("success", '保存成功');
+            this.init();
+          } else {
+            this.alertMsg("error", response.status + ':' + response.body.msg + " - " + response.url)
+          }
+        }, (response) => {
+          this.saving = false
+          this.alertMsg("error", response.status + " - " + response.url)
+        })
+      },
     }
   }
 </script>

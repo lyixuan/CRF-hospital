@@ -14,12 +14,13 @@
           </tr>
           <tr>
             <td>电话: {{x_step1_jbxx.mobile}}</td>
+            <td>电话2: {{x_step1_jbxx.mobile2}}</td>
             <td>出生年月: {{x_step1_jbxx.birthday}}</td>
-            <td colspan="3">住址: {{x_step1_jbxx.addr}}</td>
+            <td colspan="2">住址: {{x_step1_jbxx.province + x_step1_jbxx.addr}}</td>
           </tr>
           <tr>
-            <td>病史分类</td>
-            <td colspan="4">{{x_step1_jbxx.sick_type ? x_step1_jbxx.sick_type.sick:''}}</td>
+            <td>身份证号: {{x_step1_jbxx.identity}}</td>
+            <td colspan="4">病史名称：{{x_step1_jbxx.sick_type ? x_step1_jbxx.sick_type.sickName:''}}</td>
           </tr>
         </table>
         <div class="t-header">二、病史</div>
@@ -39,9 +40,9 @@
         </table>
         <div class="t-header">三、既往史</div>
         <table>
-          <tr>
+          <tr  v-if="x_step3_jws.gxy">
             <td width="80">高血压</td>
-            <td v-show="x_step3_jws.gxy.type == 1?true:false">{{x_step3_jws.gxy.info ? "最高: "+
+            <td v-if="x_step3_jws.gxy.type == 1?true:false">{{x_step3_jws.gxy.info ? "最高: "+
               (x_step3_jws.gxy.info.zg_date).substr(0,4) +"年, "+ x_step3_jws.gxy.info.xy_zg_high + "/"
               +x_step3_jws.gxy.info.xy_zg_low + "mmHg ; 现在: "+ (x_step3_jws.gxy.info.now_date).substr(0,4) +"年, "+
               x_step3_jws.gxy.info.xy_now_high + "/" +x_step3_jws.gxy.info.xy_now_low + "mmHg " :''}}
@@ -49,7 +50,7 @@
             <td v-show="x_step3_jws.gxy.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.gxy.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.tnb">
             <td>糖尿病</td>
             <td v-show="x_step3_jws.tnb.type == 1?true:false">{{x_step3_jws.tnb.info ?
               x_step3_jws.tnb.info.date.substr(0,4) +" 年, 空腹血糖: " + x_step3_jws.tnb.info.xt_data + "mmol/L" : ''}}
@@ -57,7 +58,7 @@
             <td v-show="x_step3_jws.tnb.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.tnb.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.gxb">
             <td>冠心病</td>
             <td v-show="x_step3_jws.gxb.type == 1?true:false">{{x_step3_jws.gxb.info?
               x_step3_jws.gxb.info.date.substr(0,4) +" 年":''}}
@@ -65,25 +66,25 @@
             <td v-show="x_step3_jws.gxb.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.gxb.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr v-if="x_step3_jws.gzxz">
             <td>高脂血症</td>
             <td v-show="x_step3_jws.gzxz.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.gzxz.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.gzxz.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr v-if="x_step3_jws.fc">
             <td>房颤</td>
             <td v-show="x_step3_jws.fc.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.fc.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.fc.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.tia">
             <td>TIA</td>
             <td v-show="x_step3_jws.tia.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.tia.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.tia.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.ng">
             <td>脑梗</td>
             <td v-show="x_step3_jws.ng.type == 1?true:false">{{x_step3_jws.ng.info? "后遗症: " +x_step3_jws.ng.info.hyz
               :''}}
@@ -91,29 +92,36 @@
             <td v-show="x_step3_jws.ng.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.ng.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.jzb">
             <td>颈椎病</td>
             <td v-show="x_step3_jws.jzb.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.jzb.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.jzb.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr  v-if="x_step3_jws.xy">
             <td>吸烟</td>
             <td v-show="x_step3_jws.xy.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.xy.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.xy.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr v-if="x_step3_jws.yj">
             <td>饮酒</td>
             <td v-show="x_step3_jws.yj.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.yj.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.yj.type == 2?true:false">不祥</td>
           </tr>
-          <tr>
+          <tr v-if="x_step3_jws.zls">
             <td>肿瘤史</td>
             <td v-show="x_step3_jws.zls.type == 1?true:false">是</td>
             <td v-show="x_step3_jws.zls.type == 0?true:false">否</td>
             <td v-show="x_step3_jws.zls.type == 2?true:false">不祥</td>
+          </tr>
+          <tr v-if="x_step3_jws.qt">
+            <td>其他</td>
+            <td v-show="x_step3_jws.qt.type == 1?true:false">{{x_step3_jws.qt.info? x_step3_jws.qt.info: ''}}
+            </td>
+            <td v-show="x_step3_jws.qt.type == 0?true:false">否</td>
+            <td v-show="x_step3_jws.qt.type == 2?true:false">不祥</td>
           </tr>
         </table>
         <div class="t-header">四、检验</div>
@@ -352,7 +360,7 @@
         <table>
           <tr v-for="item in x_step5_yx">
             <td width="9%">{{item.name}}</td>
-            <td width="9%">{{item.date}}</td>
+            <td width="9%">{{item.unknow ? '信息不祥':item.date}}</td>
             <td width="40%">描述: {{item.ms}}</td>
             <td width="40%">结论: {{item.jl}}</td>
           </tr>
@@ -369,10 +377,10 @@
           </tr>
           <tr v-for="item in x_step6_zlfa">
             <td width="9%">{{item.name}}</td>
-            <td>种类: {{item.type}}</td>
-            <td>用量: {{item.dosage}}</td>
-            <td>次数: {{item.frequency}}</td>
-            <td>服用方式: {{item.usage}}</td>
+            <td >种类: {{item.type}}</td>
+            <td >用量: {{item.dosage}}</td>
+            <td >次数: {{item.frequency}}</td>
+            <td >服用方式: {{item.usage}}</td>
           </tr>
         </table>
         <div class="t-header">七、评分量表</div>
@@ -923,6 +931,17 @@
             </td>
           </tr>
         </table>
+        <div class="t-header">八、随访</div>
+        <table>
+          <tr>
+            <td width="200px" style="font-weight: bold">随访日期</td>
+            <td style="font-weight: bold">随访内容</td>
+          </tr>
+          <tr v-for="item in x_step8_sf">
+            <td width="200px">{{item.date}}</td>
+            <td>{{item.content}}</td>
+          </tr>
+        </table>
       </div>
       <el-row class="view-boot">
         <el-col :span="16">&nbsp;</el-col>
@@ -965,7 +984,8 @@
           jzb: {},
           xy: {},
           yj: {},
-          zls: {}
+          zls: {},
+          qt: {},
         },
         x_step4_jy: {
           xcg: {
@@ -1028,12 +1048,12 @@
           mRs: {},
           mmse: {}
         },
-
+        x_step8_sf:[],
         dialogVisible: false,
         submitList: {}
       }
     },
-    mounted(){
+    created(){
       this.getStep1()
       this.getStep2()
       this.getStep3()
@@ -1041,21 +1061,12 @@
       this.getStep5()
       this.getStep6()
       this.getStep7()
+      this.getStep8()
+      this.getStep9()
     },
     methods: {
       getStep1(){
         this.x_step1_jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
-        let base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
-        for (let i = 0; i < base.jm.length; i++) {
-          if (this.x_step1_jbxx.sick_type.sick == base.jm[i].key) {
-            this.x_step1_jbxx.sick_type.sick = '静脉: ' + base.jm[i].name
-          }
-        }
-        for (let i = 0; i < base.dm.length; i++) {
-          if (this.x_step1_jbxx.sick_type.sick == base.dm[i].key) {
-            this.x_step1_jbxx.sick_type.sick = '动脉: ' + base.dm[i].name
-          }
-        }
       },
       getStep2(){
         this.x_step2_bs = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
@@ -1089,7 +1100,7 @@
             for (let i = 0; i < checkedList.length; i++) {
               if (key == checkedList[i]) {
                 for (let j in temp[key]) {
-                  if (j != 'name' && j != 'types' && j != 'flag') {
+                  if (j != 'name' && j != 'types' && j != 'flag' && j != 'unknow') {
                     for (let d = 0; d < dosageList.length; d++) {
                       if (temp[key][j].dosage == dosageList[d].id) {
                         temp[key][j].dosage = dosageList[d].name
@@ -1112,15 +1123,12 @@
                     }
                     temp[key][j].name = temp[key].name
                     this.x_step6_zlfa.push(temp[key][j])
-                    console.log(temp[key][j])
                   }
                 }
               }
             }
           }
         }
-
-        console.log(this.x_step6_zlfa)
       },
       getStep7(){
         let temp = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
@@ -1130,18 +1138,20 @@
         this.x_step7_pflb.mmse = temp.mmse
       },
       getStep8(){
+        this.x_step8_sf = JSON.parse(window.sessionStorage.getItem('x_step8_sf'))
+      },
+      getStep9(){
         this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
-        for (let key in x_step8_img) {
-          if (x_step8_img[key].length > 0) {
+        let x_step9_img = JSON.parse(window.sessionStorage.getItem('x_step9_img'))
+        for (let key in x_step9_img) {
+          if (x_step9_img[key].length > 0) {
             this.submitList.img[key] = []
-            for (let i = 0; i < x_step8_img[key].length; i++) {
-              this.submitList.img[key].push(x_step8_img[key][i].response.id)
+            for (let i = 0; i < x_step9_img[key].length; i++) {
+              this.submitList.img[key].push(x_step9_img[key][i].response.id)
             }
           }
         }
       },
-
       openDia(){
         this.dialogVisible = true;
       },
@@ -1153,7 +1163,8 @@
         this.sStep5()
         this.sStep6()
         this.sStep7()
-        this.stStep8()
+        this.sStep8()
+        this.sStep9()
         var resource = this.$resource(PATH_RECORD + 'form_post')
         this.saving = true
         resource.save({}, this.submitList).then((response) => {
@@ -1211,7 +1222,7 @@
               if (key == checkedList[i]) {
                 this.submitList.zlfa[key] = []
                 for (let ik in temp[key]) {
-                  if (ik != 'name' && ik != 'types' && ik != 'flag') {
+                  if (ik != 'name' && ik != 'types' && ik != 'flag' && ik != 'unknow') {
                     this.submitList.zlfa[key].push(temp[key][ik])
                   }
                 }
@@ -1229,14 +1240,17 @@
           }
         }
       },
-      stStep8(){
+      sStep8(){
+        this.submitList.sf = JSON.parse(window.sessionStorage.getItem('x_step8_sf'));
+      },
+      sStep9(){
         this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
-        for (let key in x_step8_img) {
-          if (x_step8_img[key].length > 0) {
+        let x_step9_img = JSON.parse(window.sessionStorage.getItem('x_step9_img'))
+        for (let key in x_step9_img) {
+          if (x_step9_img[key].length > 0) {
             this.submitList.img[key] = []
-            for (let i = 0; i < x_step8_img[key].length; i++) {
-              this.submitList.img[key].push(x_step8_img[key][i].response.id)
+            for (let i = 0; i < x_step9_img[key].length; i++) {
+              this.submitList.img[key].push(x_step9_img[key][i].response.id)
             }
           }
         }

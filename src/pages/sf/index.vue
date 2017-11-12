@@ -1,8 +1,8 @@
 <template>
   <div class="search-base">
     <el-breadcrumb separator="/">
-      <el-breadcrumb-item :to="{ path: '/search_basic' }">信息检索</el-breadcrumb-item>
-      <el-breadcrumb-item>基本信息</el-breadcrumb-item>
+      <el-breadcrumb-item>人员随访</el-breadcrumb-item>
+      <el-breadcrumb-item>随访信息</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="wrap-10">
       <div class="search">
@@ -46,15 +46,6 @@
             </el-select>
           </el-col>
           <el-col :span="6">
-            省份：
-            <el-select v-model="form.province" placeholder="选择省份" clearable>
-              <el-option v-for="item in province_list" :label="item.name" :value="item.name"
-                         :key="item.name"></el-option>
-            </el-select>
-          </el-col>
-        </el-row>
-        <el-row :gutter="10" class="row" v-if="form.type == 2">
-          <el-col :span="10">
             范围：
             <el-select v-model="form.date_type" placeholder="选择日期范围" clearable>
               <el-option label="全部" value="0"></el-option>
@@ -64,8 +55,15 @@
             </el-select>
           </el-col>
         </el-row>
-
-
+        <el-row :gutter="10" class="row" v-if="form.type == 2">
+          <el-col :span="6">
+            省份：
+            <el-select v-model="form.province" placeholder="选择省份" clearable>
+              <el-option v-for="item in province_list" :label="item.name" :value="item.name"
+                         :key="item.name"></el-option>
+            </el-select>
+          </el-col>
+        </el-row>
       </div>
       <el-button type="primary" @click="search">开始检索</el-button>
       <div class="result">
@@ -73,10 +71,7 @@
         <el-table
           :data="table_data" style="width: 100%" border empty-text>
           <el-table-column prop="card_id" label="诊疗卡号"   show-overflow-tooltip></el-table-column>
-          <el-table-column label="姓名" width="100">
-            <template scope="scope">
-              <span class="action" @click="openDetail(scope.row.patient_id,0)">{{scope.row.name}}</span>
-            </template>
+          <el-table-column label="姓名" prop="name" width="100" show-overflow-tooltip>
           </el-table-column>
           <el-table-column prop="sex" label="性别" :formatter="sexFormat" min-width="60"
                            show-overflow-tooltip></el-table-column>
@@ -93,7 +88,7 @@
           <el-table-column prop="create_time" label="第几次录入"   show-overflow-tooltip></el-table-column>
           <el-table-column label="操作" width="80">
             <template scope="scope">
-              <span class="action" @click="addComparison(scope.row)">+加对比</span>
+              <span class="action" @click="openDetail(scope.row.patient_id,1)">添加随访</span>
             </template>
           </el-table-column>
         </el-table>

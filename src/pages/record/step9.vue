@@ -3,156 +3,203 @@
     <steps :activee="8"></steps>
     <div class="guide-area">
       <el-row>
-        <el-col :span="12" class="x-title">完成</el-col>
+        <el-col :span="12" class="x-title">图片上传</el-col>
         <el-col :span="12" class="x-btn">
-          <el-button type="primary" @click="stepTo(8)" size="mini">上一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo(8)" size="mini">上一步</el-button>
+          <el-button type="primary" @click="saveAndStepTo('end')" size="mini">下一步</el-button>
         </el-col>
       </el-row>
     </div>
     <div style="clear: both;"></div>
     <div class="x-content">
-      <div class="tab-content">
-        <div class="finish-tip"><i class="el-icon-circle-check" style="font-size: 30px;"></i> 恭喜！信息录入完成</div>
-        <div class="finish-btn">
-          <el-button type="primary" @click="stepTo('preview')">预览</el-button>
-          <el-button type="primary" @click="openDia">保存</el-button>
-        </div>
+      <div class="tab-content table-box">
+        <table>
+          <tr>
+            <th width="120px;">1、基本信息</th>
+            <th>
+              <el-upload
+                :action="uploadUrl + '?page=jbxx'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="jbxx">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">2、病史</th>
+            <th>
+              <el-upload
+                :action="uploadUrl + '?page=bs'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="bs">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">3、既往史</th>
+            <th>
+              <el-upload
+                :action="uploadUrl+ '?page=jws'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="jws">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">4、检验</th>
+            <th>
+              <el-upload
+                :action="uploadUrl+ '?page=jy'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="jy">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">5、影像学检查</th>
+            <th>
+              <el-upload
+                :action="uploadUrl+ '?page=yx'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="yx">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">6、治疗方案</th>
+            <th>
+              <el-upload
+                :action="uploadUrl+ '?page=zlfa'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="zlfa">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+          <tr>
+            <th width="120px;">7、评分量表</th>
+            <th>
+              <el-upload
+                :action="uploadUrl+ '?page=pflb'"
+                :thumbnail-mode="false"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="handleSuccess"
+                :default-file-list="pflb">
+                <div class="el-dragger__text"><i class="el-icon-upload"></i> <em>点击上传</em></div>
+              </el-upload>
+            </th>
+          </tr>
+        </table>
       </div>
     </div>
-    <el-dialog title="消息提示" v-model="dialogVisible" size="tiny" :close-on-click-modal="false"
-               :close-on-press-escape="false" :show-close="false">
-      <span style="font-size: 16px;font-weight: bold;margin-left: 40%;">是否确定保存?</span>
-      <span slot="footer" class="dialog-footer first"><el-button type="primary" @click="cancel">取消</el-button></span>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="submitForm" v-if="!saving">保存,并开始下次录入</el-button>
-      <el-button type="primary" v-if="saving">保存中...</el-button>
-      </span>
-    </el-dialog>
-
   </div>
 </template>
 
 <script>
   import Steps from '../../components/Steps'
   export default {
-    name: 'input-step9',
+    name: 'input-step8',
     components: {
       Steps
     },
-    data () {
+    data() {
       return {
-        saving:false,
-        dialogVisible: false,
-        submitList: {}
+        uploadUrl: PATH_RECORD + 'upload.php',
+        jbxx: [],
+        bs: [],
+        jws: [],
+        jy: [],
+        yx: [],
+        zlfa: [],
+        pflb: []
+      };
+    },
+    mounted(){
+      let info;
+      try {
+        info = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
+      } catch (err) {
+        sessionStorage.removeItem("x_step8_img");
       }
+      if (info) {
+        this.writeBack(info)
+      }
+      console.log(this.bs)
     },
     methods: {
-      openDia(){
-        this.dialogVisible = true;
-      },
-      submitForm() {
-        this.getStep1()
-        this.getStep2()
-        this.getStep3()
-        this.getStep4()
-        this.getStep5()
-        this.getStep6()
-        this.getStep7()
-        this.getStep8()
-        var resource = this.$resource(PATH_RECORD + 'form_post')
-        this.saving = true
-        resource.save({}, this.submitList).then((response) => {
-          this.saving = false
-          if (response.status == 200) {
-            this.clearAndStepTo(1)
-          } else {
-            this.alertMsg("error", response.status + ':' + response.body.msg + " - " + response.url)
-          }
-        }, (response) => {
-          this.saving = false
-          this.alertMsg("error", response.status + " - " + response.url)
-        })
-      },
-      getStep1(){
-        this.submitList.jbxx = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
-      },
-      getStep2(){
-        this.submitList.bs = JSON.parse(window.sessionStorage.getItem('x_step2_bs'))
-      },
-      getStep3(){
-        this.submitList.jws = JSON.parse(window.sessionStorage.getItem('x_step3_jws'))
-      },
-      getStep4(){
-        this.submitList.jy = {}
-        // 只提交有内容的检验,即date不为null
-        let x_step4_jy = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
-        for (let key in x_step4_jy) {
-          if (x_step4_jy[key].date) {
-            this.submitList.jy[key] = x_step4_jy[key]
+      handleRemove(file, fileList) {
+        let listStr = this.constructStr(file.response)
+        for (let i = 0; i < this[listStr].length; i++) {
+          if (file.uid == this[listStr][i].uid) {
+            this[listStr].splice(i, 1)
           }
         }
       },
-      getStep5(){
-        this.submitList.yx = {}
-        let temp = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
-        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step5_yx_checkedList'))
-        for (let key in temp) {
-          for (let i = 0; i < checkedList.length; i++) {
-            if (key == checkedList[i]) {
-              this.submitList.yx[key] = temp[key]
-            }
-          }
-        }
+      handleSuccess(response, file, fileList){
+        let listStr = this.constructStr(response)
+        this[listStr] = fileList
       },
-      getStep6(){
-        this.submitList.zlfa = {}
-        let temp = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))
-        let checkedList = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa_checkedList'))
-        this.x_step6_zlfa_date = temp.date
-        this.submitList.zlfa.date = temp.date
-        for (let key in temp) {
-          if (key != 'date') {
-            for (let i = 0; i < checkedList.length; i++) {
-              if (key == checkedList[i]) {
-                this.submitList.zlfa[key]=[]
-                for(let ik in temp[key]){
-                  if(ik != 'name' && ik !='types' && ik !='flag'){
-                    this.submitList.zlfa[key].push(temp[key][ik])
-                  }
-                }
-              }
-            }
-          }
-        }
+      handlePreview(file) {
+        window.open(file.url)
       },
-      getStep7(){
-        this.submitList.pflb = {}
-        let x_step7_pflb = JSON.parse(window.sessionStorage.getItem('x_step7_pflb'))
-        for (let key in x_step7_pflb) {
-          if (x_step7_pflb[key].No1 != '') {
-            this.submitList.pflb[key] = x_step7_pflb[key]
-          }
+      constructStr(response){
+        // 构造对应字段
+        let param = '', listStr;
+        if (response.page) {
+          param = response.page
         }
-      },
-      getStep8(){
-        this.submitList.img = {}
-        let x_step8_img = JSON.parse(window.sessionStorage.getItem('x_step8_img'))
-        for (let key in x_step8_img) {
-          if (x_step8_img[key].length > 0) {
-            this.submitList.img[key]=[]
-            for (let i = 0; i < x_step8_img[key].length; i++) {
-              this.submitList.img[key].push(x_step8_img[key][i].response.id)
-            }
-          }
+        if (response.item) {
+          param = param + '_' + response.item
         }
+        listStr = param;
+        return listStr
       },
-      clearAndStepTo(num){
-        this.clearStorage()
+      writeBack (info) {
+        this.jbxx = info.jbxx;
+        this.bs = info.bs;
+        this.jws = info.jws;
+        this.jy = info.jy;
+        this.yx = info.yx;
+        this.zlfa = info.zlfa;
+        this.pflb = info.pflb;
+      },
+      storage() {
+        let fileList = {}
+        fileList.jbxx = this.jbxx;
+        fileList.bs = this.bs;
+        fileList.jws = this.jws;
+        fileList.jy = this.jy;
+        fileList.yx = this.yx;
+        fileList.zlfa = this.zlfa;
+        fileList.pflb= this.pflb;
+        window.sessionStorage.setItem('x_step9_img', JSON.stringify(fileList))
+      },
+      saveAndStepTo(num) {
+        this.storage()
         this.stepTo(num)
-        this.dialogVisible = false
-      },
-      cancel(){
-        this.dialogVisible = false
       }
     }
   }
@@ -164,23 +211,9 @@
   .x-content {
     border: none;
     padding: 0;
-    background: #fff;
   }
 
-  .finish-tip {
-    font-size: 30px;
-    text-align: center;
-    margin-top: 13%;
-    color: #13CE66;
-  }
-
-  .finish-btn {
-    margin-top: 50px;
-    text-align: center;
-    margin-bottom: 13%;
-  }
-
-  .first {
-    margin-right: 10px;
+  .el-dragger__text em {
+    cursor: pointer;
   }
 </style>
