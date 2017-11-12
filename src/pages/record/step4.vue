@@ -387,7 +387,7 @@
         checkedTab: ""
       }
     },
-    mounted(){
+    created(){
       let info;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step4_jy'))
@@ -397,7 +397,7 @@
       if (info) {
         this.writeBack(info)
       } else {
-        this.getJy()
+      this.getJy()
       }
     },
     methods: {
@@ -417,12 +417,10 @@
           }
           this.jyForm[key].name = info[key].name
           this.jyForm[key].date = info[key].date
-          console.log(this.jyForm[key].date)
         }
         // 初始化选中tab
         this.checkedTab = this.tabList[0].key
 //        this.jyForm = JSON.parse(JSON.stringify(info));
-        console.log(this.jyForm)
       },
       storage() {
         for (let key in this.jyForm) {

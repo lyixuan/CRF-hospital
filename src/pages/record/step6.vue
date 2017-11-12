@@ -31,7 +31,7 @@
             </el-col>
           </el-row>
           <transition-group name="fade-list">
-            <el-row class="line-out" v-for="item in checkedList" v-bind:key="item">
+            <el-row class="line-out" v-for="item in checkedList" :key="item">
               <el-col :span="3">
                 <el-button type="info">{{zlfaForm[item].name}}</el-button>
               </el-col>
@@ -170,7 +170,7 @@
         }
       }
     },
-    mounted(){
+    created(){
       let info, info_checkedList, info_checkList, info_dosageList, info_frequencyList, info_usageList;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step6_zlfa'))

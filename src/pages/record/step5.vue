@@ -141,7 +141,7 @@
         }
       }
     },
-    mounted(){
+    created(){
       let info, info_checkedList, info_checkList;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step5_yx'))
@@ -156,7 +156,7 @@
       if (info) {
         this.writeBack(info, info_checkedList, info_checkList)
       } else {
-        this.getYx()
+      this.getYx()
       }
     },
     methods: {

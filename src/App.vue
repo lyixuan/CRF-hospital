@@ -11,8 +11,8 @@
       <div class="comp-title">[{{count}}/4]对比栏 <span @click="close">x</span></div>
       <div class="comp-com" v-for="item in comp">
         <span class="close" @click="clear(item.card_id)">x</span>
-        <p>卡号：{{item.card_id}}</p>
-        <p>姓名：{{item.name}}</p>
+        <p>卡号:{{item.card_id}}</p>
+        <p>姓名:{{item.name}}</p>
       </div>
       <div class="comp-com">
         <span class="btn" @click="jumpComp">对比</span>
