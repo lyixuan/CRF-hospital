@@ -65,6 +65,12 @@
           </el-col>
           <el-col :span="1">&nbsp;</el-col>
           <el-col :span="7">
+            <el-form-item label="联系电话2:" prop="mobile">
+              <el-input v-model="jbxxForm.mobile2" placeholder="输入电话"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="1">&nbsp;</el-col>
+          <el-col :span="7">
             <el-form-item label="身份证号:" prop="identity">
               <el-input v-model="jbxxForm.identity" placeholder="输入身份证号"></el-input>
             </el-form-item>
@@ -256,6 +262,7 @@
           age: '',
           birthday: '',
           mobile: '',
+          mobile2: '',
           addr: '',
           sick_type: {
             type: 'jm',
@@ -300,25 +307,19 @@
         writeFlag: false
       }
     },
-    mounted () {
-      let info, base;
+    created () {
+      let info;
       try {
         info = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx'))
-        base = JSON.parse(window.sessionStorage.getItem('x_step1_jbxx_base'))
       } catch (err) {
-        sessionStorage.removeItem("x_step1_jbxx");
-        sessionStorage.removeItem("x_step1_jbxx_base");
-      }
 
-      if (base) {
-        this.baseData = base;
-      } else {
-        this.getJbxx()
       }
+      this.getJbxx()
       if (info) {
         this.writeBack(info)
+      } else {
+        sessionStorage.removeItem("x_step1_jbxx");
       }
-
     },
     methods: {
       writeBack (info) {
@@ -329,6 +330,7 @@
         this.jbxxForm.age = info.age
         this.jbxxForm.birthday = new Date(info.birthday)
         this.jbxxForm.mobile = info.mobile
+        this.jbxxForm.mobile2 = info.mobile2
         this.jbxxForm.addr = info.addr
         this.jbxxForm.identity = info.identity
         this.jbxxForm.province = info.province
@@ -357,7 +359,6 @@
         this.$resource(PATH_RECORD + 'jbxx').get().then((response) => {
           if (response.status == 200) {
             this.baseData = response.body
-            window.sessionStorage.setItem('x_step1_jbxx_base', JSON.stringify(this.baseData))
           } else {
             this.alertMsg("error", response.status + " - " + response.url)
           }
@@ -373,6 +374,7 @@
           age: '',
           birthday: '',
           mobile: '',
+          mobile2: '',
           addr: '',
           province: '',
           sick_type: {
