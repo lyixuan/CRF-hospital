@@ -86,7 +86,7 @@
           <el-table-column prop="create_date" label="录入日期"   show-overflow-tooltip></el-table-column>
           <el-table-column prop="create_people" label="录入人员"   show-overflow-tooltip></el-table-column>
           <el-table-column prop="create_time" label="第几次录入"   show-overflow-tooltip></el-table-column>
-          <el-table-column label="操作" width="80">
+          <el-table-column label="操作" width="100">
             <template scope="scope">
               <span class="action" @click="openDetail(scope.row.patient_id,1)">添加随访</span>
             </template>
